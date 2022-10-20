@@ -12,7 +12,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-name: App - Build container
+name: App - Build App Container
 concurrency:
   group: app-build-ci-${{ github.ref }}
   cancel-in-progress: true
@@ -38,7 +38,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          submodules: 'recursive'
+          submodules: "recursive"
 
       - name: Get matrix data
         id: export-deployment-matrix
