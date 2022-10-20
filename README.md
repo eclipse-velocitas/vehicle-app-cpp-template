@@ -57,15 +57,15 @@ GH Codespaces currently restricts the token that is used within the Codespace to
 submodules will not be possible without further setup. To work on other repos, you need to create a personal access token [here](https://github.com/settings/tokens/new) which has full "repo" access. Copy the contents of the PAT and create a Codespace secret called `MY_GH_TOKEN` and paste the content of your PAT. Finally you need to give the Codespace secret access to the repository of the Codespace, in this case `vehicle-app-cpp-template`.
 
 ## Documentation
-* [Velocitas Development Model](https://eclipse-velocitas.github.io/velocitas-docs/docs/about/development_model/)
-* [Vehicle App SDK Overview](https://eclipse-velocitas.github.io/velocitas-docs/docs/about/development_model/vehicle_app_sdk/)
+* [Velocitas Development Model](https://websites.eclipseprojects.io/velocitas/docs/about/development_model/)
+* [Vehicle App SDK Overview](https://websites.eclipseprojects.io/velocitas/docs/about/development_model/vehicle_app_sdk/)
 
 ## Quickstart Tutorials
-1. [Setup and Explore Development Enviroment](https://eclipse-velocitas.github.io/velocitas-docs/docs/tutorials/quickstart/)
-1. [Develop your own Vehicle Model](https://eclipse-velocitas.github.io/velocitas-docs/docs/tutorials/tutorial_how_to_create_a_vehicle_model/)
-1. [Develop your own Vehicle App in C++](https://eclipse-velocitas.github.io/velocitas-docs/docs/tutorials/vehicle-app-development/tutorial_how_to_create_a_vehicle_app_cpp/)
+1. [Setup and Explore Development Enviroment](https://websites.eclipseprojects.io/velocitas-docs/docs/tutorials/quickstart/)
+1. [Develop your own Vehicle Model](https://websites.eclipseprojects.io/velocitas/docs/tutorials/tutorial_how_to_create_a_vehicle_model/)
+1. [Develop your own Vehicle App](https://websites.eclipseprojects.io/velocitas/docs/tutorials/vehicle-app-development/)
 
 ## Contribution
-- [GitHub Issues](https://github.com/eclipse-velocitas/vehicle-app-cpp-sdk/issues)
+- [GitHub Issues](https://github.com/eclipse-velocitas/vehicle-app-cpp-template/issues)
 - [Mailing List](https://accounts.eclipse.org/mailing-list/velocitas-dev)
-- [Contribution](https://eclipse-velocitas.github.io/velocitas-docs/docs/contribution-guidelines/)
+- [Contribution](CONTRIBUTING.md)

@@ -101,4 +101,5 @@
             "clientId": "vsmqtt_client"
         }
     ],
+    "json.format.keepLines": true,
 }

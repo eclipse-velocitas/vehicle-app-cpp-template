@@ -9,12 +9,12 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/build/bin/app_utests",
-            "args": [],
+            "args": [ ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "externalConsole": false,
             "MIMode": "gdb",
-            "setupCommands": [],
+            "setupCommands": [ ],
             "preLaunchTask": "CMake: build",
         },
         {
@@ -22,7 +22,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/build/bin/app",
-            "args": [],
+            "args": [ ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [
@@ -45,7 +45,7 @@
             ],
             "externalConsole": false,
             "MIMode": "gdb",
-            "setupCommands": [],
+            "setupCommands": [ ],
             "preLaunchTask": "CPP - Build and Run daprized App",
             "postDebugTask": "dapr-VehicleApp-stop",
         }
