@@ -32,7 +32,7 @@ echo "#######################################################"
 
 # Install python, conan and ccache
 sudo apt-get update
-sudo apt-get -y install --no-install-recommends python3 python3-pip ccache
+sudo apt-get -y install --no-install-recommends ccache
 sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 100
 
 pip3 install -r ./requirements.txt

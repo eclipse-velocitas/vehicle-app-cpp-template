@@ -19,9 +19,11 @@
 		"seccomp=unconfined"
 	],
 	"features": {
-		"docker-in-docker": {
-			"version": "latest",
-			"moby": true
+		"ghcr.io/devcontainers/features/docker-in-docker:1": {
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers/features/python:1": {
+			"version": "os-provided"
 		}
 	},
 	// Set *default* container specific settings.json values on container create.
