@@ -1,0 +1,6 @@
+[submodule "sdk"]
+	path = sdk
+	url = https://github.com/eclipse-velocitas/vehicle-app-cpp-sdk.git
+[submodule "app/vehicle_model"]
+	path = app/vehicle_model
+	url = https://github.com/eclipse-velocitas/vehicle-model-cpp.git

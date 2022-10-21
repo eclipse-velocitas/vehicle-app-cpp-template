@@ -1,0 +1,75 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "VehicleApp - Unit Tests",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/bin/app_utests",
+            "args": [ ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [ ],
+            "preLaunchTask": "CMake: build",
+        },
+        {
+            "name": "VehicleApp - Debug (dapr run)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/bin/app",
+            "args": [ ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [
+                {
+                    "name": "DAPR_HTTP_PORT",
+                    "value": "3500"
+                },
+                {
+                    "name": "DAPR_GRPC_PORT",
+                    "value": "${input:DAPR_GRPC_PORT}"
+                },
+                {
+                    "name": "SERVICE_DAPR_APP_ID",
+                    "value": "${input:SERVICE_NAME}"
+                },
+                {
+                    "name": "VEHICLEDATABROKER_DAPR_APP_ID",
+                    "value": "vehicledatabroker"
+                }
+            ],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [ ],
+            "preLaunchTask": "CPP - Build and Run daprized App",
+            "postDebugTask": "dapr-VehicleApp-stop",
+        }
+    ],
+    "inputs": [
+        {
+            "id": "DAPR_GRPC_PORT",
+            "type": "command",
+            "command": "shellCommand.execute",
+            "args": {
+                "useSingleResult": true,
+                "command": "cat ./app/AppManifest.json | jq .[].DAPR_GRPC_PORT | tr -d '\"'",
+                "cwd": "${workspaceFolder}",
+            }
+        },
+        {
+            "id": "SERVICE_NAME",
+            "type": "command",
+            "command": "shellCommand.execute",
+            "args": {
+                "useSingleResult": true,
+                "command": "cat ./app/AppManifest.json | jq .[].Name | tr -d '\"'",
+                "cwd": "${workspaceFolder}",
+            }
+        }
+    ]
+}
