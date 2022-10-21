@@ -38,6 +38,10 @@ class SeatAdjusterApp : public velocitas::VehicleApp {
 public:
     SeatAdjusterApp();
 
+    /**
+     * @brief Set up all data point and pub/sub subscriptions of the app.
+     *
+     */
     void onStart() override;
 
     /**

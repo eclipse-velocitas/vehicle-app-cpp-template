@@ -1,6 +1,5 @@
 import importlib.util
 import sys
-import subprocess
 import re
 import argparse
 import inspect

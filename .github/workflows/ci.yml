@@ -12,6 +12,12 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+# _Summary_
+#
+# Continuous integration workflow for the vehicle app.
+# Builds the App natively on the host environment,
+# executes all tests and lints all relevant source files.
+
 name: App - CI workflow
 
 concurrency:

@@ -15,7 +15,7 @@
 cmake_minimum_required(VERSION 3.16)
 
 # set the project name
-project(VehicleApp C CXX)
+project(VehicleApp CXX)
 
 # APP settings
 set(APP_BUILD_TESTS     ON CACHE BOOL "Build the App's tests.")

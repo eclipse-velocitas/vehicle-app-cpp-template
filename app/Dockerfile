@@ -49,6 +49,4 @@ WORKDIR /dist
 
 ENV PATH="/dist:$PATH"
 
-LABEL org.opencontainers.image.source="https://github.com/eclipse-velocitas/vehicle-app-cpp-sdk"
-
 CMD ["/dist/app"]

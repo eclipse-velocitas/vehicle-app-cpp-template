@@ -12,6 +12,10 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+# _Summary_
+#
+# Builds the containerized App and pushes the image to the GHCR.
+
 name: App - Build App Container
 concurrency:
   group: app-build-ci-${{ github.ref }}

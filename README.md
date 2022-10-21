@@ -14,12 +14,6 @@ The Vehicle App Template for C++ allows to create `Vehicle Apps` from the [Veloc
 
 ## Building
 
-### Installing dependencies
-Before a build can be started, all dependencies required by the App need to be installed. Issue the following command in the SDK root directory:
-```bash
-./install_dependencies.sh
-```
-
 ### Building the App
 To build the App, run the build script:
 ```bash
@@ -69,3 +63,11 @@ submodules will not be possible without further setup. To work on other repos, y
 - [GitHub Issues](https://github.com/eclipse-velocitas/vehicle-app-cpp-template/issues)
 - [Mailing List](https://accounts.eclipse.org/mailing-list/velocitas-dev)
 - [Contribution](CONTRIBUTING.md)
+
+## Troubleshooting
+
+### Manually installing dependencies
+All dependencies of the application should be downloaded and installed automatically once the VSCode DevContainer is created. Should this process fail for whatever reason, you can trigger the manual installation this command:
+```bash
+./install_dependencies.sh
+```

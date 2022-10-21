@@ -12,6 +12,10 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+# _Summary_
+#
+# Builds an application container for a single target architecture.
+
 name: App - Build Docker Image for single arch
 
 on:
