@@ -28,7 +28,7 @@ Arguments:
 -d, --debug                      Builds the target(s) in debug mode.
 -r, --release                    Builds the target(s) in release mode.
 -t <name>, --target <name>       Builds only the target <name> instead of all targets. 
---build-all-deps                 Forces all dependencies to be rebuild from source.
+-s, --static                     Links all dependencies statically. 
 -h, --help                       Shows this help.
 "
 }
