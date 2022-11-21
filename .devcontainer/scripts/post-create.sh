@@ -13,6 +13,9 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+# exit when any command fails
+set -e
+
 sudo chmod +x .devcontainer/scripts/*.sh
 sudo chmod +x .vscode/scripts/runtime/k3d/*.sh
 sudo chmod +x .vscode/scripts/runtime/local/*.sh
@@ -27,8 +30,10 @@ echo "#######################################################"
 
 # Install python, conan and ccache
 sudo apt-get update
+sudo apt-get install -y python3
+sudo apt-get install -y python3-distutils
+curl -fsSL https://bootstrap.pypa.io/get-pip.py | sudo python3
 sudo apt-get -y install --no-install-recommends ccache
-sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 100
 
 pip3 install -r ./requirements.txt
 
