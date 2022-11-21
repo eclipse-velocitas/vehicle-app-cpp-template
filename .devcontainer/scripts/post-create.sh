@@ -19,11 +19,6 @@ sudo chmod +x .vscode/scripts/runtime/local/*.sh
 sudo chown -R $(whoami) $HOME
 
 echo "#######################################################"
-echo "### Configure Proxy                                 ###"
-echo "#######################################################"
-sudo .devcontainer/scripts/configure-proxies.sh 2>&1 | tee -a $HOME/configure-proxies.log
-
-echo "#######################################################"
 echo "### Install Prerequisites and Tools                 ###"
 echo "#######################################################"
 
