@@ -59,6 +59,7 @@ fi
 echo "#######################################################"
 echo "### Init submodules                                 ###"
 echo "#######################################################"
+git config --global --add safe.directory /workspaces/*
 git submodule update --init
 
 echo "#######################################################"
