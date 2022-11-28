@@ -1,32 +1,28 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.245.0/containers/cpp
 {
-	"name": "C++",
+	"name": "VehicleApp C++",
 	"build": {
 		"dockerfile": "Dockerfile",
 		// Update 'VARIANT' to pick an Debian / Ubuntu OS version: debian-11, debian-10, ubuntu-22.04, ubuntu-20.04, ubuntu-18.04
 		// Use Debian 11, Ubuntu 18.04 or Ubuntu 22.04 on local arm64/Apple Silicon
 		"args": {
 			"VARIANT": "ubuntu-22.04",
-			"PROXY": "${localEnv:DEVCONTAINER_PROXY}",
-			"PROXY_PORT": "${localEnv:DEVCONTAINER_PROXY_PORT}",
-			"PROXY_HOST": "${localEnv:DEVCONTAINER_PROXY_HOST}",
 			"WORKSPACE_ROOT": "${containerWorkspaceFolder}"
 		}
 	},
 	"runArgs": [
+		"--init",
+		"--privileged",
 		"--cap-add=SYS_PTRACE",
 		"--security-opt",
 		"seccomp=unconfined"
 	],
-	"features": {
-		"ghcr.io/devcontainers/features/docker-in-docker:1": {
-			"version": "latest"
-		},
-		"ghcr.io/devcontainers/features/python:1": {
-			"version": "os-provided"
-		}
-	},
+	// workaround for the devcontainer features
+	"overrideCommand": false,
+	"mounts": [
+		"source=dind-var-lib-docker,target=/var/lib/docker,type=volume"
+	],
 	// Set *default* container specific settings.json values on container create.
 	"settings": {
 		"[cpp]": {
@@ -58,7 +54,13 @@
 				"clientId": "vsmqtt_client"
 			}
 		],
-		"json.format.keepLines": true
+		"json.format.keepLines": true,
+		"terminal.integrated.defaultProfile.linux": "zsh",
+		"terminal.integrated.profiles.linux": {
+			"zsh": {
+				"path": "/usr/bin/zsh"
+			}
+		}
 	},
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
