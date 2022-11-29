@@ -5,19 +5,6 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "VehicleApp - Unit Tests",
-            "type": "cppdbg",
-            "request": "launch",
-            "program": "${workspaceFolder}/build/bin/app_utests",
-            "args": [ ],
-            "stopAtEntry": false,
-            "cwd": "${workspaceFolder}",
-            "externalConsole": false,
-            "MIMode": "gdb",
-            "setupCommands": [ ],
-            "preLaunchTask": "CMake: build",
-        },
-        {
             "name": "VehicleApp - Debug (dapr run)",
             "type": "cppdbg",
             "request": "launch",
@@ -48,6 +35,19 @@
             "setupCommands": [ ],
             "preLaunchTask": "CPP - Build and Run daprized App",
             "postDebugTask": "dapr-VehicleApp-stop",
+        },
+        {
+            "name": "VehicleApp - Unit Tests",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/bin/app_utests",
+            "args": [ ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [ ],
+            "preLaunchTask": "CMake: build",
         }
     ],
     "inputs": [
