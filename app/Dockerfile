@@ -14,11 +14,18 @@
 
 # syntax = docker/dockerfile:1.2
 
-FROM ghcr.io/eclipse-velocitas/devcontainer-base-images/cpp:v0.2 as builder
-
-COPY . /workspace
+FROM --platform=$BUILDPLATFORM ghcr.io/eclipse-velocitas/devcontainer-base-images/cpp:v0.2 as builder
+ARG TARGETARCH
 
 ENV CONAN_USER_HOME /home/vscode/
+
+RUN apt-get update && apt-get upgrade -y && \
+    apt-get install -y jq sudo curl wget git cmake build-essential \
+    gcc-aarch64-linux-gnu g++-aarch64-linux-gnu binutils-aarch64-linux-gnu \
+    gcc-x86-64-linux-gnu g++-x86-64-linux-gnu binutils-x86-64-linux-gnu && \
+    apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
+
+COPY . /workspace
 
 # FIXME: For build tooling we only need "devenv-devcontainer-setup", we should be able to
 # filter this without manual jq intervention...
@@ -28,15 +35,19 @@ RUN mv /workspace/.velocitas.json /workspace/.velocitas_org.json && \
 WORKDIR /workspace
 
 RUN velocitas init -f -v && \
-    ./install_dependencies.sh -r && \
-    ./build.sh -r -t app --static
+    ./install_dependencies.sh -r -x $TARGETARCH && \
+    ./build.sh -r -t app --static -x $TARGETARCH
 
-RUN strip /workspace/build/bin/app
+
+# Intermediate stage to delete unused executable
+FROM --platform=$TARGETPLATFORM bash:latest as mover
+COPY --from=builder /workspace/build/bin/app_* /
+COPY ./utils/delete.sh /delete.sh
+CMD ["bash", "/delete.sh $TARGETPLATFROM"]
 
 # Runner stage, to copy the executable
 FROM scratch
-
-COPY --from=builder /workspace/build/bin/app /dist/app
+COPY --from=mover /app_* /dist/app
 
 WORKDIR /tmp
 WORKDIR /dist

@@ -18,6 +18,7 @@
 #
 
 set -e
+source ./utils/common.sh
 
 function print_help() {
   echo "Build targets of the project
@@ -27,14 +28,16 @@ Builds the targets of the project in different flavors.
 Arguments:
 -d, --debug                      Builds the target(s) in debug mode.
 -r, --release                    Builds the target(s) in release mode.
--t <name>, --target <name>       Builds only the target <name> instead of all targets. 
--s, --static                     Links all dependencies statically. 
+-t <name>, --target <name>       Builds only the target <name> instead of all targets.
+-x, --cross <arch>               Cross compiles for the specified architecture.
+-s, --static                     Links all dependencies statically.
 -h, --help                       Shows this help.
 "
 }
 
 BUILD_VARIANT=debug
 BUILD_ARCH=$(arch)
+HOST_ARCH=${BUILD_ARCH}
 BUILD_TARGET=all
 STATIC_BUILD=OFF
 
@@ -59,6 +62,17 @@ while [[ $# -gt 0 ]]; do
       STATIC_BUILD=ON
       shift
       ;;
+    -x|--cross)
+      HOST_ARCH=$( get_valid_cross_compile_architecture "$2" )
+
+      if [ "$?" -eq 1 ]; then
+        echo "Invalid cross-compile architecture '$2'!"
+        exit 1
+      fi
+
+      shift
+      shift
+      ;;
     -h|--help)
       print_help
       exit 0
@@ -79,6 +93,7 @@ echo "CMake version      "`cmake --version`
 echo "Conan version      "`conan --version`
 echo "Build variant      ${BUILD_VARIANT}"
 echo "Build arch         ${BUILD_ARCH}"
+echo "Host arch          ${HOST_ARCH}"
 echo "Build target       ${BUILD_TARGET}"
 echo "Static build       ${STATIC_BUILD}"
 
@@ -102,15 +117,23 @@ while read -r p; do
   fi
 done < <(echo "$CONAN_BUILD_TOOLS_PATHS")
 
+XCOMPILE_TOOLCHAIN_FILE=""
+if [[ "${BUILD_ARCH}" != "${HOST_ARCH}" ]]; then
+  echo "Setting up cross compilation toolchain..."
+  XCOMPILE_TOOLCHAIN_FILE="-DCMAKE_TOOLCHAIN_FILE=../utils/${BUILD_ARCH}_to_${HOST_ARCH}.cmake"
+fi
+
 cmake --no-warn-unused-cli \
      -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE \
      -DCMAKE_BUILD_TYPE:STRING=${BUILD_VARIANT} \
-     -DBUILD_TOOLS_PATH:STRING="${BUILD_TOOLS_PATH}" \
      -DSTATIC_BUILD:BOOL=${STATIC_BUILD} \
+     -DBUILD_TOOLS_PATH:STRING=${BUILD_TOOLS_PATH} \
+     ${XCOMPILE_TOOLCHAIN_FILE} \
      -S.. \
      -B../build \
      -G Ninja \
-     -DCMAKE_CXX_FLAGS="${CMAKE_CXX_FLAGS}"
+     -DCMAKE_CXX_FLAGS="${CMAKE_CXX_FLAGS}" \
+     -DBIN_NAME:STRING="app_${HOST_ARCH}"
 
-cmake --build . --config ${BUILD_VARIANT} --target ${BUILD_TARGET} -- 
+cmake --build . --config ${BUILD_VARIANT} --target ${BUILD_TARGET} --
 cd ..
