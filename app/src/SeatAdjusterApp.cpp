@@ -65,8 +65,7 @@ void SeatAdjusterApp::onStart() {
 }
 
 void SeatAdjusterApp::onSpeedChanged(const velocitas::DataPointsResult& result) {
-    velocitas::logger().info(
-        fmt::format("Speed has changed: {}", result.get(Vehicle.Speed)->value()));
+    velocitas::logger().info("Speed has changed: {}", result.get(Vehicle.Speed)->value());
 }
 
 void SeatAdjusterApp::onSeatMovementRequested(const velocitas::VoidResult& status, int requestId,
@@ -84,7 +83,7 @@ void SeatAdjusterApp::onSeatMovementRequested(const velocitas::VoidResult& statu
 void SeatAdjusterApp::onSetPositionRequestReceived(const std::string& data) {
     const auto jsonData = nlohmann::json::parse(data);
     if (!jsonData.contains(JSON_FIELD_POSITION)) {
-        const auto errorMsg = fmt::format("No position specified");
+        const auto* const errorMsg = "No position specified";
         velocitas::logger().error(errorMsg);
 
         nlohmann::json respData({{JSON_FIELD_REQUEST_ID, jsonData[JSON_FIELD_REQUEST_ID]},
@@ -102,9 +101,9 @@ void SeatAdjusterApp::onSetPositionRequestReceived(const std::string& data) {
     auto       vehicleSpeed          = 0.F;
     const auto vehicleSpeedDataPoint = result.get(Vehicle.Speed);
     if (!vehicleSpeedDataPoint->isValid()) {
-        velocitas::logger().error(fmt::format("{} is not a valid data point: {}",
-                                              vehicleSpeedDataPoint->getPath(),
-                                              vehicleSpeedDataPoint->asFailure().getReason()));
+        velocitas::logger().error("{} is not a valid data point: {}",
+                                  vehicleSpeedDataPoint->getPath(),
+                                  vehicleSpeedDataPoint->asFailure().getReason());
     }
 
     vehicleSpeed = vehicleSpeedDataPoint->value();
@@ -136,9 +135,8 @@ void SeatAdjusterApp::onSeatPositionChanged(const velocitas::DataPointsResult& r
     const auto seatPosition = result.get(Vehicle.Cabin.Seat.Row(1).Pos(1).Position);
 
     if (!seatPosition->isValid()) {
-        velocitas::logger().error(fmt::format(R"(DataPoint "{}" caused a failure: "{}"!)",
-                                              seatPosition->getPath(),
-                                              seatPosition->asFailure().getReason()));
+        velocitas::logger().error(R"(DataPoint "{}" caused a failure: "{}"!)",
+                                  seatPosition->getPath(), seatPosition->asFailure().getReason());
     }
 
     try {
@@ -146,8 +144,8 @@ void SeatAdjusterApp::onSeatPositionChanged(const velocitas::DataPointsResult& r
 
         publishToTopic(TOPIC_CURRENT_POSITION, jsonResponse.dump());
     } catch (std::exception& exception) {
-        velocitas::logger().error(
-            fmt::format("Unable to get Current Seat Position, Exception: {}", exception.what()));
+        velocitas::logger().error("Unable to get Current Seat Position, Exception: {}",
+                                  exception.what());
         nlohmann::json jsonResponse(
             {{JSON_FIELD_STATUS, STATUS_FAIL}, {JSON_FIELD_MESSAGE, exception.what()}});
 
@@ -156,8 +154,7 @@ void SeatAdjusterApp::onSeatPositionChanged(const velocitas::DataPointsResult& r
 }
 
 void SeatAdjusterApp::onError(const velocitas::Status& status) {
-    velocitas::logger().error(
-        fmt::format("Error occurred during async invocation: {}", status.errorMessage()));
+    velocitas::logger().error("Error occurred during async invocation: {}", status.errorMessage());
 }
 
 } // namespace example
