@@ -13,7 +13,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ROOT_DIRECTORY=$( realpath "$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )/../../../.." )
-APP_NAME=$(cat $ROOT_DIRECTORY/app/AppManifest.json | jq .[].Name | tr -d '"')
+APP_NAME=$(cat $ROOT_DIRECTORY/app/AppManifest.json | jq .[].Name | tr -d '"' | tr '[:upper:]' '[:lower:]')
 DOCKERFILE_FILE="$(cat $ROOT_DIRECTORY/app/AppManifest.json | jq .[].Dockerfile | tr -d '"')"
 
 if [ -n "$HTTP_PROXY" ]; then
@@ -29,7 +29,6 @@ if [ -n "$HTTP_PROXY" ]; then
     --build-arg FTP_PROXY="$FTP_PROXY" \
     --build-arg ALL_PROXY="$ALL_PROXY" \
     --build-arg NO_PROXY="$NO_PROXY" . --no-cache
-    docker push localhost:12345/$APP_NAME:local
 
 else
     echo "Building image without proxy configuration"
@@ -37,5 +36,4 @@ else
 
     cd $ROOT_DIRECTORY
     DOCKER_BUILDKIT=1 docker build -f $DOCKERFILE_FILE --progress=plain -t localhost:12345/$APP_NAME:local . --no-cache
-    docker push localhost:12345/$APP_NAME:local
 fi

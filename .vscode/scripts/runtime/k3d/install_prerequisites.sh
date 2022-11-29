@@ -31,3 +31,9 @@ then
     sudo apt-get update
     sudo apt-get install -y kubectl
 fi
+
+# Install Dapr
+if ! command -v dapr &> /dev/null
+then
+    wget -q https://raw.githubusercontent.com/dapr/cli/master/install/install.sh -O - | /bin/bash
+fi
