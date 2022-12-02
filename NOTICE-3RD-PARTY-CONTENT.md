@@ -8,7 +8,7 @@
 |cfgv|3.3.1|MIT|
 |charset-normalizer|2.1.1|MIT|
 |colorama|0.4.6|BSD|
-|conan|1.54.0|MIT|
+|conan|1.55.0|MIT|
 |cpplint|1.6.1|New BSD|
 |distlib|0.3.6|Python Software Foundation License|
 |distro|1.7.0|Apache 2.0|
@@ -41,7 +41,6 @@
 | Dependency | Version | License |
 |:-----------|:-------:|--------:|
 |actions/checkout|v3|MIT License|
-|actions/upload-artifact|v2|MIT License|
 |actions/upload-artifact|v3.1.0|MIT License|
 |aquasecurity/trivy-action|0.3.0|Apache License 2.0|
 |ASzc/change-string-case-action|v1|ISC License|

@@ -134,7 +134,7 @@ jobs:
 
       - name: "${{ matrix.component.Name }} -- Upload trivy report as artifacts"
         if: ${{ always() && steps.image_build.outcome == 'success' }}
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3.1.0
         with:
           name: test-results
           path: |
