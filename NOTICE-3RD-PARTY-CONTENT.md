@@ -13,7 +13,7 @@
 |distlib|0.3.6|Python Software Foundation License|
 |distro|1.7.0|Apache 2.0|
 |fasteners|0.18|Apache 2.0|
-|filelock|3.8.0|Public Domain|
+|filelock|3.8.2|The Unlicense (Unlicense)|
 |gcovr|5.2|BSD|
 |identify|2.5.9|MIT|
 |idna|3.4|BSD|
@@ -36,20 +36,20 @@
 |toml|0.10.2|MIT|
 |tqdm|4.64.1|MIT<br/>Mozilla Public License 2.0 (MPL 2.0)|
 |urllib3|1.26.13|MIT|
-|virtualenv|20.17.0|MIT|
+|virtualenv|20.17.1|MIT|
 ## Workflows
 | Dependency | Version | License |
 |:-----------|:-------:|--------:|
 |actions/checkout|v3|MIT License|
 |actions/upload-artifact|v3.1.0|MIT License|
-|aquasecurity/trivy-action|0.3.0|Apache License 2.0|
-|ASzc/change-string-case-action|v1|ISC License|
-|docker/build-push-action|v2|Apache License 2.0|
-|docker/login-action|v1|Apache License 2.0|
-|docker/setup-buildx-action|v1|Apache License 2.0|
-|docker/setup-qemu-action|v1|Apache License 2.0|
+|aquasecurity/trivy-action|0.8.0|Apache License 2.0|
+|ASzc/change-string-case-action|v5|ISC License|
+|de-vri-es/setup-git-credentials|v2|BSD 2-Clause "Simplified" License|
+|docker/build-push-action|v3.2.0|Apache License 2.0|
+|docker/login-action|v2|Apache License 2.0|
+|docker/setup-buildx-action|v2|Apache License 2.0|
+|docker/setup-qemu-action|v2|Apache License 2.0|
 |egor-tensin/setup-gcc|v1|MIT License|
-|EnricoMi/publish-unit-test-result-action|v1|Apache License 2.0|
-|fusion-engineering/setup-git-credentials|v2|BSD 2-Clause "Simplified" License|
-|irongut/CodeCoverageSummary|v1.2.0|MIT License|
+|EnricoMi/publish-unit-test-result-action|v2|Apache License 2.0|
+|irongut/CodeCoverageSummary|v1.3.0|MIT License|
 |pre-commit/action|v3.0.0|MIT License|

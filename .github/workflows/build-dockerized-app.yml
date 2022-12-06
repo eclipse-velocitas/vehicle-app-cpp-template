@@ -51,7 +51,7 @@ jobs:
           sed -i "s|SITE_PACKAGES|$SITE_PACKAGES|g" ./app/AppManifest.json
           MATRIX=$(cat ./app/AppManifest.json | tr '\n' ' ')
 
-          echo "::set-output name=deployment-matrix::$MATRIX"
+          echo "deployment-matrix=$MATRIX" >> $GITHUB_OUTPUT
 
   build-image-amd64:
     uses: ./.github/workflows/build-docker-image-singlearch.yml
