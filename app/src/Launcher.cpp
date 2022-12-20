@@ -18,10 +18,9 @@
 #include "sdk/Logger.h"
 
 #include <csignal>
-#include <fmt/core.h>
 
 void signal_handler(int sig) {
-    velocitas::logger().error(fmt::format("App terminated due to: Signal {}", sig));
+    velocitas::logger().error("App terminated due to: Signal {}", sig);
     exit(-1);
 }
 
@@ -32,7 +31,7 @@ int main(int argc, char** argv) {
     try {
         myApp.run();
     } catch (const std::exception& e) {
-        velocitas::logger().error(fmt::format("App terminated due to: {}", e.what()));
+        velocitas::logger().error("App terminated due to: {}", e.what());
     } catch (...) {
         velocitas::logger().error("App terminated due to an unknown exeption.");
     }
