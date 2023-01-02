@@ -16,9 +16,9 @@
 
 #include "SeatAdjusterApp.h"
 #include "sdk/IPubSubClient.h"
-#include "sdk/IVehicleDataBrokerClient.h"
 #include "sdk/Logger.h"
 #include "sdk/QueryBuilder.h"
+#include "sdk/vdb/IVehicleDataBrokerClient.h"
 
 #include <fmt/core.h>
 #include <nlohmann/json.hpp>
@@ -64,8 +64,8 @@ void SeatAdjusterApp::onStart() {
         ->onError([this](auto&& status) { onError(std::forward<decltype(status)>(status)); });
 }
 
-void SeatAdjusterApp::onSpeedChanged(const velocitas::DataPointsResult& result) {
-    velocitas::logger().info("Speed has changed: {}", result.get(Vehicle.Speed)->value());
+void SeatAdjusterApp::onSpeedChanged(const velocitas::DataPointReply& reply) {
+    velocitas::logger().info("Speed has changed: {}", reply.get(Vehicle.Speed)->value());
 }
 
 void SeatAdjusterApp::onSeatMovementRequested(const velocitas::VoidResult& status, int requestId,
@@ -103,7 +103,7 @@ void SeatAdjusterApp::onSetPositionRequestReceived(const std::string& data) {
     if (!vehicleSpeedDataPoint->isValid()) {
         velocitas::logger().error("{} is not a valid data point: {}",
                                   vehicleSpeedDataPoint->getPath(),
-                                  vehicleSpeedDataPoint->asFailure().getReason());
+                                  velocitas::toString(vehicleSpeedDataPoint->getFailure()));
     }
 
     vehicleSpeed = vehicleSpeedDataPoint->value();
@@ -131,12 +131,13 @@ void SeatAdjusterApp::onSetPositionRequestReceived(const std::string& data) {
     }
 }
 
-void SeatAdjusterApp::onSeatPositionChanged(const velocitas::DataPointsResult& result) {
-    const auto seatPosition = result.get(Vehicle.Cabin.Seat.Row(1).Pos(1).Position);
+void SeatAdjusterApp::onSeatPositionChanged(const velocitas::DataPointReply& reply) {
+    const auto seatPosition = reply.get(Vehicle.Cabin.Seat.Row(1).Pos(1).Position);
 
     if (!seatPosition->isValid()) {
         velocitas::logger().error(R"(DataPoint "{}" caused a failure: "{}"!)",
-                                  seatPosition->getPath(), seatPosition->asFailure().getReason());
+                                  seatPosition->getPath(),
+                                  velocitas::toString(seatPosition->getFailure()));
     }
 
     try {
