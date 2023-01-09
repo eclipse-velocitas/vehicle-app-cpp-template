@@ -17,7 +17,6 @@
 #ifndef VEHICLE_APP_SDK_SEATADJUSTER_EXAMPLE_H
 #define VEHICLE_APP_SDK_SEATADJUSTER_EXAMPLE_H
 
-#include "sdk/Logger.h"
 #include "sdk/Status.h"
 #include "sdk/VehicleApp.h"
 #include "vehicle_model/Vehicle.hpp"
@@ -49,7 +48,7 @@ public:
      *
      * @param dataPoints  The affected data points.
      */
-    void onSpeedChanged(const velocitas::DataPointsResult& dataPoints);
+    void onSpeedChanged(const velocitas::DataPointReply& reply);
 
     /**
      * @brief Handle successful seat movement requests.
@@ -72,7 +71,7 @@ public:
      *
      * @param dataPoints  The affected data points.
      */
-    void onSeatPositionChanged(const velocitas::DataPointsResult& dataPoints);
+    void onSeatPositionChanged(const velocitas::DataPointReply& reply);
 
     /**
      * @brief Handle errors which occurred during async invocation.
