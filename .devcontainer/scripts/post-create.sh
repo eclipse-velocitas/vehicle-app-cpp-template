@@ -1,4 +1,5 @@
-#!/usr/bin/env bash
+#!/bin/bash
+# This file is maintained by velocitas CLI, do not modify manually. Change settings in .velocitas.json
 # Copyright (c) 2022 Robert Bosch GmbH
 #
 # This program and the accompanying materials are made available under the
@@ -16,9 +17,15 @@
 # exit when any command fails
 set -e
 
+echo "#######################################################"
+echo "### Run VADF Lifecycle Management                   ###"
+echo "#######################################################"
+# needed to get rid of old leftovers
+sudo rm -rf ~/.velocitas
+velocitas init
+velocitas sync
+
 sudo chmod +x .devcontainer/scripts/*.sh
-sudo chmod +x .vscode/scripts/runtime/k3d/*.sh
-sudo chmod +x .vscode/scripts/runtime/local/*.sh
 sudo chown -R $(whoami) $HOME
 
 echo "#######################################################"
@@ -41,8 +48,6 @@ pip3 install -r ./requirements.txt
 sudo apt-get install -y cppcheck clang-format-14 clang-tidy-14
 sudo update-alternatives --install /usr/bin/clang-format clang-format /usr/bin/clang-format-14 100
 sudo update-alternatives --install /usr/bin/clang-tidy clang-tidy /usr/bin/clang-tidy-14 100
-
-./.devcontainer/scripts/ensure-dapr.sh 2>&1 | tee -a $HOME/ensure-dapr.log
 
 if [ "${CODESPACES}" = "true" ]; then
     echo "#######################################################"
@@ -67,4 +72,10 @@ echo "### Install Dependencies                            ###"
 echo "#######################################################"
 ./install_dependencies.sh 2>&1 | tee -a $HOME/install_dependencies.log
 
+echo "#######################################################"
+echo "### VADF package status                             ###"
+echo "#######################################################"
+velocitas upgrade --dry-run
 
+# Don't let container creation fail if lifecycle management fails
+echo "Done!"

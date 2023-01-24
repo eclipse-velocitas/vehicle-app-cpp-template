@@ -1,3 +1,4 @@
+# This file is maintained by velocitas CLI, do not modify manually. Change settings in .velocitas.json
 # Copyright (c) 2022 Robert Bosch GmbH and Microsoft Corporation
 #
 # This program and the accompanying materials are made available under the
@@ -22,5 +23,27 @@ on:
       - main
 
 jobs:
+  initialize-matrix:
+    runs-on: ubuntu-latest
+    name: Setting up build matrix
+    outputs:
+      deployment-matrix: ${{ steps.export-deployment-matrix.outputs.deployment-matrix }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Get matrix data
+        id: export-deployment-matrix
+        run: |
+          MATRIX=$(cat ./app/AppManifest.json | tr '\n' ' ')
+
+          echo "deployment-matrix=$MATRIX" >> $GITHUB_OUTPUT
+
   build-image-multiarch:
     uses: ./.github/workflows/build-docker-image.yml
+    needs: [initialize-matrix]
+    with:
+      platform: multiarch
+      multiarch: true
+      deployment-matrix-str: ${{ needs.initialize-matrix.outputs.deployment-matrix }}

@@ -1,7 +1,8 @@
+// This file is maintained by velocitas CLI, do not modify manually. Change settings in .velocitas.json
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.245.0/containers/cpp
 {
-	"name": "VehicleApp C++",
+	"name": "C++ vehicle app",
 	"build": {
 		"dockerfile": "Dockerfile"
 	},
