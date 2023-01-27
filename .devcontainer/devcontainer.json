@@ -3,13 +3,7 @@
 {
 	"name": "VehicleApp C++",
 	"build": {
-		"dockerfile": "Dockerfile",
-		// Update 'VARIANT' to pick an Debian / Ubuntu OS version: debian-11, debian-10, ubuntu-22.04, ubuntu-20.04, ubuntu-18.04
-		// Use Debian 11, Ubuntu 18.04 or Ubuntu 22.04 on local arm64/Apple Silicon
-		"args": {
-			"VARIANT": "ubuntu-22.04",
-			"WORKSPACE_ROOT": "${containerWorkspaceFolder}"
-		}
+		"dockerfile": "Dockerfile"
 	},
 	"runArgs": [
 		"--init",
@@ -20,9 +14,6 @@
 	],
 	// workaround for the devcontainer features
 	"overrideCommand": false,
-	"mounts": [
-		"source=dind-var-lib-docker,target=/var/lib/docker,type=volume"
-	],
 	// Set *default* container specific settings.json values on container create.
 	"settings": {
 		"[cpp]": {

@@ -36,7 +36,7 @@ Arguments:
 "
 }
 
-BUILD_VARIANT="debug"
+BUILD_VARIANT="release"
 BUILD_ARCH=$(arch)
 WHICH_DEPS_TO_BUILD="missing"
 
