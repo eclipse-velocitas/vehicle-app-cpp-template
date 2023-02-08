@@ -73,7 +73,7 @@
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 	// Use 'onCreateCommand' to run commands when the container is created.
-	"onCreateCommand": "bash .devcontainer/scripts/post-create.sh",
+	"onCreateCommand": "bash .devcontainer/scripts/postCreateCommand.sh",
 	// Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
 	"remoteUser": "vscode"
 }
