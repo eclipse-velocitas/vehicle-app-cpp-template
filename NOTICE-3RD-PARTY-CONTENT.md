@@ -40,24 +40,24 @@
 ## Workflows
 | Dependency | Version | License |
 |:-----------|:-------:|--------:|
-|actions/checkout|v3||
+|actions/checkout|v3|MIT License|
 |actions/setup-node|v3|MIT License|
 |actions/upload-artifact|v3|MIT License|
 |aquasecurity/trivy-action|0.8.0|Apache License 2.0|
-|ASzc/change-string-case-action|v5||
-|battila7/get-version-action|v2||
+|ASzc/change-string-case-action|v5|ISC License|
+|battila7/get-version-action|v2|MIT License|
 |dawidd6/action-download-artifact|v2|MIT License|
 |de-vri-es/setup-git-credentials|v2|BSD 2-Clause "Simplified" License|
-|docker/build-push-action|v3.2.0||
-|docker/login-action|v2||
+|docker/build-push-action|v3.2.0|Apache License 2.0|
+|docker/login-action|v2|Apache License 2.0|
 |docker/setup-buildx-action|v2|Apache License 2.0|
 |docker/setup-qemu-action|v2|Apache License 2.0|
 |egor-tensin/setup-gcc|v1|MIT License|
 |EnricoMi/publish-unit-test-result-action|v2|Apache License 2.0|
-|fountainhead/action-wait-for-check|v1.1.0||
-|haya14busa/action-cond|v1||
+|fountainhead/action-wait-for-check|v1.1.0|MIT License|
+|haya14busa/action-cond|v1|MIT License|
 |irongut/CodeCoverageSummary|v1.3.0|MIT License|
 |peaceiris/actions-gh-pages|v3|MIT License|
 |peaceiris/actions-hugo|v2|MIT License|
 |pre-commit/action|v3.0.0|MIT License|
-|softprops/action-gh-release|v1||
+|softprops/action-gh-release|v1|MIT License|
