@@ -18,7 +18,7 @@
         },
         {
             "name": "devenv-devcontainer-setup",
-            "version": "cpp-template"
+            "version": "v1.0.4"
         }
     ],
     "variables": {
