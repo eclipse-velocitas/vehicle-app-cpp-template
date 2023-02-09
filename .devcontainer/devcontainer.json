@@ -1,7 +1,8 @@
+// This file is maintained by velocitas CLI, do not modify manually. Change settings in .velocitas.json
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.245.0/containers/cpp
 {
-	"name": "VehicleApp C++",
+	"name": "C++ vehicle app",
 	"build": {
 		"dockerfile": "Dockerfile"
 	},
@@ -72,7 +73,7 @@
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 	// Use 'onCreateCommand' to run commands when the container is created.
-	"onCreateCommand": "bash .devcontainer/scripts/post-create.sh",
+	"onCreateCommand": "bash .devcontainer/scripts/postCreateCommand.sh",
 	// Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
 	"remoteUser": "vscode"
 }

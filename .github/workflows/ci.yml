@@ -1,3 +1,4 @@
+# This file is maintained by velocitas CLI, do not modify manually. Change settings in .velocitas.json
 # Copyright (c) 2022 Robert Bosch GmbH
 #
 # This program and the accompanying materials are made available under the
@@ -18,7 +19,7 @@
 # Builds the App natively on the host environment,
 # executes all tests and lints all relevant source files.
 
-name: App - CI workflow
+name: CI workflow
 
 concurrency:
   group: app-ci-${{ github.ref }}
@@ -33,6 +34,7 @@ on:
   pull_request:
     branches:
       - main
+
 jobs:
   build-and-publish:
     runs-on: ubuntu-22.04

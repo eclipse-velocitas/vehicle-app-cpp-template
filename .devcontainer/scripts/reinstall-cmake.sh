@@ -1,4 +1,5 @@
-#!/usr/bin/env bash
+#!/bin/bash
+# This file is maintained by velocitas CLI, do not modify manually. Change settings in .velocitas.json
 #-------------------------------------------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License. See https://go.microsoft.com/fwlink/?linkid=2090316 for license information.

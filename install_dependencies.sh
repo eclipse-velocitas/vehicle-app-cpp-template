@@ -1,5 +1,5 @@
 #!/bin/bash
-# Copyright (c) 2022 Robert Bosch GmbH
+# Copyright (c) 2022-2023 Robert Bosch GmbH
 #
 # This program and the accompanying materials are made available under the
 # terms of the Apache License, Version 2.0 which is available at
@@ -77,6 +77,6 @@ echo "Building deps ${WHICH_DEPS_TO_BUILD}"
 mkdir -p build && cd build
 
 # join dependencies into one file until SDK is a Conan package by itself
-python3 ../.scripts/conanfile-merger.py ../sdk/conanfile.py ../conanfile.txt --output ./conanfile.txt
+python3 ../sdk/.scripts/conanfile-merger.py ../sdk/conanfile.py ../conanfile.txt --output ./conanfile.txt
 
-conan install -pr:h ../.conan/profiles/linux_${BUILD_ARCH}_${BUILD_VARIANT} --build "${WHICH_DEPS_TO_BUILD}" .
+conan install -pr:h ../sdk/.conan/profiles/linux_${BUILD_ARCH}_${BUILD_VARIANT} --build "${WHICH_DEPS_TO_BUILD}" .

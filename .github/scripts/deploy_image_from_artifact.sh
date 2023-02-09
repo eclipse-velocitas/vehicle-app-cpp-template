@@ -1,5 +1,6 @@
 #!/bin/bash
-# Copyright (c) 2022 Robert Bosch GmbH
+# This file is maintained by velocitas CLI, do not modify manually. Change settings in .velocitas.json
+# Copyright (c) 2022 Robert Bosch GmbH and Microsoft Corporation
 #
 # This program and the accompanying materials are made available under the
 # terms of the Apache License, Version 2.0 which is available at
@@ -13,12 +14,12 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-ROOT_DIRECTORY=$( realpath "$( cd -- "$(dirname "$BASH_SOURCE")" >/dev/null 2>&1 ; pwd -P )/../.." )
-APP_NAME=$(cat $ROOT_DIRECTORY/AppManifest.json | jq .[].Name | tr -d '"')
-APP_PORT=$(cat $ROOT_DIRECTORY/AppManifest.json | jq .[].Port | tr -d '"')
+ROOT_DIRECTORY=$( realpath "$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )/../.." )
+APP_NAME=$(cat $ROOT_DIRECTORY/app/AppManifest.json | jq .[].Name | tr -d '"' | tr '[:upper:]' '[:lower:]')
+APP_PORT=$(cat $ROOT_DIRECTORY/app/AppManifest.json | jq .[].Port | tr -d '"')
 APP_REGISTRY="k3d-registry.localhost:12345"
 
-jq -c '.[]' $ROOT_DIRECTORY/AppManifest.json | while read i; do
+jq -c '.[]' $ROOT_DIRECTORY/app/AppManifest.json | while read i; do
     name=$(jq -r '.Name' <<< "$i")
 
     local_tag="$APP_REGISTRY/$name:local"
@@ -39,7 +40,7 @@ helm install vapp-chart $ROOT_DIRECTORY/deploy/VehicleApp/helm \
 kubectl get svc --all-namespaces
 kubectl get pods
 
-jq -c '.[]' $ROOT_DIRECTORY/AppManifest.json | while read i; do
+jq -c '.[]' $ROOT_DIRECTORY/app/AppManifest.json | while read i; do
     name=$(jq -r '.Name' <<< "$i")
     podname=$(kubectl get pods -o name | grep $name)
     kubectl describe $podname
