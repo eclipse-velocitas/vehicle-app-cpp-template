@@ -46,7 +46,7 @@ SeatAdjusterApp::SeatAdjusterApp()
 void SeatAdjusterApp::onStart() {
     velocitas::logger().info("Subscribe for Datapoints!");
 
-    const auto& seatPositionDataPoint = Vehicle.Cabin.Seat.Row(1).Pos(1).Position;
+    const auto& seatPositionDataPoint = Vehicle.Cabin.Seat.Row1.Pos1.Position;
 
     subscribeDataPoints(velocitas::QueryBuilder::select(seatPositionDataPoint).build())
         ->onItem([this](auto&& item) { onSeatPositionChanged(std::forward<decltype(item)>(item)); })
@@ -68,7 +68,7 @@ void SeatAdjusterApp::onSpeedChanged(const velocitas::DataPointReply& reply) {
     velocitas::logger().info("Speed has changed: {}", reply.get(Vehicle.Speed)->value());
 }
 
-void SeatAdjusterApp::onSeatMovementRequested(const velocitas::VoidResult& status, int requestId,
+void SeatAdjusterApp::onSeatMovementRequested(const velocitas::Status& status, int requestId,
                                               float requestedPosition) {
     velocitas::logger().info("Seat movement request processed...");
 
@@ -108,11 +108,7 @@ void SeatAdjusterApp::onSetPositionRequestReceived(const std::string& data) {
 
     vehicleSpeed = vehicleSpeedDataPoint->value();
     if (vehicleSpeed == 0) {
-        velocitas::vehicle::cabin::SeatService::SeatLocation location{1, 1};
-
-        Vehicle.Cabin.SeatService
-            .moveComponent(location, velocitas::vehicle::cabin::SeatService::Component::Base,
-                           desiredSeatPosition)
+        Vehicle.Cabin.Seat.Row1.Pos1.Position.set(desiredSeatPosition)
             ->onResult([this, requestId, desiredSeatPosition](auto&& result) {
                 onSeatMovementRequested(std::forward<decltype(result)>(result), requestId,
                                         desiredSeatPosition);
@@ -132,7 +128,7 @@ void SeatAdjusterApp::onSetPositionRequestReceived(const std::string& data) {
 }
 
 void SeatAdjusterApp::onSeatPositionChanged(const velocitas::DataPointReply& reply) {
-    const auto seatPosition = reply.get(Vehicle.Cabin.Seat.Row(1).Pos(1).Position);
+    const auto seatPosition = reply.get(Vehicle.Cabin.Seat.Row1.Pos1.Position);
 
     if (!seatPosition->isValid()) {
         velocitas::logger().error(R"(DataPoint "{}" caused a failure: "{}"!)",

@@ -17,5 +17,5 @@ include_directories(
 )
 
 add_subdirectory(src)
-add_subdirectory(vehicle_model)
+#add_subdirectory(vehicle_model)
 add_subdirectory(tests)

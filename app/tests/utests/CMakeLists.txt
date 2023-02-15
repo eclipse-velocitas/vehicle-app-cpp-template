@@ -22,20 +22,18 @@ add_executable(${TARGET_NAME}
 include_directories(
     ${CMAKE_BINARY_DIR}/gens
     ${PROJECT_SOURCE_DIR}/sdk/sdk/include
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../vehicle_model
+    ${PROJECT_SOURCE_DIR}/app/vehicle_model/include
     ${CMAKE_CURRENT_SOURCE_DIR}/../../src
     .
 )
 
 add_dependencies(${TARGET_NAME}
     vehicle-app-sdk
-    vehicle-model
     app
 )
 
 target_link_libraries(${TARGET_NAME}
     vehicle-app-sdk
-    vehicle-model
     gtest_main
 )
 
