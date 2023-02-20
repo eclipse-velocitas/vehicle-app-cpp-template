@@ -13,6 +13,9 @@
 		"--security-opt",
 		"seccomp=unconfined"
 	],
+	"containerEnv": {
+		"GITHUB_API_TOKEN": "${localEnv:GITHUB_API_TOKEN}"
+	},
 	// workaround for the devcontainer features
 	"overrideCommand": false,
 	"mounts": ["source=dind-var-lib-docker,target=/var/lib/docker,type=volume"],
