@@ -10,7 +10,7 @@
         },
         {
             "name": "devenv-github-workflows",
-            "version": "cpp-template"
+            "version": "v1.0.7"
         },
         {
             "name": "devenv-github-templates",
@@ -26,6 +26,6 @@
         "repoType": "app",
         "appManifestPath": "app/AppManifest.json",
         "githubRepoId": "eclipse-velocitas/vehicle-app-cpp-template",
-        "appContainerPlatforms": "linux/amd64"
+        "appExecutionPlatforms": "linux/amd64"
     }
 }
