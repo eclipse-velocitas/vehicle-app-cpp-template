@@ -18,10 +18,7 @@
 	},
 	// workaround for the devcontainer features
 	"overrideCommand": false,
-	"mounts": [
-		"source=dind-var-lib-docker,target=/var/lib/docker,type=volume",
-		"source=/Users/dominicsudy/git/sdv/velocitas-cli,target=/workspaces/vehicle-app-cpp-template/velocitas-cli,type=bind"
-	],
+	"mounts": ["source=dind-var-lib-docker,target=/var/lib/docker,type=volume"],
 	// Set *default* container specific settings.json values on container create.
 	"settings": {
 		"[cpp]": {
