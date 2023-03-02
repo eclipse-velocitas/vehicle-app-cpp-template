@@ -46,6 +46,10 @@ jobs:
         with:
           submodules: "recursive"
 
+      - name: Fix dubious ownership
+        run: |
+          git config --global --add safe.directory $( pwd )
+
       - name: Init velocitas project
         run: |
           velocitas init
