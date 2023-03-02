@@ -10,7 +10,7 @@
         },
         {
             "name": "devenv-github-workflows",
-            "version": "v1.0.11"
+            "version": "cpp_model_lifecycle"
         },
         {
             "name": "devenv-github-templates",

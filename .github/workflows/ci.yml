@@ -38,12 +38,17 @@ on:
 jobs:
   build-and-publish:
     runs-on: ubuntu-22.04
+    container: ghcr.io/eclipse-velocitas/devcontainer-base-images/cpp:latest
     name: "Build, Test and Lint"
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
           submodules: "recursive"
+
+      - name: Init velocitas project
+        run: |
+          velocitas init
 
       - name: install prerequisites
         run: |
