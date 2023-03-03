@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Robert Bosch GmbH
+# Copyright (c) 2022-2023 Robert Bosch GmbH
 #
 # This program and the accompanying materials are made available under the
 # terms of the Apache License, Version 2.0 which is available at
@@ -13,9 +13,10 @@
 # SPDX-License-Identifier: Apache-2.0
 
 include_directories(
-    ${CMAKE_CURRENT_SOURCE_DIR}/vehicle_model/include
+    ${CMAKE_BINARY_DIR}/gens
+    ${PROJECT_SOURCE_DIR}/sdk/sdk/include
+    ${PROJECT_SOURCE_DIR}/app/vehicle_model/include
 )
 
 add_subdirectory(src)
-#add_subdirectory(vehicle_model)
 add_subdirectory(tests)

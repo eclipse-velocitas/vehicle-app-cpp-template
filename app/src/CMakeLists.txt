@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Robert Bosch GmbH
+# Copyright (c) 2022-2023 Robert Bosch GmbH
 #
 # This program and the accompanying materials are made available under the
 # terms of the Apache License, Version 2.0 which is available at
@@ -17,13 +17,6 @@ set(TARGET_NAME "app")
 add_executable(${TARGET_NAME}
     SeatAdjusterApp.cpp
     Launcher.cpp
-)
-
-include_directories(
-    ${CMAKE_BINARY_DIR}/gens
-    ${PROJECT_SOURCE_DIR}/app/vehicle_model/include
-    ${PROJECT_SOURCE_DIR}/sdk/sdk/include
-    .
 )
 
 add_dependencies(${TARGET_NAME}
