@@ -36,7 +36,7 @@
 |toml|0.10.2|MIT|
 |tqdm|4.64.1|MIT<br/>Mozilla Public License 2.0 (MPL 2.0)|
 |urllib3|1.26.14|MIT|
-|virtualenv|20.19.0|MIT|
+|virtualenv|20.20.0|MIT|
 ## Workflows
 | Dependency | Version | License |
 |:-----------|:-------:|--------:|
@@ -52,7 +52,6 @@
 |docker/login-action|v2|Apache License 2.0|
 |docker/setup-buildx-action|v2|Apache License 2.0|
 |docker/setup-qemu-action|v2|Apache License 2.0|
-|egor-tensin/setup-gcc|v1|MIT License|
 |EnricoMi/publish-unit-test-result-action|v2|Apache License 2.0|
 |fountainhead/action-wait-for-check|v1.1.0|MIT License|
 |haya14busa/action-cond|v1|MIT License|
