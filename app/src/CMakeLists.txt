@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Robert Bosch GmbH
+# Copyright (c) 2022-2023 Robert Bosch GmbH
 #
 # This program and the accompanying materials are made available under the
 # terms of the Apache License, Version 2.0 which is available at
@@ -19,19 +19,10 @@ add_executable(${TARGET_NAME}
     Launcher.cpp
 )
 
-include_directories(
-    ${CMAKE_BINARY_DIR}/gens
-    ${CMAKE_CURRENT_SOURCE_DIR}/../vehicle_model/include
-    ${PROJECT_SOURCE_DIR}/sdk/sdk/include
-    .
-)
-
 add_dependencies(${TARGET_NAME}
     vehicle-app-sdk
-    vehicle-model
 )
 
 target_link_libraries(${TARGET_NAME}
     vehicle-app-sdk
-    vehicle-model
 )

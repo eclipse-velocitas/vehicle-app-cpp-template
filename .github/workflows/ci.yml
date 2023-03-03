@@ -38,6 +38,7 @@ on:
 jobs:
   build-and-publish:
     runs-on: ubuntu-22.04
+    container: ghcr.io/eclipse-velocitas/devcontainer-base-images/cpp:latest
     name: "Build, Test and Lint"
     steps:
       - name: Checkout repository
@@ -45,15 +46,17 @@ jobs:
         with:
           submodules: "recursive"
 
+      - name: Fix dubious ownership
+        run: |
+          git config --global --add safe.directory $( pwd )
+
+      - name: Init velocitas project
+        run: |
+          velocitas init
+
       - name: install prerequisites
         run: |
-          sudo apt-get update && sudo apt-get install -y ninja-build clang-format-14 clang-tidy-14 cppcheck
           pip3 install -r requirements.txt
-
-      - name: Set up GCC
-        uses: egor-tensin/setup-gcc@v1
-        with:
-          version: 11
 
       - name: Install dependencies
         run: ./install_dependencies.sh -r

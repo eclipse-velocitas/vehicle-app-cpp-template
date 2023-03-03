@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2022 Robert Bosch GmbH
+ * Copyright (c) 2022-2023 Robert Bosch GmbH
  *
  * This program and the accompanying materials are made available under the
  * terms of the Apache License, Version 2.0 which is available at
@@ -19,7 +19,7 @@
 
 #include "sdk/Status.h"
 #include "sdk/VehicleApp.h"
-#include "vehicle_model/Vehicle.hpp"
+#include "vehicle/Vehicle.hpp"
 
 #include <memory>
 #include <string>
@@ -56,8 +56,7 @@ public:
      * @param requestId           The ID of the request requested the movement.
      * @param requestedPosition   The seat position of the request.
      */
-    void onSeatMovementRequested(const velocitas::VoidResult&, int requestId,
-                                 float requestedPosition);
+    void onSeatMovementRequested(const velocitas::Status&, int requestId, float requestedPosition);
 
     /**
      * @brief Handle set position request from PubSub topic
@@ -81,7 +80,7 @@ public:
     void onError(const velocitas::Status& status);
 
 private:
-    velocitas::Vehicle Vehicle;
+    vehicle::Vehicle Vehicle;
 };
 
 } // namespace example
