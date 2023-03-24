@@ -39,12 +39,12 @@ SPDX-License-Identifier: Apache-2.0
 |    GTest     |            <https://github.com/google/googletest/blob/main/LICENSE>            |
 
 ### Further 3rd party licenses used in project
-
-[Auto-generated 3rd party licenses](./NOTICE-3RD-PARTY-CONTENT.md)
+* [Auto-generated 3rd party licenses](./NOTICE-3RD-PARTY-CONTENT.md)
+* [Full list of dependencies in the devcontainer base-image](https://github.com/eclipse-velocitas/devcontainer-base-images/tree/sbom/SBOM/Markdown)
 
 ## C++
 
-The C++ dependencies should be normally also listed in the auto-generated notice file linked above. 
+The C++ dependencies should be normally also listed in the auto-generated notice file linked above.
 Due to the limited Conan support of the Pivotal License Finder currently used in our [License Check](https://github.com/eclipse-velocitas/license-check),
 they are given here (manually added) for time being:
 
