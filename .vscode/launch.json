@@ -19,7 +19,7 @@
                 },
                 {
                     "name": "DAPR_GRPC_PORT",
-                    "value": "${input:DAPR_GRPC_PORT}"
+                    "value": "50001"
                 },
                 {
                     "name": "SERVICE_DAPR_APP_ID",
@@ -52,22 +52,12 @@
     ],
     "inputs": [
         {
-            "id": "DAPR_GRPC_PORT",
-            "type": "command",
-            "command": "shellCommand.execute",
-            "args": {
-                "useSingleResult": true,
-                "command": "cat ./app/AppManifest.json | jq .[].DAPR_GRPC_PORT | tr -d '\"'",
-                "cwd": "${workspaceFolder}",
-            }
-        },
-        {
             "id": "SERVICE_NAME",
             "type": "command",
             "command": "shellCommand.execute",
             "args": {
                 "useSingleResult": true,
-                "command": "cat ./app/AppManifest.json | jq .[].Name | tr -d '\"'",
+                "command": "cat ./app/AppManifest.json | jq .[].name | tr -d '\"'",
                 "cwd": "${workspaceFolder}",
             }
         }
