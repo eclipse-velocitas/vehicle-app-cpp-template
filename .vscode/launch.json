@@ -22,10 +22,6 @@
                     "value": "50001"
                 },
                 {
-                    "name": "SERVICE_DAPR_APP_ID",
-                    "value": "${input:SERVICE_NAME}"
-                },
-                {
                     "name": "VEHICLEDATABROKER_DAPR_APP_ID",
                     "value": "vehicledatabroker"
                 }
@@ -33,8 +29,8 @@
             "externalConsole": false,
             "MIMode": "gdb",
             "setupCommands": [ ],
-            "preLaunchTask": "CPP - Build and Run daprized App",
-            "postDebugTask": "dapr-VehicleApp-stop",
+            "preLaunchTask": "dapr-sidecar-start",
+            "postDebugTask": "dapr-sidecar-stop",
         },
         {
             "name": "VehicleApp - Unit Tests",
@@ -48,18 +44,6 @@
             "MIMode": "gdb",
             "setupCommands": [ ],
             "preLaunchTask": "CMake: build",
-        }
-    ],
-    "inputs": [
-        {
-            "id": "SERVICE_NAME",
-            "type": "command",
-            "command": "shellCommand.execute",
-            "args": {
-                "useSingleResult": true,
-                "command": "cat ./app/AppManifest.json | jq .[].name | tr -d '\"'",
-                "cwd": "${workspaceFolder}",
-            }
         }
     ]
 }
