@@ -13,6 +13,7 @@
 				"close": true,
 				"reveal": "never"
 			},
+			"hide": true
 		},
 		{
 			"label": "dapr-VehicleApp-stop",
@@ -24,6 +25,7 @@
 				"close": true,
 				"reveal": "never"
 			},
+			"hide": true
 		},
 		{
 			"label": "Local - Ensure Dapr",
@@ -33,7 +35,8 @@
 			"group": "none",
 			"presentation": {
 				"close": true
-			}
+			},
+			"problemMatcher": [ ]
 		},
 		{
 			"label": "Local - Mosquitto",
@@ -96,6 +99,7 @@
 			"command": "velocitas exec runtime-local run-vehicledatabroker-cli",
 			"group": "none",
 			"isBackground": false,
+			"problemMatcher": [ ]
 		},
 		{
 			"label": "Local - VehicleServices",
@@ -161,7 +165,8 @@
 				"Local - VehicleServices",
 				"Local - FeederCan"
 			],
-			"dependsOrder": "sequence"
+			"dependsOrder": "sequence",
+			"problemMatcher": [ ]
 		},
 		{
 			"label": "Local - VehicleApp (Dapr run)",
@@ -202,10 +207,10 @@
 			"group": "none",
 			"presentation": {
 				"reveal": "always",
-				//"panel": "dedicated",
 				"clear": true,
 				"close": false
-			}
+			},
+			"problemMatcher": [ ]
 		},
 		{
 			"label": "K3D - Deploy runtime",
@@ -215,13 +220,13 @@
 			"group": "none",
 			"presentation": {
 				"reveal": "always",
-				//"panel": "dedicated",
 				"clear": true,
 				"close": false
 			},
 			"dependsOn": [
 				"K3D - Configure control plane"
-			]
+			],
+			"problemMatcher": [ ]
 		},
 		{
 			"label": "K3D - Build VehicleApp",
@@ -235,9 +240,7 @@
 				"clear": true,
 				"close": false
 			},
-			"dependsOn": [
-				"K3D - Deploy runtime"
-			]
+			"problemMatcher": [ ]
 		},
 		{
 			"label": "K3D - Deploy VehicleApp",
@@ -252,8 +255,10 @@
 				"close": false
 			},
 			"dependsOn": [
+				"K3D - Deploy runtime",
 				"K3D - Build VehicleApp"
-			]
+			],
+			"problemMatcher": [ ]
 		},
 		{
 			"label": "K3D - Deploy VehicleApp (without rebuild)",
@@ -269,7 +274,8 @@
 			},
 			"dependsOn": [
 				"K3D - Deploy runtime"
-			]
+			],
+			"problemMatcher": [ ]
 		},
 		{
 			"label": "K3D - Uninstall runtime",
@@ -285,7 +291,8 @@
 			},
 			"dependsOn": [
 				"K3D - Configure control plane"
-			]
+			],
+			"problemMatcher": [ ]
 		},
 		{
 			"label": "K3D - Reset control plane",
@@ -299,15 +306,14 @@
 				"clear": true,
 				"close": false
 			},
-			"dependsOn": [
-				"K3D - Install prerequisites"
-			]
+			"problemMatcher": [ ]
 		},
 		{
 			"label": "Import example app from SDK",
 			"detail": "Import example app from SDK",
 			"type": "shell",
 			"command": "velocitas exec runtime-k3d import-example-app ${input:exampleApp}",
+			"problemMatcher": [ ]
 		},
 		{
 			"label": "(Re-)generate vehicle model",
@@ -320,7 +326,8 @@
 				"panel": "dedicated",
 				"clear": true,
 				"close": false
-			}
+			},
+			"problemMatcher": [ ]
 		},
 		// CPP specific tasks
 		{
@@ -335,7 +342,8 @@
 			"presentation": {
 				"close": false,
 				"panel": "dedicated"
-			}
+			},
+			"problemMatcher": [ ]
 		},
 		{
 			"label": "CPP - Build and Run daprized App",
@@ -344,7 +352,8 @@
 			"dependsOn": [
 				"CMake: build",
 				"dapr-VehicleApp-run"
-			]
+			],
+			"problemMatcher": [ ]
 		}
 	],
 	"inputs": [
