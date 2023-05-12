@@ -38,7 +38,7 @@ on:
 jobs:
   build-and-publish:
     runs-on: ubuntu-22.04
-    container: ghcr.io/eclipse-velocitas/devcontainer-base-images/cpp:latest
+    container: ghcr.io/eclipse-velocitas/devcontainer-base-images/cpp:v0.0.1
     name: "Build, Test and Lint"
     steps:
       - name: Checkout repository
