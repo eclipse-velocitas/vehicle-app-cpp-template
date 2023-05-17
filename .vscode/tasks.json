@@ -2,18 +2,6 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
-			"label": "run-vehicle-app",
-			"detail": "Starts the VehicleApp under development (including Dapr sidecar if middleware type is Dapr)",
-			"type": "shell",
-			"command": [
-				"velocitas exec runtime-local run-vehicle-app --dapr-app-id vehicleapp ${workspaceFolder}/build/bin/app"
-			],
-			"presentation": {
-				"close": true,
-				"reveal": "never"
-			}
-		},
-		{
 			"label": "dapr-sidecar-start",
 			"detail": "Start Dapr sidecar (with dapr run) to be present for debugging the VehicleApp (used by launch config).",
 			"type": "shell",
@@ -23,6 +11,21 @@
 			"presentation": {
 				"close": true,
 				"reveal": "never"
+			},
+			"problemMatcher": {
+				"pattern": [
+					{
+						"regexp": ".",
+						"file": 1,
+						"location": 2,
+						"message": 3
+					}
+				],
+				"background": {
+					"activeOnStart": true,
+					"beginsPattern": "^You're up and running! Dapr logs will appear here.",
+					"endsPattern": "."
+				}
 			},
 			"hide": true
 		},
@@ -49,45 +52,64 @@
 				"reveal": "always",
 				"panel": "dedicated"
 			},
-			"problemMatcher": [ ]
+			"problemMatcher": []
 		},
 		{
-			"label": "Local - VehicleDataBroker CLI",
+			"label": "Local Runtime - Run VehicleApp",
+			"detail": "Starts the VehicleApp under development (including Dapr sidecar if middleware type is Dapr)",
+			"type": "shell",
+			"command": [
+				"velocitas exec runtime-local run-vehicle-app --dapr-app-id vehicleapp ${workspaceFolder}/build/bin/app"
+			],
+			"presentation": {
+				"close": true,
+				"reveal": "never"
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Local Runtime - VehicleDataBroker CLI",
 			"detail": "Starts the VehicleDataBroker CLI",
 			"type": "shell",
 			"command": "velocitas exec runtime-local run-vehicledatabroker-cli",
 			"group": "none",
 			"isBackground": false,
-			"problemMatcher": [ ]
+			"problemMatcher": []
+		},
+		{
+			"label": "Pre Commit Action",
+			"detail": "Perform checking/formating of the code",
+			"type": "shell",
+			"command": "pre-commit run --show-diff-on-failure --color=always --all-files",
+			"group": "none",
+			"isBackground": false,
+			"problemMatcher": []
 		},
 		{
 			"label": "K3D Runtime - Up",
 			"detail": "Starts up the K3D runtime.",
 			"type": "shell",
-			"command": "velocitas exec runtime-k3d runtime-up",
+			"command": "velocitas exec runtime-k3d up",
 			"group": "none",
 			"presentation": {
 				"reveal": "always",
 				"clear": true,
 				"close": false
 			},
-			"problemMatcher": [ ]
+			"problemMatcher": []
 		},
 		{
 			"label": "K3D Runtime - Down",
 			"detail": "Stops up the local runtime",
 			"type": "shell",
-			"command": "velocitas exec runtime-k3d runtime-down",
+			"command": "velocitas exec runtime-k3d down",
 			"group": "none",
 			"presentation": {
 				"reveal": "always",
 				"clear": true,
 				"close": false
 			},
-			"dependsOn": [
-				"K3D - Configure control plane"
-			],
-			"problemMatcher": [ ]
+			"problemMatcher": []
 		},
 		{
 			"label": "K3D Runtime - Build VehicleApp",
@@ -101,7 +123,7 @@
 				"clear": true,
 				"close": false
 			},
-			"problemMatcher": [ ]
+			"problemMatcher": []
 		},
 		{
 			"label": "K3D Runtime - Deploy VehicleApp",
@@ -119,7 +141,7 @@
 				"K3D Runtime - Deploy runtime",
 				"K3D Runtime - Build VehicleApp"
 			],
-			"problemMatcher": [ ]
+			"problemMatcher": []
 		},
 		{
 			"label": "K3D Runtime - Deploy VehicleApp (without rebuild)",
@@ -136,7 +158,7 @@
 			"dependsOn": [
 				"K3D Runtime - Deploy runtime"
 			],
-			"problemMatcher": [ ]
+			"problemMatcher": []
 		},
 		{
 			"label": "Import example app from SDK",
@@ -157,7 +179,7 @@
 				"clear": true,
 				"close": false
 			},
-			"problemMatcher": [ ]
+			"problemMatcher": []
 		},
 		// CPP specific tasks
 		{
