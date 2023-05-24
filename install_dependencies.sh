@@ -79,4 +79,8 @@ mkdir -p build && cd build
 # join dependencies into one file until SDK is a Conan package by itself
 python3 ../sdk/.scripts/conanfile-merger.py ../sdk/conanfile.py ../conanfile.txt --output ./conanfile.txt
 
+# Enable Conan revision handling to enable pinning googleapis recipe revision (see conanfile.py)
+export CONAN_REVISIONS_ENABLED=1
+
 conan install -pr:h ../sdk/.conan/profiles/linux_${BUILD_ARCH}_${BUILD_VARIANT} --build "${WHICH_DEPS_TO_BUILD}" .
+
