@@ -23,7 +23,7 @@ RUN apk update && \
     apk add python3 && \
     apk add py3-pip && \
     apk add build-base && \
-    apk add linux-headers && \ 
+    apk add linux-headers && \
     apk add perl && \
     apk add bash && \
     apk add git && \
