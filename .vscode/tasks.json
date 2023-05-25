@@ -139,7 +139,6 @@
 			},
 			"dependsOn": [
 				"K3D Runtime - Deploy runtime",
-				"K3D Runtime - Build VehicleApp"
 			],
 			"problemMatcher": []
 		},
