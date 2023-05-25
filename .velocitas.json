@@ -18,7 +18,7 @@
         },
         {
             "name": "devenv-devcontainer-setup",
-            "version": "update_base_image_version"
+            "version": "v1.1.7"
         }
     ],
     "variables": {
