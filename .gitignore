@@ -68,3 +68,6 @@ conan_imports_manifest.txt
 
 # generated vehicle model
 app/vehicle_model
+
+# log file folder
+logs/
