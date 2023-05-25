@@ -52,7 +52,7 @@
 				"reveal": "always",
 				"panel": "dedicated"
 			},
-			"problemMatcher": []
+			"problemMatcher": [ ]
 		},
 		{
 			"label": "Local Runtime - Run VehicleApp",
@@ -65,7 +65,7 @@
 				"close": true,
 				"reveal": "never"
 			},
-			"problemMatcher": []
+			"problemMatcher": [ ]
 		},
 		{
 			"label": "Local Runtime - VehicleDataBroker CLI",
@@ -74,7 +74,7 @@
 			"command": "velocitas exec runtime-local run-vehicledatabroker-cli",
 			"group": "none",
 			"isBackground": false,
-			"problemMatcher": []
+			"problemMatcher": [ ]
 		},
 		{
 			"label": "Pre Commit Action",
@@ -83,7 +83,7 @@
 			"command": "pre-commit run --show-diff-on-failure --color=always --all-files",
 			"group": "none",
 			"isBackground": false,
-			"problemMatcher": []
+			"problemMatcher": [ ]
 		},
 		{
 			"label": "K3D Runtime - Up",
@@ -96,7 +96,7 @@
 				"clear": true,
 				"close": false
 			},
-			"problemMatcher": []
+			"problemMatcher": [ ]
 		},
 		{
 			"label": "K3D Runtime - Down",
@@ -109,7 +109,7 @@
 				"clear": true,
 				"close": false
 			},
-			"problemMatcher": []
+			"problemMatcher": [ ]
 		},
 		{
 			"label": "K3D Runtime - Build VehicleApp",
@@ -123,7 +123,7 @@
 				"clear": true,
 				"close": false
 			},
-			"problemMatcher": []
+			"problemMatcher": [ ]
 		},
 		{
 			"label": "K3D Runtime - Deploy VehicleApp",
@@ -142,7 +142,7 @@
 				// not neccessary but is executed in parallel to Runtime - Up
 				"K3D Runtime - Build VehicleApp"
 			],
-			"problemMatcher": []
+			"problemMatcher": [ ]
 		},
 		{
 			"label": "K3D Runtime - Deploy VehicleApp (without rebuild)",
@@ -159,7 +159,7 @@
 			"dependsOn": [
 				"K3D Runtime - Up"
 			],
-			"problemMatcher": []
+			"problemMatcher": [ ]
 		},
 		{
 			"label": "(Re-)generate vehicle model",
@@ -174,32 +174,6 @@
 				"close": false
 			},
 			"problemMatcher": [ ]
-		},
-		// CPP specific tasks
-		{
-			"label": "CPP - Calculate code coverage",
-			"detail": "Calculates code coverage of the c++ SDK",
-			"type": "shell",
-			"command": "cd build && gcovr -r ..",
-			"group": "none",
-			"dependsOn": [
-				"CMake: Run Tests"
-			],
-			"presentation": {
-				"close": false,
-				"panel": "dedicated"
-			},
-			"problemMatcher": [ ]
-		},
-		{
-			"label": "CPP - Build and Run daprized App",
-			"detail": "Builds and runs the VehicleApp with dapr",
-			"dependsOrder": "sequence",
-			"dependsOn": [
-				"CMake: build",
-				"dapr-VehicleApp-run"
-			],
-			"problemMatcher": []
 		}
 	],
 	"inputs": [
