@@ -1,16 +1,12 @@
 {
     "packages": [
         {
-            "name": "devenv-runtime-local",
-            "version": "v1.0.5"
-        },
-        {
-            "name": "devenv-runtime-k3d",
+            "name": "devenv-runtimes",
             "version": "v1.0.1"
         },
         {
             "name": "devenv-github-workflows",
-            "version": "v1.0.17"
+            "version": "v2.0.4"
         },
         {
             "name": "devenv-github-templates",

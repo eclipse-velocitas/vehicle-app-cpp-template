@@ -93,3 +93,15 @@ jobs:
 
       - name: Run Linters
         uses: pre-commit/action@v3.0.0
+  
+  devcontainer-check:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Build and run dev container task
+        uses: devcontainers/ci@v0.3
+        with:
+          runCmd: velocitas upgrade --dry-run

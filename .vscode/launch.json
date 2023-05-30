@@ -19,11 +19,7 @@
                 },
                 {
                     "name": "DAPR_GRPC_PORT",
-                    "value": "${input:DAPR_GRPC_PORT}"
-                },
-                {
-                    "name": "SERVICE_DAPR_APP_ID",
-                    "value": "${input:SERVICE_NAME}"
+                    "value": "50001"
                 },
                 {
                     "name": "VEHICLEDATABROKER_DAPR_APP_ID",
@@ -33,8 +29,8 @@
             "externalConsole": false,
             "MIMode": "gdb",
             "setupCommands": [ ],
-            "preLaunchTask": "CPP - Build and Run daprized App",
-            "postDebugTask": "dapr-VehicleApp-stop",
+            "preLaunchTask": "dapr-sidecar-start",
+            "postDebugTask": "dapr-sidecar-stop",
         },
         {
             "name": "VehicleApp - Unit Tests",
@@ -48,28 +44,6 @@
             "MIMode": "gdb",
             "setupCommands": [ ],
             "preLaunchTask": "CMake: build",
-        }
-    ],
-    "inputs": [
-        {
-            "id": "DAPR_GRPC_PORT",
-            "type": "command",
-            "command": "shellCommand.execute",
-            "args": {
-                "useSingleResult": true,
-                "command": "cat ./app/AppManifest.json | jq .[].DAPR_GRPC_PORT | tr -d '\"'",
-                "cwd": "${workspaceFolder}",
-            }
-        },
-        {
-            "id": "SERVICE_NAME",
-            "type": "command",
-            "command": "shellCommand.execute",
-            "args": {
-                "useSingleResult": true,
-                "command": "cat ./app/AppManifest.json | jq .[].Name | tr -d '\"'",
-                "cwd": "${workspaceFolder}",
-            }
         }
     ]
 }

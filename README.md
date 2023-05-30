@@ -22,14 +22,15 @@ To build the App, run the build script:
 
 ## Starting the runtime
 
-Open the `Run Task` view in VSCode and select `Local - Start VehicleApp runtime`.
+Open the `Run Task` view in VSCode and select `Local Runtime - Up`.
 
 ## Launching the example
 With the runtime running in the background, you can run the app.
+The app must have been build before (see above).
 
 ### Without debugging
 
-Open the `Run Task` view in VSCode and select `Local - VehicleApp (Dapr run)`.
+Open the `Run Task` view in VSCode and select `Local Runtime - Run VehicleApp`.
 
 ### With debugging
 You can simply launch the example in the Debugging Tab. Make sure the `VehicleApp - Debug (dapr run)` is selected at the top. After the selection is done, you can also simply hit `F5`, to start the debugging session. 
@@ -39,6 +40,7 @@ You can simply launch the example in the Debugging Tab. Make sure the `VehicleAp
 ### Run App and Dapr-Sidecar as individual Docker containers
 #### Sidecar
 ```bash
+ln -s /home/vscode/.velocitas/packages/devenv-runtimes/v<runtimes-version>/runtime-local/src/runtime/config/.dapr/ .dapr
 docker run --net="host" --mount type=bind,source="$(pwd)"/.dapr,target=/.dapr daprio/daprd:edge ./daprd -app-id vehicleapp -dapr-grpc-port 50001 -dapr-http-port 3500 -components-path /.dapr/components -config /.dapr/config.yaml -app-protocol grpc
 ```
 #### App
@@ -46,9 +48,9 @@ docker run --net="host" --mount type=bind,source="$(pwd)"/.dapr,target=/.dapr da
 docker run --rm -it --net="host" -e DAPR_GRPC_PORT=50001 -e DAPR_HTTP_PORT=3500 localhost:12345/vehicleapp:local
 ```
 
-## Running in GH Codespaces
-GH Codespaces currently restricts the token that is used within the Codespace to just the current repository, working on cloned repositories or
-submodules will not be possible without further setup. To work on other repos, you need to create a personal access token [here](https://github.com/settings/tokens/new) which has full "repo" access. Copy the contents of the PAT and create a Codespace secret called `MY_GH_TOKEN` and paste the content of your PAT. Finally you need to give the Codespace secret access to the repository of the Codespace, in this case `vehicle-app-cpp-template`.
+## Running in GitHub Codespaces
+GitHub Codespaces currently restrict the token that is used within the Codespace to just the current repository. Working on cloned repositories or
+submodules will not be possible without further setup. To work on other repos, you need to create a personal access token (PAT) [here](https://github.com/settings/tokens/new) which has full "repo" access. Copy the contents of the PAT and create a Codespace secret called `MY_GH_TOKEN` and paste the content of your PAT. Finally you need to give the Codespace secret access to the repository of the Codespace, in this case `vehicle-app-cpp-template`.
 
 ## Documentation
 * [Velocitas Development Model](https://eclipse.dev/velocitas/docs/concepts/development_model/)
