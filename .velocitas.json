@@ -2,7 +2,7 @@
     "packages": [
         {
             "name": "devenv-runtimes",
-            "version": "v1.0.1"
+            "version": "v1.0.2"
         },
         {
             "name": "devenv-github-workflows",
@@ -23,6 +23,7 @@
         "appManifestPath": "app/AppManifest.json",
         "githubRepoId": "eclipse-velocitas/vehicle-app-cpp-template",
         "appExecutionPlatforms": "linux/amd64",
-        "generatedModelPath": "./app/vehicle_model"
+        "generatedModelPath": "./app/vehicle_model",
+        "vehicleAppPort": -1
     }
 }
