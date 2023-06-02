@@ -1,0 +1,15 @@
+conan/conancenter/-/abseil/20220623.0
+conan/conancenter/-/c-ares/1.19.0
+conan/conancenter/-/fmt/9.1.0
+conan/conancenter/-/nlohmann_json/3.11.2
+conan/conancenter/-/openssl/1.1.1t
+conan/conancenter/-/re2/20230301
+conan/conancenter/-/zlib/1.2.13
+conan/conancenter/-/libcurl/7.87.0
+conan/conancenter/-/paho-mqtt-c/1.3.9
+conan/conancenter/-/protobuf/3.21.9
+conan/conancenter/-/cpr/1.9.3
+conan/conancenter/-/googleapis/cci.20221108
+conan/conancenter/-/paho-mqtt-conan/1.2.0
+conan/conancenter/-/grpc-proto/cci.20220627
+conan/conancenter/-/grpc/1.50.1
