@@ -14,7 +14,7 @@
 
 # syntax = docker/dockerfile:1.2
 
-FROM ghcr.io/eclipse-velocitas/vehicle-app-cpp-sdk:v0.3.0 as builder
+FROM ghcr.io/eclipse-velocitas/vehicle-app-cpp-sdk:v0.3.1 as builder
 
 RUN apk update && \
     apk add ninja && \
