@@ -3,7 +3,7 @@ git/github/c-ares/c-ares/cares-1_18_1
 git/github/fmtlib/fmt/9.1.0
 git/github/nlohmann/json/v3.11.2
 git/github/openssl/openssl/OpenSSL_1_1_1t
-git/github/-/re2/20220601
+git/github/google/re2/2022-06-01
 git/github/madler/zlib/v1.2.13
 git/github/curl/curl/curl-7_87_0
 git/github/eclipse/paho.mqtt.c/v1.3.9

@@ -1,0 +1,15 @@
+git/github/abseil/abseil-cpp/20220623.0, Apache-2.0, approved, #8701
+git/github/c-ares/c-ares/cares-1_18_1, , approved, #8714
+git/github/curl/curl/curl-7_87_0, curl AND BSD-3-Clause AND ISC AND BSD-4-Clause-UC, approved, #8709
+git/github/eclipse/paho.mqtt.c/v1.3.9, (EPL-2.0 OR BSD-3-Clause) AND GPL-2.0 AND MIT, approved, #8710
+git/github/eclipse/paho.mqtt.cpp/v1.2.0, (EPL-1.0 AND BSD-3-Clause) AND EPL-1.0 AND FSFAP, approved, #8706
+git/github/fmtlib/fmt/9.1.0, MIT AND BSD-3-Clause AND Python-2.0 AND (MIT OR CC0-1.0), approved, #8713
+git/github/google/re2/2022-06-01, , approved, #8918
+git/github/googleapis/googleapis/67b2d7c2fb11188776bc398f02c67fccd8187502, Apache-2.0, approved, #8707
+git/github/grpc/grpc-proto/d653c6d98105b2af937511aa6e46610c7e677e6e, Apache-2.0, approved, #8704
+git/github/grpc/grpc/v1.50.1, Apache-2.0 AND BSD-3-Clause AND MPL-2.0 AND ISC AND NTP AND MIT AND BSD-2-Clause, approved, #8712
+git/github/libcpr/cpr/1.9.3, MIT, approved, #8700
+git/github/madler/zlib/v1.2.13, , approved, #8711
+git/github/nlohmann/json/v3.11.2, MIT AND Apache-2.0 AND BSD-3-Clause AND GPL-3.0-only AND CC0-1.0 AND NCSA AND (MIT AND BSL-1.0), approved, #8702
+git/github/openssl/openssl/OpenSSL_1_1_1t, , approved, #8703
+git/github/protocolbuffers/protobuf/v3.21.9, Apache-2.0 AND BSD-3-Clause AND (LicenseRef-Public-domain OR MIT) AND (GPL-3.0-or-later AND LicenseRef-Autoconf-exception) AND FSFAP, approved, #8705
