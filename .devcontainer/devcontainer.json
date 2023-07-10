@@ -24,9 +24,6 @@
 					"editor.defaultFormatter": "xaver.clang-format"
 				},
 				"editor.formatOnSave": true,
-				"json.format.keepLines": true,
-				"cmake.configureOnEdit": false,
-				"cmake.configureOnOpen": false,
 				"clang-tidy.fixOnSave": true,
 				"clang-tidy.lintOnSave": true,
 				"clang-tidy.blacklist": [
@@ -38,82 +35,26 @@
 				"clang-tidy.compilerArgs": [
 					"-std=c++17"
 				],
-				"terminal.integrated.defaultProfile.linux": "zsh",
-				"terminal.integrated.profiles.linux": {
-					"zsh": {
-						"path": "/usr/bin/zsh"
-					}
-				},
 				"vsmqtt.brokerProfiles": [
 					{
-						"name": "mosquitto (local)",
-						"host": "localhost",
-						"port": 1883,
-						"clientId": "vsmqtt_client"
-					},
-					{
-						"name": "mosquitto (k3d)",
+						"name": "k3d",
 						"host": "localhost",
 						"port": 31883,
 						"clientId": "vsmqtt_client"
 					},
 					{
-						"name": "mosquitto (kanto)",
+						"name": "local",
 						"host": "localhost",
 						"port": 1883,
 						"clientId": "vsmqtt_client"
 					}
 				],
-				"files.associations": {
-					"array": "cpp",
-					"atomic": "cpp",
-					"bit": "cpp",
-					"*.tcc": "cpp",
-					"cctype": "cpp",
-					"chrono": "cpp",
-					"clocale": "cpp",
-					"cmath": "cpp",
-					"compare": "cpp",
-					"concepts": "cpp",
-					"condition_variable": "cpp",
-					"csignal": "cpp",
-					"cstdint": "cpp",
-					"cstdio": "cpp",
-					"cstdlib": "cpp",
-					"cstring": "cpp",
-					"ctime": "cpp",
-					"cwchar": "cpp",
-					"cwctype": "cpp",
-					"deque": "cpp",
-					"list": "cpp",
-					"map": "cpp",
-					"unordered_map": "cpp",
-					"vector": "cpp",
-					"exception": "cpp",
-					"functional": "cpp",
-					"initializer_list": "cpp",
-					"iosfwd": "cpp",
-					"iostream": "cpp",
-					"istream": "cpp",
-					"limits": "cpp",
-					"memory": "cpp",
-					"mutex": "cpp",
-					"new": "cpp",
-					"numbers": "cpp",
-					"ostream": "cpp",
-					"ratio": "cpp",
-					"semaphore": "cpp",
-					"stdexcept": "cpp",
-					"stop_token": "cpp",
-					"streambuf": "cpp",
-					"string": "cpp",
-					"string_view": "cpp",
-					"system_error": "cpp",
-					"thread": "cpp",
-					"tuple": "cpp",
-					"type_traits": "cpp",
-					"typeinfo": "cpp",
-					"utility": "cpp"
+				"json.format.keepLines": true,
+				"terminal.integrated.defaultProfile.linux": "zsh",
+				"terminal.integrated.profiles.linux": {
+					"zsh": {
+						"path": "/usr/bin/zsh"
+					}
 				}
 			},
 			// Add the IDs of extensions you want installed when the container is created.
@@ -126,7 +67,7 @@
 				"bierner.markdown-mermaid",
 				"cschlosser.doxdocgen",
 				"xaver.clang-format",
-				"cs128.cs128-clang-tidy",
+				"notskm.clang-tidy",
 				"matepek.vscode-catch2-test-adapter",
 				"sanaajani.taskrunnercode",
 				"augustocdias.tasks-shell-input"
