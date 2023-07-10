@@ -41,7 +41,7 @@ const auto STATUS_FAIL = 1;
 
 SeatAdjusterApp::SeatAdjusterApp()
     : VehicleApp(velocitas::IVehicleDataBrokerClient::createInstance("vehicledatabroker"),
-                 velocitas::IPubSubClient::createInstance("localhost:1883", "SeatAdjusterApp")) {}
+                 velocitas::IPubSubClient::createInstance("SeatAdjusterApp")) {}
 
 void SeatAdjusterApp::onStart() {
     velocitas::logger().info("Subscribe for Datapoints!");
