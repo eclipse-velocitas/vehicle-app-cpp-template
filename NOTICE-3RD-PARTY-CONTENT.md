@@ -6,7 +6,7 @@
 |bottle|0.12.25|MIT|
 |certifi|2023.5.7|Mozilla Public License 2.0|
 |cfgv|3.3.1|MIT|
-|charset-normalizer|3.1.0|MIT|
+|charset-normalizer|3.2.0|MIT|
 |colorama|0.4.6|BSD|
 |conan|1.58.0|MIT|
 |cpplint|1.6.1|New BSD|
