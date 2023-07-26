@@ -51,7 +51,7 @@ else()
     conan_basic_setup(TARGETS)
 endif()
 
-add_subdirectory(sdk)
+#add_subdirectory(sdk)
 
 add_subdirectory(app)
 

@@ -19,10 +19,6 @@ add_executable(${TARGET_NAME}
     Launcher.cpp
 )
 
-add_dependencies(${TARGET_NAME}
-    vehicle-app-sdk
-)
-
 target_link_libraries(${TARGET_NAME}
-    vehicle-app-sdk
+    CONAN_LIBS
 )
