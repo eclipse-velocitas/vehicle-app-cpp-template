@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2022-2023 Robert Bosch GmbH
+ * Copyright (c) 2023 Robert Bosch GmbH
  *
  * This program and the accompanying materials are made available under the
  * terms of the Apache License, Version 2.0 which is available at
@@ -27,18 +27,23 @@
 namespace example {
 
 /**
- * @brief A sample SeatAdjusterApp.
- * The SeatAdjusterApp subcribes at the VehicleDataBroker for updates for
- * the Vehicle.Speed signal.It also subscribes at a MQTT topic to listen for
- * incoming requests to change the seat position and calls the SeatService to
- * move the seat upon such a request, but only if Vehicle.Speed equals 0.
+ * @brief Sample skeleton vehicle app.
+ * @details The skeleton subscribes to a getSpeed MQTT topic
+ *      to listen for incoming requests to get
+ *      the current vehicle speed and publishes it to
+ *      a response topic.
+ *
+ *      It also subcribes to the VehicleDataBroker
+ *      directly for updates of the
+ *      Vehicle.Speed signal and publishes this
+ *      information via another specific MQTT topic
  */
-class SeatAdjusterApp : public velocitas::VehicleApp {
+class SampleApp : public velocitas::VehicleApp {
 public:
-    SeatAdjusterApp();
+    SampleApp();
 
     /**
-     * @brief Set up all data point and pub/sub subscriptions of the app.
+     * @brief Run when the vehicle app starts
      *
      */
     void onStart() override;
@@ -51,26 +56,11 @@ public:
     void onSpeedChanged(const velocitas::DataPointReply& reply);
 
     /**
-     * @brief Handle successful seat movement requests.
-     *
-     * @param requestId           The ID of the request requested the movement.
-     * @param requestedPosition   The seat position of the request.
-     */
-    void onSeatMovementRequested(const velocitas::Status&, int requestId, float requestedPosition);
-
-    /**
      * @brief Handle set position request from PubSub topic
      *
      * @param data  The JSON string received from PubSub topic.
      */
-    void onSetPositionRequestReceived(const std::string& data);
-
-    /**
-     * @brief Handle seat movement events from the VDB.
-     *
-     * @param dataPoints  The affected data points.
-     */
-    void onSeatPositionChanged(const velocitas::DataPointReply& reply);
+    void onGetSpeedRequestReceived(const std::string& data);
 
     /**
      * @brief Handle errors which occurred during async invocation.

@@ -14,11 +14,11 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-#include "SeatAdjusterApp.h"
+#include "SampleApp.h"
 
 #include <gtest/gtest.h>
 
-TEST(SeatAdjusterAppTest, onError_logsErrorToStdout) {
+TEST(SampleAppTest, skeleton_test) {
     // TODO: Fill me
     EXPECT_TRUE(true);
 }

@@ -15,7 +15,7 @@
 set(TARGET_NAME "app")
 
 add_executable(${TARGET_NAME}
-    SeatAdjusterApp.cpp
+    SampleApp.cpp
     Launcher.cpp
 )
 
