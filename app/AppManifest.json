@@ -13,11 +13,6 @@
                             "path": "Vehicle.Speed",
                             "required": "true",
                             "access": "read"
-                        },
-                        {
-                            "path": "Vehicle.Cabin.Seat.Row1.Pos1.Position",
-                            "required": "true",
-                            "access": "write"
                         }
                     ]
                 }
@@ -26,10 +21,10 @@
         {
             "type": "pubsub",
             "config": {
-                "reads": [ "seatadjuster/setPosition/request" ],
+                "reads": [ "sampleapp/getSpeed" ],
                 "writes": [
-                    "seatadjuster/setPosition/response",
-                    "seatadjuster/currentPosition"
+                    "sampleapp/getSpeed/response",
+                    "sampleapp/currentSpeed"
                 ]
             }
         }

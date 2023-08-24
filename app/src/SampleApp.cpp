@@ -26,13 +26,13 @@
 
 namespace example {
 
-const auto GET_SPEED_REQUEST_TOPIC       = "seatadjuster/setPosition/request";
-const auto GET_SPEED_RESPONSE_TOPIC      = "seatadjuster/setPosition/response";
-const auto DATABROKER_SUBSCRIPTION_TOPIC = "seatadjuster/currentPosition";
+const auto GET_SPEED_REQUEST_TOPIC       = "sampleapp/getSpeed";
+const auto GET_SPEED_RESPONSE_TOPIC      = sampleapp/getSpeed/response";
+const auto DATABROKER_SUBSCRIPTION_TOPIC = "sampleapp/currentSpeed";
 
 SampleApp::SampleApp()
     : VehicleApp(velocitas::IVehicleDataBrokerClient::createInstance("vehicledatabroker"),
-                 velocitas::IPubSubClient::createInstance("SeatAdjusterApp")) {}
+                 velocitas::IPubSubClient::createInstance("SampleApp")) {}
 
 void SampleApp::onStart() {
     // This method will be called by the SDK when the connection to the
