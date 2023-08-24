@@ -27,7 +27,7 @@
 namespace example {
 
 const auto GET_SPEED_REQUEST_TOPIC       = "sampleapp/getSpeed";
-const auto GET_SPEED_RESPONSE_TOPIC      = sampleapp/getSpeed/response";
+const auto GET_SPEED_RESPONSE_TOPIC      = "sampleapp/getSpeed/response";
 const auto DATABROKER_SUBSCRIPTION_TOPIC = "sampleapp/currentSpeed";
 
 SampleApp::SampleApp()
