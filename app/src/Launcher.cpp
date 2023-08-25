@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2022 Robert Bosch GmbH
+ * Copyright (c) 2022-2023 Robert Bosch GmbH
  *
  * This program and the accompanying materials are made available under the
  * terms of the Apache License, Version 2.0 which is available at
@@ -14,7 +14,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-#include "SeatAdjusterApp.h"
+#include "SampleApp.h"
 #include "sdk/Logger.h"
 
 #include <csignal>
@@ -27,7 +27,7 @@ void signal_handler(int sig) {
 int main(int argc, char** argv) {
     signal(SIGINT, signal_handler);
 
-    example::SeatAdjusterApp myApp;
+    example::SampleApp myApp;
     try {
         myApp.run();
     } catch (const std::exception& e) {

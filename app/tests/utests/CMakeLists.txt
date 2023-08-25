@@ -15,8 +15,8 @@
 set(TARGET_NAME "app_utests")
 
 add_executable(${TARGET_NAME}
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../src/SeatAdjusterApp.cpp
-    SeatAdjusterApp_test.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../src/SampleApp.cpp
+    SampleApp_test.cpp
 )
 
 include_directories(
