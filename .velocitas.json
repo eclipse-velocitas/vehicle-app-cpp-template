@@ -14,7 +14,7 @@
         },
         {
             "name": "devenv-devcontainer-setup",
-            "version": "v1.2.0"
+            "version": "v1.2.1"
         }
     ],
     "variables": {
@@ -25,5 +25,6 @@
         "appExecutionPlatforms": "linux/amd64",
         "generatedModelPath": "./app/vehicle_model",
         "vehicleAppPort": -1
-    }
+    },
+    "cliVersion": "v0.5.5"
 }
