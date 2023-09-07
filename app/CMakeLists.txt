@@ -14,8 +14,12 @@
 
 include_directories(
     ${CMAKE_BINARY_DIR}/gens
-    ${PROJECT_SOURCE_DIR}/sdk/sdk/include
+    ${CONAN_INCLUDE_DIRS}
     ${PROJECT_SOURCE_DIR}/app/vehicle_model/include
+)
+
+link_directories(
+    ${CONAN_LIB_DIRS}
 )
 
 add_subdirectory(src)
