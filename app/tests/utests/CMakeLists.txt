@@ -28,7 +28,9 @@ add_dependencies(${TARGET_NAME}
 )
 
 target_link_libraries(${TARGET_NAME}
-    CONAN_LIBS
+    ${CONAN_LIBS}
+    gtest_main
+    gmock
 )
 
 include(GoogleTest)
