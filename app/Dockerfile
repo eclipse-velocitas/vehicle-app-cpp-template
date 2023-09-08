@@ -27,7 +27,7 @@ RUN apk update && \
     apk add perl && \
     apk add bash && \
     apk add git && \
-    pip3 install "conan==1.58"
+    pip3 install "conan==1.60.2"
 
 COPY . /app
 
