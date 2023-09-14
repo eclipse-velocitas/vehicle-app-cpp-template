@@ -1,7 +1,5 @@
 [requires]
-seats-service-sdk/auto
 vehicle-app-sdk/prep-rel-0.4.0
-
 
 [generators]
 cmake
