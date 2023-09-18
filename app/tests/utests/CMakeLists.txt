@@ -24,13 +24,13 @@ include_directories(
 )
 
 add_dependencies(${TARGET_NAME}
-    vehicle-app-sdk
     app
 )
 
 target_link_libraries(${TARGET_NAME}
-    vehicle-app-sdk
+    ${CONAN_LIBS}
     gtest_main
+    gmock
 )
 
 include(GoogleTest)

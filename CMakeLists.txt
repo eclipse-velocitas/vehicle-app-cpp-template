@@ -20,11 +20,6 @@ project(VehicleApp CXX)
 # APP settings
 set(APP_BUILD_TESTS     ON CACHE BOOL "Build the App's tests.")
 
-# SDK settings
-set(SDK_STANDALONE      OFF CACHE BOOL "Build the SDK in standalone mode.")
-set(SDK_BUILD_TESTS     OFF CACHE BOOL "Build the SDK tests.")
-set(SDK_BUILD_EXAMPLES  OFF CACHE BOOL "Build the SDK examples.")
-
 # Overall settings
 set(CMAKE_CXX_STANDARD 17)
 set(STATIC_BUILD        OFF CACHE BOOL "Build all targets with external dependencies linked in statically.")
@@ -50,8 +45,6 @@ else()
     include(${CONAN_BUILD_INFO_FILE})
     conan_basic_setup(TARGETS)
 endif()
-
-add_subdirectory(sdk)
 
 add_subdirectory(app)
 
