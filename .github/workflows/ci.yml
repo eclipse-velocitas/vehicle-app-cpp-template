@@ -52,7 +52,7 @@ jobs:
 
       - name: Init velocitas project
         run: |
-          velocitas init -v
+          velocitas init
 
       - name: install prerequisites
         run: |

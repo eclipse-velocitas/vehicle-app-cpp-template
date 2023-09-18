@@ -36,7 +36,7 @@ jobs:
 
       - name: Run CLI
         run: |
-          velocitas init -v
+          velocitas init
           velocitas sync
 
       - name: Fix dubious ownership

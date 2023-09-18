@@ -15,7 +15,7 @@
 |fasteners|0.18|Apache 2.0|
 |filelock|3.12.4|The Unlicense (Unlicense)|
 |gcovr|5.2|BSD|
-|identify|2.5.28|MIT|
+|identify|2.5.29|MIT|
 |idna|3.4|BSD|
 |Jinja2|3.1.2|New BSD|
 |lxml|4.9.3|New BSD|
@@ -45,11 +45,21 @@
 |actions/setup-node|v3|MIT License|
 |actions/setup-python|v4|MIT License|
 |actions/upload-artifact|v3|MIT License|
-|docker/build-push-action|v3.2.0|Apache License 2.0|
+|aquasecurity/trivy-action|0.11.2|Apache License 2.0|
+|ASzc/change-string-case-action|v5|ISC License|
+|battila7/get-version-action|v2|MIT License|
+|dawidd6/action-download-artifact|v2|MIT License|
+|de-vri-es/setup-git-credentials|v2|BSD 2-Clause "Simplified" License|
+|devcontainers/ci|v0.3|MIT License|
+|docker/build-push-action|v4|Apache License 2.0|
 |docker/login-action|v2|Apache License 2.0|
-|docker/metadata-action|v4|Apache License 2.0|
 |docker/setup-buildx-action|v2|Apache License 2.0|
 |docker/setup-qemu-action|v2|Apache License 2.0|
-|egor-tensin/setup-gcc|v1|MIT License|
+|fountainhead/action-wait-for-check|v1.1.0|MIT License|
+|haya14busa/action-cond|v1|MIT License|
 |irongut/CodeCoverageSummary|v1.3.0|MIT License|
+|mikepenz/action-junit-report|v3|Apache License 2.0|
+|peaceiris/actions-gh-pages|v3|MIT License|
+|peaceiris/actions-hugo|v2|MIT License|
 |pre-commit/action|v3.0.0|MIT License|
+|softprops/action-gh-release|v1|MIT License|

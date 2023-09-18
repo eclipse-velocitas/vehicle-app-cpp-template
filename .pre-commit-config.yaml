@@ -31,4 +31,5 @@ repos:
             "--suppress=*:build/*",
             "--suppress=*:app/vehicle_model/*",
             "--suppress=*:examples/vehicle_model/*",
+            "--suppress=*:/home/vscode/.conan/*"
           ]
