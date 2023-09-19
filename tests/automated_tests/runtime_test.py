@@ -12,34 +12,37 @@
 
 # SPDX-License-Identifier: Apache-2.0
 
-import json
-import subprocess
+import os
+import subprocess  # nosec
 import unittest
 
 from parameterized import parameterized
 
-with open(".velocitas.json") as velocitas_file:
-    velocitas_json = json.loads(velocitas_file.read())
+devenv_runtimes_path = (
+    subprocess.check_output(["velocitas", "package", "-p", "devenv-runtimes"])  # nosec
+    .decode("utf-8")
+    .strip("\n")
+)
 
-    for package in velocitas_json["packages"]:
-        if package["name"] == "devenv-runtimes":
-            package_name = package["name"]
-            package_version = package["version"]
-            break
+os.environ["VDB_PORT"] = "30555"
+os.environ["MQTT_PORT"] = "31883"
 
 
 class RuntimeTest(unittest.TestCase):
-    @parameterized.expand(["runtime-k3d", "runtime-kanto", "runtime-local"])
+    @parameterized.expand(["runtime_k3d", "runtime_kanto", "runtime_local"])
     def test_runtime(self, runtime):
-        subprocess.check_call(
+        subprocess.check_call(  # nosec
             [
                 "pytest",
                 "-s",
                 "-x",
                 (
-                    f"/home/vscode/.velocitas/packages/{package_name}/"
-                    f"{package_version}/{runtime}/test/integration/"
+                    f"{devenv_runtimes_path}/{runtime}/test/integration/"
                     f"integration_test.py"
                 ),
             ]
         )
+        if runtime != "runtime_local":
+            subprocess.check_call(  # nosec
+                ["velocitas", "exec", runtime.replace("_", "-"), "down"]
+            )
