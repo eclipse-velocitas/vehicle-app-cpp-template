@@ -14,35 +14,33 @@
 
 # syntax = docker/dockerfile:1.2
 
-FROM ghcr.io/eclipse-velocitas/vehicle-app-cpp-sdk:v0.3.3 as builder
+FROM ghcr.io/eclipse-velocitas/vehicle-app-cpp-sdk/app-builder:v0.4 as builder
 
 RUN apk update && \
-    apk add ninja && \
-    apk add cmake && \
-    apk add clang-extra-tools && \
-    apk add python3 && \
-    apk add py3-pip && \
-    apk add build-base && \
-    apk add linux-headers && \
-    apk add perl && \
-    apk add bash && \
-    apk add git && \
-    pip3 install "conan==1.60.2"
+    apk add jq && \
+    ln -s /usr/bin/python3 /usr/bin/python
 
-COPY . /app
+COPY . /workspace
 
 RUN --mount=type=cache,target=/root/.conan
 
-RUN cd /app && \
+# FIXME: For build tooling we only need "devenv-devcontainer-setup", we should be able to
+# filter this without manual jq intervention...
+RUN mv /workspace/.velocitas.json /workspace/.velocitas_org.json && \
+    cat /workspace/.velocitas_org.json | jq 'del(.packages[] | select(.name != "devenv-devcontainer-setup"))' > /workspace/.velocitas.json
+
+WORKDIR /workspace
+
+RUN velocitas init -f -v && \
     ./install_dependencies.sh -r && \
     ./build.sh -r -t app --static
 
-RUN strip /app/build/bin/app
+RUN strip /workspace/build/bin/app
 
 # Runner stage, to copy the executable
 FROM scratch
 
-COPY --from=builder /app/build/bin/app /dist/app
+COPY --from=builder /workspace/build/bin/app /dist/app
 
 WORKDIR /tmp
 WORKDIR /dist
