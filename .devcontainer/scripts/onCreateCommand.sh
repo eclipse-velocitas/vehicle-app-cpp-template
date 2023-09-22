@@ -43,7 +43,6 @@ curl -fsSL https://bootstrap.pypa.io/get-pip.py | sudo python3
 sudo apt-get -y install --no-install-recommends ccache
 
 pip3 install -r ./requirements.txt
-pip3 install -r ./tests/automated_tests/requirements.txt
 
 # Install static analyzer tools
 sudo apt-get install -y cppcheck clang-format-14 clang-tidy-14

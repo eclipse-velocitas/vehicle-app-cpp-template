@@ -25,7 +25,7 @@ on:
     branches:
       - main
   schedule:
-    - cron: "1 1 * * 1"
+    - cron: "0 4 * * *"
 
 
 jobs:
@@ -40,5 +40,5 @@ jobs:
         uses: devcontainers/ci@v0.3
         with:
           runCmd: |
-            pip3 install -r ./tests/automated_tests/requirements.txt
-            pytest -sx tests
+            pip3 install -r .devcontainer/tests/automated_tests/requirements.txt
+            pytest -sx .devcontainer/tests
