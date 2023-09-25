@@ -42,11 +42,3 @@ jobs:
           runCmd: |
             pip3 install -r .devcontainer/tests/automated_tests/requirements.txt
             pytest -sx .devcontainer/tests
-
-      - name: Upload logs
-        uses: actions/upload-artifact@v3
-        if: always()
-        with:
-          name: logs
-          path: ./logs
-          retention-days: 1
