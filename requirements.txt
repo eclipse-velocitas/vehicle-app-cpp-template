@@ -3,4 +3,3 @@ conan==1.60.2
 
 pre-commit==2.20.0
 cpplint==1.6.1
-pytest==7.4.1
