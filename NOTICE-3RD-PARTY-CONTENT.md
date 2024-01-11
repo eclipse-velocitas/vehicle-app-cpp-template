@@ -25,7 +25,7 @@
 |patch-ng|1.17.4|MIT|
 |platformdirs|4.1.0|MIT|
 |pluginbase|1.0.1|BSD|
-|pre-commit|2.20.0|MIT|
+|pre-commit|3.5.0|MIT|
 |pygments|2.17.2|Simplified BSD|
 |PyJWT|2.8.0|MIT|
 |python-dateutil|2.8.2|Apache 2.0<br/>BSD|
@@ -33,7 +33,6 @@
 |requests|2.31.0|Apache 2.0|
 |setuptools|58.1.0|MIT|
 |six|1.16.0|MIT|
-|toml|0.10.2|MIT|
 |tqdm|4.66.1|MIT<br/>Mozilla Public License 2.0 (MPL 2.0)|
 |urllib3|1.26.18|MIT|
 |virtualenv|20.25.0|MIT|
