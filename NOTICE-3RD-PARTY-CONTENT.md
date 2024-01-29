@@ -19,7 +19,7 @@
 |idna|3.6|BSD|
 |Jinja2|3.1.3|New BSD|
 |lxml|5.1.0|New BSD|
-|MarkupSafe|2.1.4|New BSD|
+|MarkupSafe|2.1.3|New BSD|
 |node-semver|0.6.1|MIT|
 |nodeenv|1.8.0|BSD|
 |patch-ng|1.17.4|MIT|
@@ -39,11 +39,11 @@
 ## Workflows
 | Dependency | Version | License |
 |:-----------|:-------:|--------:|
-|actions/checkout|v4|MIT License|
+|actions/checkout|v3|MIT License|
 |actions/setup-java|v1.4.4|MIT License|
 |actions/setup-node|v3|MIT License|
 |actions/setup-python|v4|MIT License|
-|actions/upload-artifact|v4|MIT License|
+|actions/upload-artifact|v3|MIT License|
 |aquasecurity/trivy-action|0.11.2|Apache License 2.0|
 |ASzc/change-string-case-action|v5|ISC License|
 |battila7/get-version-action|v2|MIT License|
