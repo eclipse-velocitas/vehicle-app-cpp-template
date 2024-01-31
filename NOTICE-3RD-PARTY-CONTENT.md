@@ -23,7 +23,7 @@
 |node-semver|0.6.1|MIT|
 |nodeenv|1.8.0|BSD|
 |patch-ng|1.17.4|MIT|
-|platformdirs|4.1.0|MIT|
+|platformdirs|4.2.0|MIT|
 |pluginbase|1.0.1|BSD|
 |pre-commit|3.5.0|MIT|
 |pygments|2.17.2|Simplified BSD|
