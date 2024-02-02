@@ -52,7 +52,19 @@
 				"reveal": "always",
 				"panel": "dedicated"
 			},
-			"problemMatcher": []
+			"problemMatcher": [ ]
+		},
+		{
+			"label": "Local Runtime - Down",
+			"detail": "Stops the local runtime",
+			"type": "shell",
+			"command": "velocitas exec runtime-local down",
+			"group": "none",
+			"presentation": {
+				"panel": "dedicated",
+				"clear": true,
+			},
+			"problemMatcher": [ ]
 		},
 		{
 			"label": "Local Runtime - Run VehicleApp",
@@ -65,7 +77,7 @@
 				"close": true,
 				"reveal": "never"
 			},
-			"problemMatcher": []
+			"problemMatcher": [ ]
 		},
 		{
 			"label": "Local Runtime - VehicleDataBroker CLI",
@@ -74,7 +86,7 @@
 			"command": "velocitas exec runtime-local run-vehicledatabroker-cli",
 			"group": "none",
 			"isBackground": false,
-			"problemMatcher": []
+			"problemMatcher": [ ]
 		},
 		{
 			"label": "Pre Commit Action",
@@ -83,7 +95,7 @@
 			"command": "pre-commit run --show-diff-on-failure --color=always --all-files",
 			"group": "none",
 			"isBackground": false,
-			"problemMatcher": []
+			"problemMatcher": [ ]
 		},
 		{
 			"label": "K3D Runtime - Up",
@@ -96,7 +108,7 @@
 				"clear": true,
 				"close": false
 			},
-			"problemMatcher": []
+			"problemMatcher": [ ]
 		},
 		{
 			"label": "K3D Runtime - Down",
@@ -109,7 +121,7 @@
 				"clear": true,
 				"close": false
 			},
-			"problemMatcher": []
+			"problemMatcher": [ ]
 		},
 		{
 			"label": "K3D Runtime - Build VehicleApp",
@@ -123,7 +135,7 @@
 				"clear": true,
 				"close": false
 			},
-			"problemMatcher": []
+			"problemMatcher": [ ]
 		},
 		{
 			"label": "K3D Runtime - Deploy VehicleApp",
@@ -142,7 +154,7 @@
 				// not neccessary but is executed in parallel to Runtime - Up
 				"K3D Runtime - Build VehicleApp"
 			],
-			"problemMatcher": []
+			"problemMatcher": [ ]
 		},
 		{
 			"label": "K3D Runtime - Deploy VehicleApp (without rebuild)",
@@ -159,7 +171,7 @@
 			"dependsOn": [
 				"K3D Runtime - Up"
 			],
-			"problemMatcher": []
+			"problemMatcher": [ ]
 		},
 		{
 			"label": "Kanto Runtime - Up",
@@ -200,7 +212,7 @@
 				"clear": true,
 				"close": false
 			},
-			"problemMatcher": []
+			"problemMatcher": [ ]
 		},
 		{
 			"label": "Kanto Runtime - Build VehicleApp",
@@ -214,7 +226,7 @@
 				"clear": true,
 				"close": false
 			},
-			"problemMatcher": []
+			"problemMatcher": [ ]
 		},
 		{
 			"label": "Kanto Runtime - Deploy VehicleApp",
@@ -232,7 +244,7 @@
 				"Kanto Runtime - Up",
 				"Kanto Runtime - Build VehicleApp"
 			],
-			"problemMatcher": []
+			"problemMatcher": [ ]
 		},
 		{
 			"label": "Kanto Runtime - Deploy VehicleApp (without rebuild)",
@@ -249,7 +261,7 @@
 			"dependsOn": [
 				"Kanto Runtime - Up"
 			],
-			"problemMatcher": []
+			"problemMatcher": [ ]
 		},
 		{
 			"label": "(Re-)generate vehicle model",
@@ -263,7 +275,7 @@
 				"clear": true,
 				"close": false
 			},
-			"problemMatcher": []
+			"problemMatcher": [ ]
 		},
 		{
 			"label": "(Re-)generate gRPC SDKs",
@@ -277,7 +289,7 @@
 				"clear": true,
 				"close": false
 			},
-			"problemMatcher": []
+			"problemMatcher": [ ]
 		}
 	],
 	"inputs": [
