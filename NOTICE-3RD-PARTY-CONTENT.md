@@ -19,7 +19,7 @@
 |idna|3.6|BSD|
 |Jinja2|3.1.3|New BSD|
 |lxml|5.1.0|New BSD|
-|MarkupSafe|2.1.4|New BSD|
+|MarkupSafe|2.1.5|New BSD|
 |node-semver|0.6.1|MIT|
 |nodeenv|1.8.0|BSD|
 |patch-ng|1.17.4|MIT|
