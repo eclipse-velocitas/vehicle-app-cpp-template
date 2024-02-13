@@ -71,3 +71,6 @@ app/vehicle_model
 
 # log file folder
 logs/
+
+# local velocitas files
+.velocitas/
