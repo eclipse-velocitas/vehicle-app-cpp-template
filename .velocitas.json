@@ -14,7 +14,13 @@
         },
         {
             "name": "devenv-devcontainer-setup",
-            "version": "v1.4.7"
+            "version": "feat/sdk-installer-config",
+            "variables": {
+                "sdkGitRepo": "https://sourcecode.socialcoding.bosch.com/scm/fsp/lv_integration.git",
+                "sdkGitRef": "integration",
+                "sdkPackageSubdirectory": "vehicle-app-cpp-sdk",
+                "additionalPackages": "[{\"id\":\"nevonex-fcal-platform\",\"gitRepo\":\"https://sourcecode.socialcoding.bosch.com/scm/fsp/nevonex-fcal-platform.git\",\"gitRef\":\"develop\",\"packageSubdirectory\":\".\"},{\"id\":\"curlpp\",\"gitRepo\":\"https://github.com/SteffenL/conan-curlpp.git\",\"gitRef\":\"master\",\"packageSubdirectory\":\".\"}]"
+            }
         }
     ],
     "variables": {
@@ -23,7 +29,6 @@
         "appManifestPath": "app/AppManifest.json",
         "githubRepoId": "eclipse-velocitas/vehicle-app-cpp-template",
         "appExecutionPlatforms": "linux/amd64",
-        "generatedModelPath": "./app/vehicle_model",
         "vehicleAppPort": -1
     },
     "cliVersion": "v0.6.3"
