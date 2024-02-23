@@ -1,5 +1,5 @@
 [requires]
-vehicle-app-sdk/0.4.1
+vehicle-app-sdk/feat/conan2
 
 [generators]
 cmake

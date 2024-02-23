@@ -79,4 +79,4 @@ mkdir -p build && cd build
 # Enable Conan revision handling to enable pinning googleapis recipe revision (see conanfile.py)
 export CONAN_REVISIONS_ENABLED=1
 
-conan install -pr:h ../.conan/profiles/linux_${BUILD_ARCH}_${BUILD_VARIANT} --build "${WHICH_DEPS_TO_BUILD}" ..
+conan install -pr:a ../.conan/profiles/linux_${BUILD_ARCH}_${BUILD_VARIANT} --build "${WHICH_DEPS_TO_BUILD}" ..
