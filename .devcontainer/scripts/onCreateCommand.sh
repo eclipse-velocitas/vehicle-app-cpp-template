@@ -24,14 +24,6 @@ if [ "${CODESPACES}" = "true" ]; then
     /usr/local/share/docker-init.sh
 fi
 
-echo "#######################################################"
-echo "### Run VADF Lifecycle Management                   ###"
-echo "#######################################################"
-# needed to get rid of old leftovers
-sudo rm -rf ~/.velocitas
-velocitas init
-velocitas sync
-
 sudo chmod +x .devcontainer/scripts/*.sh
 sudo chown -R $(whoami) $HOME
 
@@ -67,6 +59,14 @@ if [ "${CODESPACES}" = "true" ]; then
     # Add one that just uses secrets available in the Codespace
     git config --global credential.helper '!f() { sleep 1; echo "username=${GITHUB_USER}"; echo "password=${MY_GH_TOKEN}"; }; f'
 fi
+
+echo "#######################################################"
+echo "### Run VADF Lifecycle Management                   ###"
+echo "#######################################################"
+# needed to get rid of old leftovers
+sudo rm -rf ~/.velocitas
+velocitas init
+velocitas sync
 
 echo "#######################################################"
 echo "### Init submodules                                 ###"

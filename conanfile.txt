@@ -1,5 +1,5 @@
 [requires]
-vehicle-app-sdk/feat/conan2
+vehicle-app-sdk/conan2
 
 [generators]
-cmake
+CMakeToolchain
