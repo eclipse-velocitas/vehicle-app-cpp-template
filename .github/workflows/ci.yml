@@ -50,13 +50,13 @@ jobs:
         run: |
           git config --global --add safe.directory $( pwd )
 
-      - name: Init velocitas project
-        run: |
-          velocitas init
-
       - name: install prerequisites
         run: |
           pip3 install -r requirements.txt
+
+      - name: Init velocitas project
+        run: |
+          velocitas init
 
       - name: Install dependencies
         run: ./install_dependencies.sh -r
