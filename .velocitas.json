@@ -14,12 +14,12 @@
         },
         {
             "name": "devenv-devcontainer-setup",
-            "version": "feat/sdk-installer-config",
+            "version": "feat/build-system",
             "variables": {
                 "sdkGitRepo": "https://sourcecode.socialcoding.bosch.com/scm/fsp/lv_integration.git",
-                "sdkGitRef": "integration",
+                "sdkGitRef": "sdo2hi/integration",
                 "sdkPackageSubdirectory": "vehicle-app-cpp-sdk",
-                "additionalPackages": "[{\"id\":\"nevonex-fcal-platform\",\"gitRepo\":\"https://sourcecode.socialcoding.bosch.com/scm/fsp/nevonex-fcal-platform.git\",\"gitRef\":\"develop\",\"packageSubdirectory\":\".\"},{\"id\":\"curlpp\",\"gitRepo\":\"https://github.com/SteffenL/conan-curlpp.git\",\"gitRef\":\"master\",\"packageSubdirectory\":\".\"}]"
+                "additionalPackages": "[{\"id\":\"nevonex-fcal-platform\",\"gitRepo\":\"https://sourcecode.socialcoding.bosch.com/scm/fsp/nevonex-fcal-platform.git\",\"gitRef\":\"sdo2hi/develop\",\"packageSubdirectory\":\".\"},{\"id\":\"curlpp\",\"gitRepo\":\"https://github.com/SteffenL/conan-curlpp.git\",\"gitRef\":\"master\",\"packageSubdirectory\":\".\"}]"
             }
         }
     ],
