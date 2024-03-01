@@ -31,5 +31,5 @@
         "appExecutionPlatforms": "linux/amd64",
         "vehicleAppPort": -1
     },
-    "cliVersion": "v0.6.3"
+    "cliVersion": "v0.6.4"
 }

@@ -77,7 +77,7 @@ git submodule update --init
 echo "#######################################################"
 echo "### Install Dependencies                            ###"
 echo "#######################################################"
-./install_dependencies.sh 2>&1 | tee -a $HOME/install_dependencies.log
+velocitas exec build-system install
 
 echo "#######################################################"
 echo "### VADF package status                             ###"
