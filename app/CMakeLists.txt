@@ -15,7 +15,6 @@
 include_directories(
     ${CMAKE_BINARY_DIR}/gens
     ${CONAN_INCLUDE_DIRS}
-    ${PROJECT_SOURCE_DIR}/app/vehicle_model/include
 )
 
 link_directories(
