@@ -1,8 +1,9 @@
 [requires]
 vehicle-model/generated
-vehicle-app-sdk/0.3.3
-nevonex-fcal-platform/1.0.0
+libcurl/8.1.2
+vehicle-app-sdk/main
 curlpp/0.8.1
+nevonex-fcal-platform/1.0.1
 
 [generators]
 cmake

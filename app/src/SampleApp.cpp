@@ -21,9 +21,15 @@
 #include "sdk/vdb/IVehicleDataBrokerClient.h"
 
 #include <fmt/core.h>
+#include <nevonex-fcal-platform/config/GlobalConfig.hpp>
+#include <nevonex-fcal-platform/config/fsm/FSMConfig.hpp>
+#include <nevonex-fcal-platform/log/LogSetup.hpp>
+#include <nevonex-fcal-platform/log/Logger.hpp>
+#include <nevonex-fcal-platform/web/client/WebServiceUtil.hpp>
 #include <nlohmann/json.hpp>
 #include <utility>
 
+using namespace nevonex::log;
 namespace example {
 
 const auto GET_SPEED_REQUEST_TOPIC       = "sampleapp/getSpeed";
@@ -32,7 +38,15 @@ const auto DATABROKER_SUBSCRIPTION_TOPIC = "sampleapp/currentSpeed";
 
 SampleApp::SampleApp()
     : VehicleApp(velocitas::IVehicleDataBrokerClient::createInstance("vehicledatabroker"),
-                 velocitas::IPubSubClient::createInstance("SampleApp")) {}
+                 velocitas::IPubSubClient::createInstance("SampleApp")) {
+
+    ::nevonex::config::GlobalConfig::getInstance();
+
+    ::nevonex::web::client::WebServiceUtil::getInstance();
+    ::nevonex::config::fsm::FSMConfig::getInstance().init();
+
+    ::nevonex::log::LogSetup::initLogConfiguration();
+}
 
 void SampleApp::onStart() {
     // This method will be called by the SDK when the connection to the
@@ -59,6 +73,9 @@ void SampleApp::onSpeedChanged(const velocitas::DataPointReply& reply) {
     // Example:
     // - Publish the current speed to MQTT Topic (i.e. DATABROKER_SUBSCRIPTION_TOPIC).
     nlohmann::json json({{"speed", vehicleSpeed}});
+    velocitas::logger().info(std::to_string(vehicleSpeed));
+    APP_LOG(SeverityLevel::info) << "vehicleCabinDoorRow1Right_IsOpen_Changed: value is same"
+                                 << std::to_string(vehicleSpeed);
     publishToTopic(DATABROKER_SUBSCRIPTION_TOPIC, json.dump());
 }
 
