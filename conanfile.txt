@@ -4,6 +4,7 @@ libcurl/8.1.2
 vehicle-app-sdk/main
 curlpp/0.8.1
 nevonex-fcal-platform/1.0.1
+lattice-extensions/1.0.1
 
 [generators]
 cmake

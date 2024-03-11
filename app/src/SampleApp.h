@@ -20,6 +20,7 @@
 #include "sdk/Status.h"
 #include "sdk/VehicleApp.h"
 #include "vehicle/Vehicle.hpp"
+#include <LatticeApp.h>
 
 #include <memory>
 #include <string>
@@ -38,7 +39,7 @@ namespace example {
  *      Vehicle.Speed signal and publishes this
  *      information via another specific MQTT topic
  */
-class SampleApp : public velocitas::VehicleApp {
+class SampleApp : public ::lattice::LatticeApp {
 public:
     SampleApp();
 

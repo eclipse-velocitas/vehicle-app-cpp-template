@@ -17,6 +17,12 @@ set(TARGET_NAME "app")
 add_executable(${TARGET_NAME}
     SampleApp.cpp
     Launcher.cpp
+    FeatureManager.cpp
+    CloudNotifier.cpp
+)
+
+include_directories(${TARGET_NAME}
+    ${CONAN_INCLUDE_DIRS}
 )
 
 target_link_libraries(${TARGET_NAME}

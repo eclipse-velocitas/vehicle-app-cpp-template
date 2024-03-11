@@ -20,12 +20,11 @@
 #include "sdk/QueryBuilder.h"
 #include "sdk/vdb/IVehicleDataBrokerClient.h"
 
+#include "CloudNotifier.cpp"
+#include "FeatureManager.cpp"
+#include <LatticeApp.h>
 #include <fmt/core.h>
-#include <nevonex-fcal-platform/config/GlobalConfig.hpp>
-#include <nevonex-fcal-platform/config/fsm/FSMConfig.hpp>
-#include <nevonex-fcal-platform/log/LogSetup.hpp>
 #include <nevonex-fcal-platform/log/Logger.hpp>
-#include <nevonex-fcal-platform/web/client/WebServiceUtil.hpp>
 #include <nlohmann/json.hpp>
 #include <utility>
 
@@ -37,16 +36,8 @@ const auto GET_SPEED_RESPONSE_TOPIC      = "sampleapp/getSpeed/response";
 const auto DATABROKER_SUBSCRIPTION_TOPIC = "sampleapp/currentSpeed";
 
 SampleApp::SampleApp()
-    : VehicleApp(velocitas::IVehicleDataBrokerClient::createInstance("vehicledatabroker"),
-                 velocitas::IPubSubClient::createInstance("SampleApp")) {
-
-    ::nevonex::config::GlobalConfig::getInstance();
-
-    ::nevonex::web::client::WebServiceUtil::getInstance();
-    ::nevonex::config::fsm::FSMConfig::getInstance().init();
-
-    ::nevonex::log::LogSetup::initLogConfiguration();
-}
+    : LatticeApp(std::shared_ptr<::nevonex::cloud::CloudNotifier>(new CloudNotifier()),
+                 std::shared_ptr<lattice::listener::FeatureManager>(new FeatureManager())) {}
 
 void SampleApp::onStart() {
     // This method will be called by the SDK when the connection to the

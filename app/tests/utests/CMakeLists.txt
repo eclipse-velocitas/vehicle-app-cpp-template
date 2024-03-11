@@ -21,6 +21,7 @@ add_executable(${TARGET_NAME}
 
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/../../src
+    ${CONAN_INCLUDE_DIRS}
 )
 
 add_dependencies(${TARGET_NAME}

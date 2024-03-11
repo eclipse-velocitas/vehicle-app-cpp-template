@@ -21,5 +21,9 @@ link_directories(
     ${CONAN_LIB_DIRS}
 )
 
+link_libraries(
+    ${CONAN_LIBS}
+)
+
 add_subdirectory(src)
 add_subdirectory(tests)
