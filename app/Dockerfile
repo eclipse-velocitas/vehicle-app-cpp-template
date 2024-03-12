@@ -21,8 +21,7 @@ RUN apt-get update && \
 
 COPY . /workspace
 
-RUN --mount=type=cache,target=/conan/.conan
-ENV CONAN_USER_HOME /conan
+ENV CONAN_USER_HOME /home/vscode/
 
 # FIXME: For build tooling we only need "devenv-devcontainer-setup", we should be able to
 # filter this without manual jq intervention...
