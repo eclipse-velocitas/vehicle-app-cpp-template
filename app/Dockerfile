@@ -32,8 +32,8 @@ RUN mv /workspace/.velocitas.json /workspace/.velocitas_org.json && \
 WORKDIR /workspace
 
 RUN velocitas init -f -v && \
-    ./install_dependencies.sh -r && \
-    ./build.sh -r -t app --static
+    velocitas exec build-system install -r && \
+    velocitas exec build-system build -r -t app --static
 
 RUN strip /workspace/build/bin/app
 
