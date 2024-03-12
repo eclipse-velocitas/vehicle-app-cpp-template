@@ -14,10 +14,10 @@
 
 # syntax = docker/dockerfile:1.2
 
-FROM ghcr.io/eclipse-velocitas/vehicle-app-cpp-sdk/app-builder:v0.4 as builder
+FROM ghcr.io/eclipse-velocitas/devcontainer-base-images/cpp:v0.2 as builder
 
-RUN apk update && \
-    apk add jq && \
+RUN apt-get update && \
+    apk-get install jq && \
     ln -s /usr/bin/python3 /usr/bin/python
 
 COPY . /workspace
