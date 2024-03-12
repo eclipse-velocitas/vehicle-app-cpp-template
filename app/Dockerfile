@@ -17,7 +17,7 @@
 FROM ghcr.io/eclipse-velocitas/devcontainer-base-images/cpp:v0.2 as builder
 
 RUN apt-get update && \
-    apk-get install jq && \
+    apt-get install jq && \
     ln -s /usr/bin/python3 /usr/bin/python
 
 COPY . /workspace
