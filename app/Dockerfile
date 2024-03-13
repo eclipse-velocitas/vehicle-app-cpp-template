@@ -16,9 +16,6 @@
 
 FROM ghcr.io/eclipse-velocitas/devcontainer-base-images/cpp:v0.2 as builder
 
-RUN apt-get update && \
-    apt-get install jq
-
 COPY . /workspace
 
 ENV CONAN_USER_HOME /home/vscode/
