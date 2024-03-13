@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Reports on Release Documentation - v0.1.1</title>
+    <title>Reports on Release Documentation - test_arm</title>
     <link>https://fantastic-fiesta-da4ab8e5.pages.github.io/reports.html</link>
-    <description>Recent content in Reports on Release Documentation - v0.1.1</description>
+    <description>Recent content in Reports on Release Documentation - test_arm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language><atom:link href="https://fantastic-fiesta-da4ab8e5.pages.github.io/reports/index.xml" rel="self" type="application/rss+xml" />
     <item>
@@ -12,7 +12,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://fantastic-fiesta-da4ab8e5.pages.github.io/reports/code-coverage-results.html</guid>
-      <description>   Package Line Rate Branch Rate Health     app.src 0% 0% ❌   Summary 0% (0 / 81) 0% (0 / 430) ❌    </description>
+      <description>   Package Line Rate Branch Rate Health     app.src 0% 0% ❌   Summary 0% (0 / 36) 0% (0 / 172) ❌    </description>
     </item>
     
     <item>
@@ -21,7 +21,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://fantastic-fiesta-da4ab8e5.pages.github.io/reports/test-results.html</guid>
-      <description>Running main() from /__w/vehicle-app-cpp-template/vehicle-app-cpp-template/build/_deps/googletest-src/googletest/src/gtest_main.cc [==========] Running 1 test from 1 test suite. [&amp;mdash;&amp;mdash;&amp;mdash;-] Global test environment set-up. [&amp;mdash;&amp;mdash;&amp;mdash;-] 1 test from SeatAdjusterAppTest [ RUN ] SeatAdjusterAppTest.onError_logsErrorToStdout [ OK ] SeatAdjusterAppTest.onError_logsErrorToStdout (0 ms) [&amp;mdash;&amp;mdash;&amp;mdash;-] 1 test from SeatAdjusterAppTest (0 ms total)
+      <description>Running main() from /__w/vehicle-app-cpp-template/vehicle-app-cpp-template/build/_deps/googletest-src/googletest/src/gtest_main.cc [==========] Running 1 test from 1 test suite. [&amp;mdash;&amp;mdash;&amp;mdash;-] Global test environment set-up. [&amp;mdash;&amp;mdash;&amp;mdash;-] 1 test from SampleAppTest [ RUN ] SampleAppTest.skeleton_test [ OK ] SampleAppTest.skeleton_test (0 ms) [&amp;mdash;&amp;mdash;&amp;mdash;-] 1 test from SampleAppTest (0 ms total)
 [&amp;mdash;&amp;mdash;&amp;mdash;-] Global test environment tear-down [==========] 1 test from 1 test suite ran. (0 ms total) [ PASSED ] 1 test.</description>
     </item>
     
