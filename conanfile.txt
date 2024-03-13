@@ -1,6 +1,6 @@
 [requires]
 vehicle-model/generated
-vehicle-app-sdk/0.4.1
+vehicle-app-sdk/0.4.2
 
 [generators]
 cmake

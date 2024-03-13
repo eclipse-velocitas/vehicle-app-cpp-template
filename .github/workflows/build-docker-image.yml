@@ -76,7 +76,7 @@ jobs:
         run: |
           if [ ${{ inputs.platform }} = "multiarch" ]; then
             echo "Build Multiarch"
-            echo "platforms=linux/amd64" >> $GITHUB_OUTPUT
+            echo "platforms=linux/amd64, linux/arm64" >> $GITHUB_OUTPUT
             echo "type=oci,dest=./${{ env.APP_NAME }}.tar" >> $GITHUB_OUTPUT
           else
             echo "Build ${{inputs.platform}}"
