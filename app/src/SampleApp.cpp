@@ -43,7 +43,7 @@ void SampleApp::onStart() {
     // This method will be called by the SDK when the connection to the
     // Vehicle DataBroker is ready.
     // Here you can subscribe for the Vehicle Signals update (e.g. Vehicle Speed).
-    subscribeDataPoints(velocitas::QueryBuilder::select(Vehicle.Speed).build())
+    subscribeDataPoints(velocitas::QueryBuilder::select(m_vehicle.get()->Speed).build())
         ->onItem([this](auto&& item) { onSpeedChanged(std::forward<decltype(item)>(item)); })
         ->onError([this](auto&& status) { onError(std::forward<decltype(status)>(status)); });
 
@@ -65,8 +65,7 @@ void SampleApp::onSpeedChanged(const velocitas::DataPointReply& reply) {
     // - Publish the current speed to MQTT Topic (i.e. DATABROKER_SUBSCRIPTION_TOPIC).
     nlohmann::json json({{"speed", vehicleSpeed}});
     velocitas::logger().info(std::to_string(vehicleSpeed));
-    APP_LOG(SeverityLevel::info) << "vehicleCabinDoorRow1Right_IsOpen_Changed: value is same"
-                                 << std::to_string(vehicleSpeed);
+    APP_LOG(SeverityLevel::info) << "Vehicle Speed" << std::to_string(vehicleSpeed);
     publishToTopic(DATABROKER_SUBSCRIPTION_TOPIC, json.dump());
 }
 

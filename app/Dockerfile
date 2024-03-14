@@ -14,15 +14,11 @@
 
 # syntax = docker/dockerfile:1.2
 
-FROM ghcr.io/eclipse-velocitas/vehicle-app-cpp-sdk/app-builder:v0.4 as builder
-
-RUN apk update && \
-    apk add jq && \
-    ln -s /usr/bin/python3 /usr/bin/python
+FROM ghcr.io/eclipse-velocitas/devcontainer-base-images/cpp:v0.2 as builder
 
 COPY . /workspace
 
-RUN --mount=type=cache,target=/root/.conan
+ENV CONAN_USER_HOME /home/vscode/
 
 # FIXME: For build tooling we only need "devenv-devcontainer-setup", we should be able to
 # filter this without manual jq intervention...

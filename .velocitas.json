@@ -28,7 +28,6 @@
         "repoType": "app",
         "appManifestPath": "app/AppManifest.json",
         "githubRepoId": "eclipse-velocitas/vehicle-app-cpp-template",
-        "appExecutionPlatforms": "linux/amd64",
         "vehicleAppPort": -1
     },
     "cliVersion": "v0.6.3"
