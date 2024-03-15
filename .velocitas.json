@@ -19,7 +19,7 @@
                 "sdkGitRepo": "https://sourcecode.socialcoding.bosch.com/scm/fsp/lv_integration.git",
                 "sdkGitRef": "integration",
                 "sdkPackageSubdirectory": "vehicle-app-cpp-sdk",
-                "additionalPackages": "[{\"id\":\"curlpp\",\"gitRepo\":\"https://github.com/SteffenL/conan-curlpp.git\",\"gitRef\":\"master\",\"packageSubdirectory\":\".\"},{\"id\":\"nevonex-fcal-platform\",\"gitRepo\":\"https://sourcecode.socialcoding.bosch.com/scm/fsp/nevonex-fcal-platform.git\",\"gitRef\":\"sdo2hi/develop\",\"packageSubdirectory\":\".\"}]"
+                "additionalPackages": "[{\"id\":\"curlpp\",\"gitRepo\":\"https://github.com/SteffenL/conan-curlpp.git\",\"gitRef\":\"master\",\"packageSubdirectory\":\".\"},{\"id\":\"nevonex-fcal-platform\",\"gitRepo\":\"https://sourcecode.socialcoding.bosch.com/scm/fsp/nevonex-fcal-platform.git\",\"gitRef\":\"develop\",\"packageSubdirectory\":\".\"}]"
             }
         }
     ],
@@ -31,5 +31,5 @@
         "appExecutionPlatforms": "linux/amd64",
         "vehicleAppPort": -1
     },
-    "cliVersion": "v0.6.4"
+    "cliVersion": "v0.7.0"
 }

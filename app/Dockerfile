@@ -27,9 +27,16 @@ RUN mv /workspace/.velocitas.json /workspace/.velocitas_org.json && \
 
 WORKDIR /workspace
 
+ARG SOCO_USER
+ARG SOCO_TOKEN
+
+# Setup access to SoCo from build container
+RUN git config --global credential.helper store && \
+    echo "https://${SOCO_USER}:${SOCO_TOKEN}@sourcecode.socialcoding.bosch.com" > ~/.git-credentials
+
 RUN velocitas init -f -v && \
-    ./install_dependencies.sh -r && \
-    ./build.sh -r -t app --static
+    velocitas exec build-system install -r && \
+    velocitas exec build-system build -r -t app --static
 
 RUN strip /workspace/build/bin/app
 
