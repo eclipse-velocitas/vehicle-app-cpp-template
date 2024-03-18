@@ -47,7 +47,7 @@ else()
 endif()
 
 add_subdirectory(app)
-
+set_target_properties(app PROPERTIES OUTPUT_NAME ${BIN_NAME})
 if(APP_BUILD_TESTS)
     enable_testing()
 endif()
