@@ -23,8 +23,8 @@ ENV CONAN_USER_HOME /home/vscode/
 # FIXME: For build tooling we only need "devenv-devcontainer-setup", we should be able to
 # filter this without manual jq intervention...
 
-RUN mv /workspace/.velocitas.json /workspace/.velocitas_org.json
-RUN cat /workspace/.velocitas_org.json | jq 'del(.packages[] | select(.name != "devenv-devcontainer-setup"))' > /workspace/.velocitas.json
+RUN mv /workspace/.velocitas.json /workspace/.velocitas_org.json && \ 
+    cat /workspace/.velocitas_org.json | jq 'del(.packages[] | select(.name != "devenv-devcontainer-setup"))' > /workspace/.velocitas.json
 
 WORKDIR /workspace
 
