@@ -16,10 +16,10 @@
             "name": "devenv-devcontainer-setup",
             "version": "feat/build-system",
             "variables": {
-                "sdkGitRepo": "https://sourcecode.socialcoding.bosch.com/scm/fsp/lv_integration.git",
-                "sdkGitRef": "integration",
-                "sdkPackageSubdirectory": "vehicle-app-cpp-sdk",
-                "additionalPackages": "[{\"id\":\"curlpp\",\"gitRepo\":\"https://github.com/SteffenL/conan-curlpp.git\",\"gitRef\":\"master\",\"packageSubdirectory\":\".\"},{\"id\":\"nevonex-fcal-platform\",\"gitRepo\":\"https://sourcecode.socialcoding.bosch.com/scm/fsp/nevonex-fcal-platform.git\",\"gitRef\":\"develop\",\"packageSubdirectory\":\".\"}]"
+                "sdkGitRepo": "https://github.com/eclipse-velocitas/vehicle-app-cpp-sdk.git",
+                "sdkGitRef": "v0.4.3",
+                "sdkPackageSubdirectory": ".",
+                "additionalPackages": "[{\"id\":\"curlpp\",\"gitRepo\":\"https://github.com/Venkata-Rao-V/curlpp.git\",\"gitRef\":\"patch-1\",\"packageSubdirectory\":\".\"},{\"id\":\"nevonex-fcal-platform\",\"gitRepo\":\"https://sourcecode.socialcoding.bosch.com/scm/fsp/nevonex-fcal-platform.git\",\"gitRef\":\"develop\",\"packageSubdirectory\":\".\"}, {\"id\":\"lattice-extensions\",\"gitRepo\":\"https://sourcecode.socialcoding.bosch.com/scm/fsp/lattice_extensions.git\",\"gitRef\":\"develop\",\"packageSubdirectory\":\".\"}]"
             }
         }
     ],

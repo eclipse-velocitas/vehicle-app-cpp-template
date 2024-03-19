@@ -1,7 +1,7 @@
 [requires]
 vehicle-model/generated
-vehicle-app-sdk/0.4.2
-nevonex-fcal-platform/1.0.1
+libcurl/8.1.2
+vehicle-app-sdk/0.4.3
 curlpp/0.8.1
 nevonex-fcal-platform/1.0.1
 lattice-extensions/1.0.1
