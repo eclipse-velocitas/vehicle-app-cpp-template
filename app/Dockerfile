@@ -35,8 +35,6 @@ ARG SOCO_TOKEN
 RUN git config --global credential.helper store && \
     echo "https://${SOCO_USER}:${SOCO_TOKEN}@sourcecode.socialcoding.bosch.com" > ~/.git-credentials
 
-
-
 RUN velocitas init -f -v && \
     velocitas exec build-system install -r && \
     velocitas exec build-system build -r -t app --static

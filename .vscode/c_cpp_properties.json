@@ -3,9 +3,7 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/app/src/**",
-                "${workspaceFolder}/app/vehicle_model/include/**",
-                "${workspaceFolder}/sdk/sdk/include/**"
+                "${workspaceFolder}/app/src/**"
             ],
             "defines": [ ],
             "compilerPath": "/usr/bin/gcc",

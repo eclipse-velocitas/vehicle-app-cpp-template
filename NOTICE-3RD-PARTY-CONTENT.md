@@ -15,7 +15,7 @@
 |fasteners|0.19|Apache 2.0|
 |filelock|3.13.1|The Unlicense (Unlicense)|
 |gcovr|5.2|BSD|
-|identify|2.5.33|MIT|
+|identify|2.5.35|MIT|
 |idna|3.6|BSD|
 |Jinja2|3.1.3|New BSD|
 |lxml|5.1.0|New BSD|
@@ -28,14 +28,14 @@
 |pre-commit|3.5.0|MIT|
 |pygments|2.17.2|Simplified BSD|
 |PyJWT|2.8.0|MIT|
-|python-dateutil|2.8.2|Apache 2.0<br/>BSD|
+|python-dateutil|2.9.0.post0|Apache 2.0<br/>BSD|
 |PyYAML|6.0.1|MIT|
 |requests|2.31.0|Apache 2.0|
 |setuptools|58.1.0|MIT|
 |six|1.16.0|MIT|
-|tqdm|4.66.1|MIT<br/>Mozilla Public License 2.0 (MPL 2.0)|
+|tqdm|4.66.2|MIT<br/>Mozilla Public License 2.0 (MPL 2.0)|
 |urllib3|1.26.18|MIT|
-|virtualenv|20.25.0|MIT|
+|virtualenv|20.25.1|MIT|
 ## Workflows
 | Dependency | Version | License |
 |:-----------|:-------:|--------:|
