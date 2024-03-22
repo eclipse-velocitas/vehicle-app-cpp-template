@@ -2,19 +2,19 @@
     "packages": [
         {
             "name": "devenv-runtimes",
-            "version": "remove_k3d_and_dapr"
+            "version": "v3.0.0"
         },
         {
             "name": "devenv-github-workflows",
-            "version": "remove_k3d_and_dapr"
+            "version": "v5.0.0"
         },
         {
             "name": "devenv-github-templates",
-            "version": "remove_k3d_and_dapr"
+            "version": "v1.0.4"
         },
         {
             "name": "devenv-devcontainer-setup",
-            "version": "remove_k3d_and_dapr"
+            "version": "v2.0.0"
         }
     ],
     "variables": {
