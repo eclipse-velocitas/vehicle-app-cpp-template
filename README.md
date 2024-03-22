@@ -33,19 +33,13 @@ The app must have been build before (see above).
 Open the `Run Task` view in VSCode and select `Local Runtime - Run VehicleApp`.
 
 ### With debugging
-You can simply launch the example in the Debugging Tab. Make sure the `VehicleApp - Debug (dapr run)` is selected at the top. After the selection is done, you can also simply hit `F5`, to start the debugging session. 
+You can simply launch the example in the Debugging Tab. Make sure the `VehicleApp - Debug (Native)` is selected at the top. After the selection is done, you can also simply hit `F5`, to start the debugging session.
 
 *Note: This launch task will also make sure to re-build the app if it has been modified!*
 
-### Run App and Dapr-Sidecar as individual Docker containers
-#### Sidecar
+### Run App as Docker container
 ```bash
-ln -s /home/vscode/.velocitas/packages/devenv-runtimes/v<runtimes-version>/runtime-local/src/runtime/config/.dapr/ .dapr
-docker run --net="host" --mount type=bind,source="$(pwd)"/.dapr,target=/.dapr daprio/daprd:edge ./daprd -app-id vehicleapp -dapr-grpc-port 50001 -dapr-http-port 3500 -components-path /.dapr/components -config /.dapr/config.yaml -app-protocol grpc
-```
-#### App
-```bash
-docker run --rm -it --net="host" -e DAPR_GRPC_PORT=50001 -e DAPR_HTTP_PORT=3500 localhost:12345/vehicleapp:local
+docker run --rm -it --net="host" -e SDV_MIDDLEWARE_TYPE="native" -e SDV_MQTT_ADDRESS="localhost:1883" -e SDV_VEHICLEDATABROKER_ADDRESS="localhost:55555" localhost:12345/vehicleapp:local
 ```
 
 ## Running in GitHub Codespaces
