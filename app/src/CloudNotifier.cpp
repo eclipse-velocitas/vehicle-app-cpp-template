@@ -1,4 +1,4 @@
-#include <cloud/CloudNotifier.h>
+#include "cloud/CloudNotifier.h"
 namespace example {
 class CloudNotifier : public virtual ::nevonex::cloud::CloudNotifier {
     void handleMessage(const std::string& message) {

@@ -20,11 +20,7 @@
 #include "sdk/QueryBuilder.h"
 #include "sdk/vdb/IVehicleDataBrokerClient.h"
 
-#include "CloudNotifier.cpp"
-#include "FeatureManager.cpp"
-#include <LatticeApp.h>
 #include <fmt/core.h>
-#include <nevonex-fcal-platform/log/Logger.hpp>
 #include <nlohmann/json.hpp>
 #include <utility>
 
@@ -43,7 +39,7 @@ void SampleApp::onStart() {
     // This method will be called by the SDK when the connection to the
     // Vehicle DataBroker is ready.
     // Here you can subscribe for the Vehicle Signals update (e.g. Vehicle Speed).
-    subscribeDataPoints(velocitas::QueryBuilder::select(m_vehicle.get()->Speed).build())
+    subscribeDataPoints(velocitas::QueryBuilder::select(Vehicle.Speed).build())
         ->onItem([this](auto&& item) { onSpeedChanged(std::forward<decltype(item)>(item)); })
         ->onError([this](auto&& status) { onError(std::forward<decltype(status)>(status)); });
 
