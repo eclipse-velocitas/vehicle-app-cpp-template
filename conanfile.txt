@@ -1,6 +1,6 @@
 [requires]
 vehicle-model/generated
-vehicle-app-sdk/0.5.0
+vehicle-app-sdk/fix_high_cpu_load
 
 [generators]
 cmake
