@@ -31,8 +31,6 @@ RUN velocitas init -f -v && \
     velocitas exec build-system install -r && \
     velocitas exec build-system build -r -t app --static
 
-RUN strip /workspace/build/bin/app
-
 # Runner stage, to copy the executable
 FROM scratch
 

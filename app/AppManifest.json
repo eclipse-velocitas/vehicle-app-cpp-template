@@ -6,12 +6,14 @@
             "type": "vehicle-signal-interface",
             "config": {
                 "src": "https://github.com/COVESA/vehicle_signal_specification/releases/download/v3.0/vss_rel_3.0.json",
-                "datapoints":
-                {
+                "datapoints": {
                     "required": [
                         {
+                            "path": "Vehicle.Cabin.Seat.Row1.Pos1.Position",
+                            "access": "write"
+                        },
+                        {
                             "path": "Vehicle.Speed",
-                            "required": "true",
                             "access": "read"
                         }
                     ]
@@ -21,10 +23,10 @@
         {
             "type": "pubsub",
             "config": {
-                "reads": [ "sampleapp/getSpeed" ],
+                "reads": [ "seatadjuster/setPosition/request" ],
                 "writes": [
-                    "sampleapp/getSpeed/response",
-                    "sampleapp/currentSpeed"
+                    "seatadjuster/setPosition/response",
+                    "seatadjuster/currentPosition"
                 ]
             }
         },

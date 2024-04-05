@@ -20,78 +20,141 @@
 #include "sdk/QueryBuilder.h"
 #include "sdk/vdb/IVehicleDataBrokerClient.h"
 
+#include "CloudNotifier.cpp"
+#include "FeatureManager.cpp"
 #include <fmt/core.h>
 #include <nlohmann/json.hpp>
 #include <utility>
-#include "CloudNotifier.cpp"
-#include "FeatureManager.cpp"
 
 using namespace nevonex::log;
+using namespace ::nevonex::cloud;
 namespace example {
 
-const auto GET_SPEED_REQUEST_TOPIC       = "sampleapp/getSpeed";
-const auto GET_SPEED_RESPONSE_TOPIC      = "sampleapp/getSpeed/response";
-const auto DATABROKER_SUBSCRIPTION_TOPIC = "sampleapp/currentSpeed";
+const auto TOPIC_REQUEST          = "seatadjuster/setPosition/request";
+const auto TOPIC_RESPONSE         = "seatadjuster/setPosition/response";
+const auto TOPIC_CURRENT_POSITION = "seatadjuster/currentPosition";
+
+const auto JSON_FIELD_REQUEST_ID = "requestId";
+const auto JSON_FIELD_POSITION   = "position";
+const auto JSON_FIELD_STATUS     = "status";
+const auto JSON_FIELD_MESSAGE    = "message";
+const auto JSON_FIELD_RESULT     = "result";
+
+const auto STATUS_OK   = 0;
+const auto STATUS_FAIL = 1;
 
 SampleApp::SampleApp()
-    : LatticeApp(std::shared_ptr<::nevonex::cloud::CloudNotifier>(new CloudNotifier()),
+    : LatticeApp(std::shared_ptr<CloudNotifier>(new CloudNotifier()),
                  std::shared_ptr<lattice::listener::FeatureManager>(new FeatureManager())) {}
 
 void SampleApp::onStart() {
     // This method will be called by the SDK when the connection to the
     // Vehicle DataBroker is ready.
     // Here you can subscribe for the Vehicle Signals update (e.g. Vehicle Speed).
-    subscribeDataPoints(velocitas::QueryBuilder::select(Vehicle.Speed).build())
-        ->onItem([this](auto&& item) { onSpeedChanged(std::forward<decltype(item)>(item)); })
-        ->onError([this](auto&& status) { onError(std::forward<decltype(status)>(status)); });
+    const auto logMessage = "Subscribe for data points!";
+    velocitas::logger().info(logMessage);
+    APP_LOG(SeverityLevel::info) << logMessage;
+    Cloud::getInstance()->uploadData(logMessage, 3);
 
-    // ... and, unlike Python, you have to manually subscribe to pub/sub topics
-    subscribeToTopic(GET_SPEED_REQUEST_TOPIC)
-        ->onItem(
-            [this](auto&& data) { onGetSpeedRequestReceived(std::forward<decltype(data)>(data)); })
-        ->onError([this](auto&& status) { onError(std::forward<decltype(status)>(status)); });
+    subscribeDataPoints(
+        velocitas::QueryBuilder::select(Vehicle.Cabin.Seat.Row1.Pos1.Position).build())
+        ->onItem([this](auto&& item) { onSeatPositionChanged(std::forward<decltype(item)>(item)); })
+        ->onError(
+            [this](auto&& status) { onErrorDatapoint(std::forward<decltype(status)>(status)); });
+
+    subscribeToTopic(TOPIC_REQUEST)
+        ->onItem([this](auto&& item) {
+            onSetPositionRequestReceived(std::forward<decltype(item)>(item));
+        })
+        ->onError([this](auto&& status) { onErrorTopic(std::forward<decltype(status)>(status)); });
 }
 
-void SampleApp::onSpeedChanged(const velocitas::DataPointReply& reply) {
-    // Get the current vehicle speed value from the received DatapointReply.
-    // The DatapointReply containes the values of all subscribed DataPoints of
-    // the same callback.
-    auto vehicleSpeed = reply.get(Vehicle.Speed)->value();
+void SampleApp::onSetPositionRequestReceived(const std::string& data) {
+    const auto logMessage = "position request: " + data;
+    velocitas::logger().debug(logMessage);
+    APP_LOG(SeverityLevel::debug) << logMessage;
+    Cloud::getInstance()->uploadData(logMessage, 3);
 
-    // Do anything with the received value.
-    // Example:
-    // - Publish the current speed to MQTT Topic (i.e. DATABROKER_SUBSCRIPTION_TOPIC).
-    nlohmann::json json({{"speed", vehicleSpeed}});
-    velocitas::logger().info(std::to_string(vehicleSpeed));
-    APP_LOG(SeverityLevel::info) << "Vehicle Speed" << std::to_string(vehicleSpeed);
+    const auto jsonData = nlohmann::json::parse(data);
+    if (!jsonData.contains(JSON_FIELD_POSITION)) {
+        const auto errorMsg = fmt::format("No position specified");
+        velocitas::logger().error(errorMsg);
+        APP_LOG(SeverityLevel::error) << errorMsg;
+        Cloud::getInstance()->uploadData(errorMsg, 1);
 
-    using namespace ::nevonex::cloud;
-    Cloud::getInstance()->uploadData(std::to_string(vehicleSpeed), 1);
-    publishToTopic(DATABROKER_SUBSCRIPTION_TOPIC, json.dump());
+        nlohmann::json respData({{JSON_FIELD_REQUEST_ID, jsonData[JSON_FIELD_REQUEST_ID]},
+                                 {JSON_FIELD_STATUS, STATUS_FAIL},
+                                 {JSON_FIELD_MESSAGE, errorMsg}});
+        publishToTopic(TOPIC_RESPONSE, respData.dump());
+        return;
+    }
+
+    const auto desiredSeatPosition = jsonData[JSON_FIELD_POSITION].get<int>();
+    const auto requestId           = jsonData[JSON_FIELD_REQUEST_ID].get<int>();
+
+    nlohmann::json respData({{JSON_FIELD_REQUEST_ID, requestId}, {JSON_FIELD_RESULT, {}}});
+    const auto     vehicleSpeed = Vehicle.Speed.get()->await().value();
+    if (vehicleSpeed == 0) {
+        Vehicle.Cabin.Seat.Row1.Pos1.Position.set(desiredSeatPosition)->await();
+
+        respData[JSON_FIELD_RESULT][JSON_FIELD_STATUS] = STATUS_OK;
+        respData[JSON_FIELD_RESULT][JSON_FIELD_MESSAGE] =
+            fmt::format("Set Seat position to: {}", desiredSeatPosition);
+    } else {
+        const auto errorMsg = fmt::format(
+            "Not allowed to move seat because vehicle speed is {} and not 0", vehicleSpeed);
+        velocitas::logger().info(errorMsg);
+        APP_LOG(SeverityLevel::error) << errorMsg;
+        Cloud::getInstance()->uploadData(errorMsg, 1);
+
+        respData[JSON_FIELD_RESULT][JSON_FIELD_STATUS]  = STATUS_FAIL;
+        respData[JSON_FIELD_RESULT][JSON_FIELD_MESSAGE] = errorMsg;
+    }
+
+    publishToTopic(TOPIC_RESPONSE, respData.dump());
 }
 
-void SampleApp::onGetSpeedRequestReceived(const std::string& data) {
-    // The subscribe_topic annotation is used to subscribe for incoming
-    // PubSub events, e.g. MQTT event for GET_SPEED_REQUEST_TOPIC.
+void SampleApp::onSeatPositionChanged(const velocitas::DataPointReply& dataPoints) {
+    nlohmann::json jsonResponse;
+    try {
+        const auto seatPositionValue =
+            dataPoints.get(Vehicle.Cabin.Seat.Row1.Pos1.Position)->value();
+        jsonResponse[JSON_FIELD_POSITION] = seatPositionValue;
+    } catch (std::exception& exception) {
+        const auto errorMsg =
+            fmt::format("Unable to get Current Seat Position, Exception: {}", exception.what());
+        velocitas::logger().warn(errorMsg);
+        APP_LOG(SeverityLevel::warning) << errorMsg;
+        Cloud::getInstance()->uploadData(errorMsg, 1);
 
-    // Use the logger with the preferred log level (e.g. debug, info, error, etc)
-    velocitas::logger().debug("PubSub event for the Topic: {} -> is received with the data: {}",
-                              GET_SPEED_REQUEST_TOPIC, data);
+        jsonResponse[JSON_FIELD_STATUS]  = STATUS_FAIL;
+        jsonResponse[JSON_FIELD_MESSAGE] = exception.what();
+    }
 
-    // Getting current speed from VehicleDataBroker using the DataPoint getter.
-    auto vehicleSpeed = Vehicle.Speed.get()->await().value();
-
-    // Do anything with the speed value.
-    // Example:
-    // - Publish the vehicle speed to MQTT topic (i.e. GET_SPEED_RESPONSE_TOPIC).
-    nlohmann::json response(
-        {{"result",
-          {{"status", 0}, {"message", fmt::format("Current Speed = {}", vehicleSpeed)}}}});
-    publishToTopic(GET_SPEED_RESPONSE_TOPIC, response.dump());
+    publishToTopic(TOPIC_CURRENT_POSITION, jsonResponse.dump());
 }
 
 void SampleApp::onError(const velocitas::Status& status) {
-    velocitas::logger().error("Error occurred during async invocation: {}", status.errorMessage());
+    const auto errorMsg =
+        fmt::format("Error occurred during async invocation: {}", status.errorMessage());
+    velocitas::logger().error(errorMsg);
+    APP_LOG(SeverityLevel::error) << errorMsg;
+    Cloud::getInstance()->uploadData(errorMsg, 1);
+}
+
+void SampleApp::onErrorDatapoint(const velocitas::Status& status) {
+    const auto errorMsg =
+        fmt::format("Datapoint: Error occurred during async invocation: {}", status.errorMessage());
+    velocitas::logger().error(errorMsg);
+    APP_LOG(SeverityLevel::error) << errorMsg;
+    Cloud::getInstance()->uploadData(errorMsg, 1);
+}
+void SampleApp::onErrorTopic(const velocitas::Status& status) {
+    const auto errorMsg =
+        fmt::format("Topic: Error occurred during async invocation: {}", status.errorMessage());
+    velocitas::logger().error(errorMsg);
+    APP_LOG(SeverityLevel::error) << errorMsg;
+    Cloud::getInstance()->uploadData(errorMsg, 1);
 }
 
 } // namespace example

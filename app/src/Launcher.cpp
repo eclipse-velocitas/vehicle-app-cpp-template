@@ -19,17 +19,19 @@
 
 #include <csignal>
 
+std::unique_ptr<example::SampleApp> myApp;
+
 void signal_handler(int sig) {
-    velocitas::logger().error("App terminated due to: Signal {}", sig);
-    exit(-1);
+    velocitas::logger().info("App terminating signal received: {}", sig);
+    myApp->stop();
 }
 
 int main(int argc, char** argv) {
     signal(SIGINT, signal_handler);
 
-    example::SampleApp myApp;
+    myApp = std::make_unique<example::SampleApp>();
     try {
-        myApp.run();
+        myApp->run();
     } catch (const std::exception& e) {
         velocitas::logger().error("App terminated due to: {}", e.what());
     } catch (...) {
