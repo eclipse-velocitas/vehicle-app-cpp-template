@@ -17,8 +17,6 @@
 #ifndef VEHICLE_APP_SDK_SEATADJUSTER_EXAMPLE_H
 #define VEHICLE_APP_SDK_SEATADJUSTER_EXAMPLE_H
 
-#include "CloudNotifier.cpp"
-#include "FeatureManager.cpp"
 #include "LatticeApp.h"
 #include "cloud/Cloud.h"
 #include "nevonex-fcal-platform//log/Logger.hpp"

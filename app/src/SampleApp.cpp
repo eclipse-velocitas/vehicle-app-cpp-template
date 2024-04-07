@@ -23,6 +23,8 @@
 #include <fmt/core.h>
 #include <nlohmann/json.hpp>
 #include <utility>
+#include "CloudNotifier.cpp"
+#include "FeatureManager.cpp"
 
 using namespace nevonex::log;
 namespace example {
