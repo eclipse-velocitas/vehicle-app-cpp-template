@@ -27,12 +27,15 @@ RUN mv /workspace/.velocitas.json /workspace/.velocitas_org.json && \
 
 WORKDIR /workspace
 
-ARG SOCO_USER
-ARG SOCO_TOKEN
 
-# Setup access to SoCo from build container
-RUN git config --global credential.helper store && \
-    echo "https://${SOCO_USER}:${SOCO_TOKEN}@sourcecode.socialcoding.bosch.com" > ~/.git-credentials
+ARG BDC_REPO_USER
+ARG BDC_REPO_TOKEN
+
+# Adding conan repo to imprve build time
+RUN conan config set general.revisions_enabled=1
+RUN conan remote add sdv-bgsw-conan-virtual https://artifactory.boschdevcloud.com/artifactory/api/conan/sdv-bgsw-conan-virtual --insert 0
+RUN conan user -p ${BDC_REPO_TOKEN} -r sdv-bgsw-conan-virtual ${BDC_REPO_USER}
+
 
 RUN velocitas init -f -v && \
     velocitas exec build-system install -r && \

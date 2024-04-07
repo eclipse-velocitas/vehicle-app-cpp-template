@@ -17,12 +17,13 @@
 #ifndef VEHICLE_APP_SDK_SEATADJUSTER_EXAMPLE_H
 #define VEHICLE_APP_SDK_SEATADJUSTER_EXAMPLE_H
 
-#include "sdk/Status.h"
-#include "vehicle/Vehicle.hpp"
-#include "LatticeApp.h"
 #include "CloudNotifier.cpp"
 #include "FeatureManager.cpp"
-#include "nevonex-fcal-platform/log/Logger.hpp"
+#include "LatticeApp.h"
+#include "cloud/Cloud.h"
+#include "nevonex-fcal-platform//log/Logger.hpp"
+#include "sdk/Status.h"
+#include "vehicle/Vehicle.hpp"
 #include <memory>
 #include <string>
 

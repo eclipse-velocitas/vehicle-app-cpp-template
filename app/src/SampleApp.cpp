@@ -62,6 +62,9 @@ void SampleApp::onSpeedChanged(const velocitas::DataPointReply& reply) {
     nlohmann::json json({{"speed", vehicleSpeed}});
     velocitas::logger().info(std::to_string(vehicleSpeed));
     APP_LOG(SeverityLevel::info) << "Vehicle Speed" << std::to_string(vehicleSpeed);
+
+    using namespace ::nevonex::cloud;
+    Cloud::getInstance()->uploadData(std::to_string(vehicleSpeed), 1);
     publishToTopic(DATABROKER_SUBSCRIPTION_TOPIC, json.dump());
 }
 
