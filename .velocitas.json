@@ -14,10 +14,8 @@
         },
         {
             "name": "devenv-devcontainer-setup",
-            "version": "feat/build-system",
+            "version": "doosuu/integration",
             "variables": {
-                "sdkGitRepo": "https://github.com/eclipse-velocitas/vehicle-app-cpp-sdk.git",
-                "sdkGitRef": "v0.5.0",
                 "sdkPackageSubdirectory": "."
             }
         }

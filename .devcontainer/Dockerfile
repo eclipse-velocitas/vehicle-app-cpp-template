@@ -12,15 +12,10 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-FROM ghcr.io/eclipse-velocitas/devcontainer-base-images/cpp:v0.2
+FROM ghcr.io/eclipse-velocitas/devcontainer-base-images/cpp:v0.3
 
 ARG REINSTALL_CMAKE_VERSION_FROM_SOURCE
 ENV REINSTALL_CMAKE_VERSION_FROM_SOURCE="${REINSTALL_CMAKE_VERSION_FROM_SOURCE:-none}"
-
-# Force dapr to use localhost traffic
-ENV DAPR_HOST_IP="127.0.0.1"
-# Add daprd to the path for the VS Code Dapr extension.
-ENV PATH=$PATH:/home/vscode/.dapr/bin
 
 COPY scripts/*.sh /tmp/scripts/
 RUN find /tmp/scripts/ -type f -iname "*.sh" -exec chmod +x {} \;
