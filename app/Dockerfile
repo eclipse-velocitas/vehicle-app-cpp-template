@@ -27,16 +27,6 @@ RUN mv /workspace/.velocitas.json /workspace/.velocitas_org.json && \
 
 WORKDIR /workspace
 
-
-ARG BDC_REPO_USER
-ARG BDC_REPO_TOKEN
-
-# Adding conan repo to imprve build time
-RUN conan config set general.revisions_enabled=1
-RUN conan remote add sdv-bgsw-conan-virtual https://artifactory.boschdevcloud.com/artifactory/api/conan/sdv-bgsw-conan-virtual --insert 0
-RUN conan user -p ${BDC_REPO_TOKEN} -r sdv-bgsw-conan-virtual ${BDC_REPO_USER}
-
-
 RUN velocitas init -f -v && \
     velocitas exec build-system install -r && \
     velocitas exec build-system build -r -t app --static
