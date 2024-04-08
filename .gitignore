@@ -74,3 +74,4 @@ logs/
 
 # local velocitas home
 .velocitas
+.credentials

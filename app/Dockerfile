@@ -14,7 +14,7 @@
 
 # syntax = docker/dockerfile:1.2
 
-FROM ghcr.io/eclipse-velocitas/devcontainer-base-images/cpp:v0.2 as builder
+FROM ghcr.io/eclipse-velocitas/devcontainer-base-images/cpp:v0.3 as builder
 
 COPY . /workspace
 
@@ -26,13 +26,6 @@ RUN mv /workspace/.velocitas.json /workspace/.velocitas_org.json && \
     cat /workspace/.velocitas_org.json | jq 'del(.packages[] | select(.name != "devenv-devcontainer-setup"))' > /workspace/.velocitas.json
 
 WORKDIR /workspace
-
-ARG SOCO_USER
-ARG SOCO_TOKEN
-
-# Setup access to SoCo from build container
-RUN git config --global credential.helper store && \
-    echo "https://${SOCO_USER}:${SOCO_TOKEN}@sourcecode.socialcoding.bosch.com" > ~/.git-credentials
 
 RUN velocitas init -f -v && \
     velocitas exec build-system install -r && \

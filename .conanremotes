@@ -1,0 +1,8 @@
+[
+    {
+        "id": "sdv-bgsw-conan-virtual",
+        "url": "https://artifactory.boschdevcloud.com/artifactory/api/conan/sdv-bgsw-conan-virtual",
+        "user": "${{ CONAN_REMOTE_USER }}",
+        "token": "${{ CONAN_REMOTE_TOKEN }}"
+    }
+]

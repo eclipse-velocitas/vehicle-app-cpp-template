@@ -23,7 +23,10 @@
 #include <fmt/core.h>
 #include <nlohmann/json.hpp>
 #include <utility>
+#include "CloudNotifier.cpp"
+#include "FeatureManager.cpp"
 
+using namespace nevonex::log;
 namespace example {
 
 const auto GET_SPEED_REQUEST_TOPIC       = "sampleapp/getSpeed";
@@ -31,8 +34,8 @@ const auto GET_SPEED_RESPONSE_TOPIC      = "sampleapp/getSpeed/response";
 const auto DATABROKER_SUBSCRIPTION_TOPIC = "sampleapp/currentSpeed";
 
 SampleApp::SampleApp()
-    : VehicleApp(velocitas::IVehicleDataBrokerClient::createInstance("vehicledatabroker"),
-                 velocitas::IPubSubClient::createInstance("SampleApp")) {}
+    : LatticeApp(std::shared_ptr<::nevonex::cloud::CloudNotifier>(new CloudNotifier()),
+                 std::shared_ptr<lattice::listener::FeatureManager>(new FeatureManager())) {}
 
 void SampleApp::onStart() {
     // This method will be called by the SDK when the connection to the
@@ -59,6 +62,11 @@ void SampleApp::onSpeedChanged(const velocitas::DataPointReply& reply) {
     // Example:
     // - Publish the current speed to MQTT Topic (i.e. DATABROKER_SUBSCRIPTION_TOPIC).
     nlohmann::json json({{"speed", vehicleSpeed}});
+    velocitas::logger().info(std::to_string(vehicleSpeed));
+    APP_LOG(SeverityLevel::info) << "Vehicle Speed" << std::to_string(vehicleSpeed);
+
+    using namespace ::nevonex::cloud;
+    Cloud::getInstance()->uploadData(std::to_string(vehicleSpeed), 1);
     publishToTopic(DATABROKER_SUBSCRIPTION_TOPIC, json.dump());
 }
 

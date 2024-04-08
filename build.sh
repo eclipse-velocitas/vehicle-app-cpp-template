@@ -1,4 +1,7 @@
-# Copyright (c) 2022-2024 Contributors to the Eclipse Foundation
+#!/bin/bash
+# This file is maintained by velocitas CLI, do not modify manually. Change settings in .velocitas.json
+
+# Copyright (c) 2024 Contributors to the Eclipse Foundation
 #
 # This program and the accompanying materials are made available under the
 # terms of the Apache License, Version 2.0 which is available at
@@ -12,18 +15,6 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-include_directories(
-    ${CMAKE_BINARY_DIR}/gens
-    ${CONAN_INCLUDE_DIRS}
-)
-
-link_directories(
-    ${CONAN_LIB_DIRS}
-)
-
-link_libraries(
-    ${CONAN_LIBS}
-)
-
-add_subdirectory(src)
-add_subdirectory(tests)
+# Provides backward compatibility for all scripts and pipelines
+# which use the bash variant.
+python3 ./build.py $@

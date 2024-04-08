@@ -13,6 +13,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import os
+from pathlib import Path
 import subprocess
 from argparse import ArgumentParser
 from velocitas_lib import get_workspace_dir
@@ -30,7 +31,7 @@ def safe_get_workspace_dir() -> str:
 
 
 def print_build_info(
-    build_variant: str, build_arch: str, build_target: str, is_static_build: bool
+    build_variant: str, build_arch: str, host_arch: str, build_target: str, is_static_build: bool
 ) -> None:
     """Print information about the build.
 
@@ -50,12 +51,13 @@ def print_build_info(
     print(f"CMake version      {cmake_version}")
     print(f"Conan version      {conan_version}")
     print(f"Build arch         {build_arch}")
+    print(f"Host arch          {host_arch}")
     print(f"Build variant      {build_variant}")
     print(f"Build target       {build_target}")
     print(f"Static build       {'yes' if is_static_build else 'no'}")
 
 
-def build(build_variant: str, build_arch: str, build_target: str, static_build: bool) -> None:
+def build(build_variant: str, build_arch: str, host_arch: str, build_target: str, static_build: bool) -> None:
     CMAKE_CXX_FLAGS = "--coverage -g -O0"
     build_folder = os.path.join(safe_get_workspace_dir(), "build")
     if build_variant == "release":
@@ -75,6 +77,15 @@ def build(build_variant: str, build_arch: str, build_target: str, static_build: 
     # fi
     # done < <(echo "$CONAN_BUILD_TOOLS_PATHS")
 
+    xcompile_toolchain_file=""
+    if build_arch != host_arch:
+        profile_build_path = (
+            Path(__file__)
+            .absolute()
+            .parent.joinpath("cmake", f"{build_arch}_to_{host_arch}.cmake")
+        )
+        xcompile_toolchain_file = f"-DCMAKE_TOOLCHAIN_FILE={profile_build_path}"
+
     subprocess.run(
         [
             CMAKE_EXECUTABLE,
@@ -83,6 +94,7 @@ def build(build_variant: str, build_arch: str, build_target: str, static_build: 
             f"-DCMAKE_BUILD_TYPE:STRING={build_variant}",
             f'-DBUILD_TOOLS_PATH:STRING="{BUILD_TOOLS_PATH}"',
             f"-DSTATIC_BUILD:BOOL={'TRUE' if static_build else 'FALSE'}",
+            xcompile_toolchain_file,
             "-S..",
             "-B../build",
             "-G",
@@ -133,14 +145,26 @@ Builds the targets of the project in different flavors."""
     parser.add_argument(
         "-s", "--static", action="store_true", help="Links all dependencies statically."
     )
+    parser.add_argument(
+        "-x",
+        "--cross",
+        action="store",
+        help="Enables cross-compilation to the defined target architecture."
+    )
     args = parser.parse_args()
     if not args.variant:
         args.variant = "debug"
     if not args.target:
         args.target = "all"
     build_arch = subprocess.check_output(["arch"], encoding="utf-8").strip()
-    print_build_info(args.variant, build_arch, args.target, args.static)
-    build(args.variant, build_arch,args.target, args.static)
+
+    host_arch = args.cross
+
+    if host_arch is None:
+        host_arch = build_arch
+
+    print_build_info(args.variant, build_arch, host_arch, args.target, args.static)
+    build(args.variant, build_arch, host_arch, args.target, args.static)
 
 
 if __name__ == "__main__":
