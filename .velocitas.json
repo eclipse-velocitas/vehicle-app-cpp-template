@@ -14,10 +14,7 @@
         },
         {
             "name": "devenv-devcontainer-setup",
-            "version": "doosuu/integration",
-            "variables": {
-                "sdkPackageSubdirectory": "."
-            }
+            "version": "doosuu/integration"
         }
     ],
     "variables": {
