@@ -51,6 +51,8 @@
         "utility": "cpp",
         "future": "cpp",
         "variant": "cpp",
-        "typeindex": "cpp"
+        "typeindex": "cpp",
+        "any": "cpp",
+        "optional": "cpp"
     }
 }
