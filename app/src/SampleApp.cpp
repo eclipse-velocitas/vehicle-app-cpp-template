@@ -27,7 +27,7 @@
 #include <utility>
 
 using namespace nevonex::log;
-using namespace ::nevonex::cloud;
+
 namespace example {
 
 const auto TOPIC_REQUEST          = "seatadjuster/setPosition/request";
@@ -54,7 +54,7 @@ void SampleApp::onStart() {
     const auto logMessage = "Subscribe for data points!";
     velocitas::logger().info(logMessage);
     APP_LOG(SeverityLevel::info) << logMessage;
-    Cloud::getInstance()->uploadData(logMessage, 3);
+    ::nevonex::cloud::Cloud::getInstance()->uploadData(logMessage, 3);
 
     subscribeDataPoints(
         velocitas::QueryBuilder::select(Vehicle.Cabin.Seat.Row1.Pos1.Position).build())
@@ -73,14 +73,14 @@ void SampleApp::onSetPositionRequestReceived(const std::string& data) {
     const auto logMessage = "position request: " + data;
     velocitas::logger().debug(logMessage);
     APP_LOG(SeverityLevel::debug) << logMessage;
-    Cloud::getInstance()->uploadData(logMessage, 3);
+    ::nevonex::cloud::Cloud::getInstance()->uploadData(logMessage, 3);
 
     const auto jsonData = nlohmann::json::parse(data);
     if (!jsonData.contains(JSON_FIELD_POSITION)) {
         const auto errorMsg = fmt::format("No position specified");
         velocitas::logger().error(errorMsg);
         APP_LOG(SeverityLevel::error) << errorMsg;
-        Cloud::getInstance()->uploadData(errorMsg, 1);
+        ::nevonex::cloud::Cloud::getInstance()->uploadData(errorMsg, 1);
 
         nlohmann::json respData({{JSON_FIELD_REQUEST_ID, jsonData[JSON_FIELD_REQUEST_ID]},
                                  {JSON_FIELD_STATUS, STATUS_FAIL},
@@ -105,7 +105,7 @@ void SampleApp::onSetPositionRequestReceived(const std::string& data) {
             "Not allowed to move seat because vehicle speed is {} and not 0", vehicleSpeed);
         velocitas::logger().info(errorMsg);
         APP_LOG(SeverityLevel::error) << errorMsg;
-        Cloud::getInstance()->uploadData(errorMsg, 1);
+        ::nevonex::cloud::Cloud::getInstance()->uploadData(errorMsg, 1);
 
         respData[JSON_FIELD_RESULT][JSON_FIELD_STATUS]  = STATUS_FAIL;
         respData[JSON_FIELD_RESULT][JSON_FIELD_MESSAGE] = errorMsg;
@@ -125,7 +125,7 @@ void SampleApp::onSeatPositionChanged(const velocitas::DataPointReply& dataPoint
             fmt::format("Unable to get Current Seat Position, Exception: {}", exception.what());
         velocitas::logger().warn(errorMsg);
         APP_LOG(SeverityLevel::warning) << errorMsg;
-        Cloud::getInstance()->uploadData(errorMsg, 1);
+        ::nevonex::cloud::Cloud::getInstance()->uploadData(errorMsg, 1);
 
         jsonResponse[JSON_FIELD_STATUS]  = STATUS_FAIL;
         jsonResponse[JSON_FIELD_MESSAGE] = exception.what();
@@ -139,7 +139,7 @@ void SampleApp::onError(const velocitas::Status& status) {
         fmt::format("Error occurred during async invocation: {}", status.errorMessage());
     velocitas::logger().error(errorMsg);
     APP_LOG(SeverityLevel::error) << errorMsg;
-    Cloud::getInstance()->uploadData(errorMsg, 1);
+    ::nevonex::cloud::Cloud::getInstance()->uploadData(errorMsg, 1);
 }
 
 void SampleApp::onErrorDatapoint(const velocitas::Status& status) {
@@ -147,14 +147,14 @@ void SampleApp::onErrorDatapoint(const velocitas::Status& status) {
         fmt::format("Datapoint: Error occurred during async invocation: {}", status.errorMessage());
     velocitas::logger().error(errorMsg);
     APP_LOG(SeverityLevel::error) << errorMsg;
-    Cloud::getInstance()->uploadData(errorMsg, 1);
+    ::nevonex::cloud::Cloud::getInstance()->uploadData(errorMsg, 1);
 }
 void SampleApp::onErrorTopic(const velocitas::Status& status) {
     const auto errorMsg =
         fmt::format("Topic: Error occurred during async invocation: {}", status.errorMessage());
     velocitas::logger().error(errorMsg);
     APP_LOG(SeverityLevel::error) << errorMsg;
-    Cloud::getInstance()->uploadData(errorMsg, 1);
+    ::nevonex::cloud::Cloud::getInstance()->uploadData(errorMsg, 1);
 }
 
 } // namespace example
