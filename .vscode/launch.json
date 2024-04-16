@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "VehicleApp - Debug (dapr run)",
+            "name": "VehicleApp - Debug",
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/build/bin/app",
@@ -14,23 +14,17 @@
             "cwd": "${workspaceFolder}",
             "environment": [
                 {
-                    "name": "DAPR_HTTP_PORT",
-                    "value": "3500"
+                    "name": "SDV_VEHICLEDATABROKER_ADDRESS",
+                    "value": "localhost:55555"
                 },
                 {
-                    "name": "DAPR_GRPC_PORT",
-                    "value": "50001"
-                },
-                {
-                    "name": "VEHICLEDATABROKER_DAPR_APP_ID",
-                    "value": "vehicledatabroker"
+                    "name": "FEATURE_CONFIG",
+                    "value": "${workspaceFolder}/app/feature.config"
                 }
             ],
             "externalConsole": false,
             "MIMode": "gdb",
             "setupCommands": [ ],
-            "preLaunchTask": "dapr-sidecar-start",
-            "postDebugTask": "dapr-sidecar-stop",
         },
         {
             "name": "VehicleApp - Unit Tests",
