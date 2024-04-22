@@ -3,11 +3,10 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/app/src/**",
-                "${workspaceFolder}/app/vehicle_model/include/**",
-                "${workspaceFolder}/sdk/sdk/include/**"
+                "${workspaceFolder}/**",
+                "/home/vscode/.conan/data/**"
             ],
-            "defines": [ ],
+            "defines": [],
             "compilerPath": "/usr/bin/gcc",
             "cStandard": "c17",
             "cppStandard": "c++11",

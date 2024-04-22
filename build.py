@@ -13,9 +13,11 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import os
-from pathlib import Path
 import subprocess
 from argparse import ArgumentParser
+from pathlib import Path
+
+from shared_utils import get_valid_arch
 from velocitas_lib import get_workspace_dir
 
 CMAKE_EXECUTABLE = "cmake"
@@ -31,7 +33,11 @@ def safe_get_workspace_dir() -> str:
 
 
 def print_build_info(
-    build_variant: str, build_arch: str, host_arch: str, build_target: str, is_static_build: bool
+    build_variant: str,
+    build_arch: str,
+    host_arch: str,
+    build_target: str,
+    is_static_build: bool,
 ) -> None:
     """Print information about the build.
 
@@ -57,7 +63,13 @@ def print_build_info(
     print(f"Static build       {'yes' if is_static_build else 'no'}")
 
 
-def build(build_variant: str, build_arch: str, host_arch: str, build_target: str, static_build: bool) -> None:
+def build(
+    build_variant: str,
+    build_arch: str,
+    host_arch: str,
+    build_target: str,
+    static_build: bool,
+) -> None:
     CMAKE_CXX_FLAGS = "--coverage -g -O0"
     build_folder = os.path.join(safe_get_workspace_dir(), "build")
     if build_variant == "release":
@@ -77,7 +89,7 @@ def build(build_variant: str, build_arch: str, host_arch: str, build_target: str
     # fi
     # done < <(echo "$CONAN_BUILD_TOOLS_PATHS")
 
-    xcompile_toolchain_file=""
+    xcompile_toolchain_file = ""
     if build_arch != host_arch:
         profile_build_path = (
             Path(__file__)
@@ -99,7 +111,7 @@ def build(build_variant: str, build_arch: str, host_arch: str, build_target: str
             "-B../build",
             "-G",
             "Ninja",
-            f'-DCMAKE_CXX_FLAGS={CMAKE_CXX_FLAGS}',
+            f"-DCMAKE_CXX_FLAGS={CMAKE_CXX_FLAGS}",
         ],
         cwd=build_folder,
     )
@@ -149,7 +161,7 @@ Builds the targets of the project in different flavors."""
         "-x",
         "--cross",
         action="store",
-        help="Enables cross-compilation to the defined target architecture."
+        help="Enables cross-compilation to the defined target architecture.",
     )
     args = parser.parse_args()
     if not args.variant:
@@ -162,6 +174,8 @@ Builds the targets of the project in different flavors."""
 
     if host_arch is None:
         host_arch = build_arch
+    else:
+        host_arch = get_valid_arch(host_arch)
 
     print_build_info(args.variant, build_arch, host_arch, args.target, args.static)
     build(args.variant, build_arch, host_arch, args.target, args.static)

@@ -2,6 +2,17 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
+			"label": "Build app",
+			"type": "shell",
+			"command": "velocitas exec build-system build -t app",
+			"group": "none",
+			"presentation": {
+				"reveal": "always",
+				"panel": "dedicated"
+			},
+			"problemMatcher": [ ]
+		},
+		{
 			"label": "Local Runtime - Up",
 			"detail": "Starts up the local runtime",
 			"type": "shell",

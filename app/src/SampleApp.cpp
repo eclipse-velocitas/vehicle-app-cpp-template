@@ -71,7 +71,7 @@ void SampleApp::onStart() {
 
 void SampleApp::onSetPositionRequestReceived(const std::string& data) {
     const auto logMessage = "position request: " + data;
-    velocitas::logger().debug(logMessage);
+    velocitas::logger().debug("position request: {}", data);
     APP_LOG(SeverityLevel::debug) << logMessage;
     ::nevonex::cloud::Cloud::getInstance()->uploadData(logMessage, 3);
 

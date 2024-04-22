@@ -22,6 +22,7 @@
         { "id": "runtime-local" },
         { "id": "vehicle-signal-interface" },
         { "id": "build-system" },
+        { "id": "conan-setup" },
         { "id": "sdk-installer" }
     ],
     "variables": {
