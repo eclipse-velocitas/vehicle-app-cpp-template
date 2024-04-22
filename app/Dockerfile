@@ -31,16 +31,13 @@ RUN velocitas init -f -v && \
     ./install_dependencies.sh -r && \
     ./build.sh -r -t app --static
 
-RUN strip /workspace/build/bin/app
-
 # Runner stage, to copy the executable
-FROM scratch
+FROM scratch as runner
 
-COPY --from=builder /workspace/build/bin/app /dist/app
+COPY --from=builder /workspace/build/bin/app /app
 
 WORKDIR /tmp
-WORKDIR /dist
 
-ENV PATH="/dist:$PATH"
+ENV PATH="/:$PATH"
 
-CMD ["/dist/app"]
+CMD ["/app"]

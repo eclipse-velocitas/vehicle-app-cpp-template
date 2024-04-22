@@ -6,7 +6,7 @@
         },
         {
             "name": "devenv-github-workflows",
-            "version": "v5.0.0"
+            "version": "native-app"
         },
         {
             "name": "devenv-github-templates",
