@@ -17,14 +17,6 @@
             "version": "doosuu/integration"
         }
     ],
-    "components": [
-        { "id": "devcontainer-setup" },
-        { "id": "runtime-local" },
-        { "id": "vehicle-signal-interface" },
-        { "id": "build-system" },
-        { "id": "conan-setup" },
-        { "id": "sdk-installer" }
-    ],
     "variables": {
         "language": "cpp",
         "repoType": "app",
