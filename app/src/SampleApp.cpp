@@ -100,10 +100,8 @@ void SampleApp::onSetPositionRequestReceived(const std::string& data) {
         try {
             ::nevonex::cloud::Cloud::getInstance()->uploadData(message, 1);
         } catch (std::exception& exception) {
-            const auto errorMsg =
-                fmt::format("Unable to get Current Seat Position, Exception: {}", exception.what());
             APP_LOG(SeverityLevel::info)
-                << "Error while uploading message to the cloud " << errorMsg;
+                << "Error while uploading message to the cloud " << exception.what();
         }
     } else {
         const auto errorMsg = fmt::format(
