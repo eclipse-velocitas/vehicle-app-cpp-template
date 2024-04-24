@@ -17,7 +17,7 @@ Folder structure     📁 app - base directory for a vehicle app  📁 src - sou
 
 
 
-    <title>Release Documentation - test_arm</title>
+    <title>Release Documentation - test</title>
 
     <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
@@ -62,7 +62,7 @@ Folder structure     📁 app - base directory for a vehicle app  📁 src - sou
 {
     "@context": "http://schema.org",
     "@type": "WebSite",
-    "name": "Release Documentation - test_arm",
+    "name": "Release Documentation - test",
     "url": "https:\/\/fantastic-fiesta-da4ab8e5.pages.github.io\/",
     "thumbnailUrl": "https:\/\/fantastic-fiesta-da4ab8e5.pages.github.io\/brand.svg"
 }
@@ -101,7 +101,7 @@ Folder structure     📁 app - base directory for a vehicle app  📁 src - sou
         <a class="gdoc-header__link" href="https://fantastic-fiesta-da4ab8e5.pages.github.io/">
             <span class="gdoc-brand flex align-center">
                 <img class="gdoc-brand__img" src="/brand.svg" alt="">
-                <span class="gdoc-brand__title">Release Documentation - test_arm</span>
+                <span class="gdoc-brand__title">Release Documentation - test</span>
             </span>
         </a>
         <div class="gdoc-menu-header">
@@ -389,7 +389,7 @@ Folder structure     📁 app - base directory for a vehicle app  📁 src - sou
             
             <span class="flex">
                 <svg class="icon gdoc_github"><use xlink:href="#gdoc_github"></use></svg>
-                <a href="https://github.com/eclipse-velocitas/vehicle-app-cpp-template/tree/test_arm"
+                <a href="https://github.com/eclipse-velocitas/vehicle-app-cpp-template/tree/test"
                     class="gdoc-nav__entry ">
                     View Source
                 </a>
@@ -533,45 +533,21 @@ The app must have been build before (see above).</p>
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h3>
-</div><p>You can simply launch the example in the Debugging Tab. Make sure the <code>VehicleApp - Debug (dapr run)</code> is selected at the top. After the selection is done, you can also simply hit <code>F5</code>, to start the debugging session.</p>
+</div><p>You can simply launch the example in the Debugging Tab. Make sure the <code>VehicleApp - Debug (Native)</code> is selected at the top. After the selection is done, you can also simply hit <code>F5</code>, to start the debugging session.</p>
 <p><em>Note: This launch task will also make sure to re-build the app if it has been modified!</em></p>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="run-app-and-dapr-sidecar-as-individual-docker-containers">
-        Run App and Dapr-Sidecar as individual Docker containers
-        <a data-clipboard-text="https://fantastic-fiesta-da4ab8e5.pages.github.io/#run-app-and-dapr-sidecar-as-individual-docker-containers" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Run App and Dapr-Sidecar as individual Docker containers" href="#run-app-and-dapr-sidecar-as-individual-docker-containers">
+    <h3 id="run-app-as-docker-container">
+        Run App as Docker container
+        <a data-clipboard-text="https://fantastic-fiesta-da4ab8e5.pages.github.io/#run-app-as-docker-container" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Run App as Docker container" href="#run-app-as-docker-container">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h3>
-</div><div class="gdoc-page__anchorwrap">
-    <h4 id="sidecar">
-        Sidecar
-        <a data-clipboard-text="https://fantastic-fiesta-da4ab8e5.pages.github.io/#sidecar" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Sidecar" href="#sidecar">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h4>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">ln -s /home/vscode/.velocitas/packages/devenv-runtimes/v&lt;runtimes-version&gt;/runtime-local/src/runtime/config/.dapr/ .dapr
-docker run --net<span class="o">=</span><span class="s2">&#34;host&#34;</span> --mount <span class="nv">type</span><span class="o">=</span>bind,source<span class="o">=</span><span class="s2">&#34;</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span><span class="s2">&#34;</span>/.dapr,target<span class="o">=</span>/.dapr daprio/daprd:edge ./daprd -app-id vehicleapp -dapr-grpc-port <span class="m">50001</span> -dapr-http-port <span class="m">3500</span> -components-path /.dapr/components -config /.dapr/config.yaml -app-protocol grpc
-</code></pre></td></tr></table>
-</div>
-</div><div class="gdoc-page__anchorwrap">
-    <h4 id="app">
-        App
-        <a data-clipboard-text="https://fantastic-fiesta-da4ab8e5.pages.github.io/#app" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor App" href="#app">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h4>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker run --rm -it --net<span class="o">=</span><span class="s2">&#34;host&#34;</span> -e <span class="nv">DAPR_GRPC_PORT</span><span class="o">=</span><span class="m">50001</span> -e <span class="nv">DAPR_HTTP_PORT</span><span class="o">=</span><span class="m">3500</span> localhost:12345/vehicleapp:local
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker run --rm -it --net<span class="o">=</span><span class="s2">&#34;host&#34;</span> -e <span class="nv">SDV_MIDDLEWARE_TYPE</span><span class="o">=</span><span class="s2">&#34;native&#34;</span> -e <span class="nv">SDV_MQTT_ADDRESS</span><span class="o">=</span><span class="s2">&#34;localhost:1883&#34;</span> -e <span class="nv">SDV_VEHICLEDATABROKER_ADDRESS</span><span class="o">=</span><span class="s2">&#34;localhost:55555&#34;</span> localhost:12345/vehicleapp:local
 </code></pre></td></tr></table>
 </div>
 </div><div class="gdoc-page__anchorwrap">
