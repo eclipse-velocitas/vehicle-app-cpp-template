@@ -1,7 +1,7 @@
 [requires]
 vehicle-model/generated
 vehicle-app-sdk/0.5.1
-lattice-extensions/1.0.1
+lattice-extensions/1.0.3
 
 [generators]
 cmake
