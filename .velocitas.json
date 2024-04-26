@@ -19,6 +19,7 @@
     ],
     "components": [
         { "id": "devcontainer-setup" },
+        { "id": "runtime-local" },
         { "id": "vehicle-signal-interface" },
         { "id": "build-system" },
         { "id": "conan-setup" },
