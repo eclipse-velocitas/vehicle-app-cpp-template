@@ -14,7 +14,7 @@
         },
         {
             "name": "devenv-devcontainer-setup",
-            "version": "@doosuu/integration"
+            "version": "doosuu/integration"
         }
     ],
     "components": [
