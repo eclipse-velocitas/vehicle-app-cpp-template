@@ -14,7 +14,7 @@
         },
         {
             "name": "devenv-devcontainer-setup",
-            "version": "doosuu/integration"
+            "version": "@doosuu/integration"
         }
     ],
     "components": [
@@ -32,5 +32,5 @@
         "githubRepoId": "eclipse-velocitas/vehicle-app-cpp-template",
         "vehicleAppPort": -1
     },
-    "cliVersion": "v0.7.0"
+    "cliVersion": "v0.8.0"
 }
