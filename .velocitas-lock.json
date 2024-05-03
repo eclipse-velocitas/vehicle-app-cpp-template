@@ -1,0 +1,20 @@
+{
+    "packages": [
+        {
+            "repo": "devenv-runtimes",
+            "version": "v3.1.0"
+        },
+        {
+            "repo": "devenv-github-workflows",
+            "version": "v4.1.4"
+        },
+        {
+            "repo": "devenv-github-templates",
+            "version": "v1.0.3"
+        },
+        {
+            "repo": "devenv-devcontainer-setup",
+            "version": "v2.1.0"
+        }
+    ]
+}
