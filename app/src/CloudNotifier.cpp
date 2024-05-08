@@ -1,6 +1,7 @@
 #include "cloud/CloudNotifier.h"
 namespace example {
 class CloudNotifier : public virtual ::nevonex::cloud::CloudNotifier {
+public:
     void handleMessage(const std::string& message) {
         APP_LOG(SeverityLevel::info) << "Cloud Message Received ... " << message;
     }

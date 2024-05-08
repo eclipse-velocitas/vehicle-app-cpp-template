@@ -15,8 +15,10 @@
 set(TARGET_NAME "app_utests")
 
 add_executable(${TARGET_NAME}
+    main.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../../src/SampleApp.cpp
     SampleApp_test.cpp
+    CloudNotifier_test.cpp
 )
 
 include_directories(
@@ -29,9 +31,9 @@ add_dependencies(${TARGET_NAME}
 )
 
 target_link_libraries(${TARGET_NAME}
+    ${CONAN_LIBS}
     gtest_main
     gmock
-    ${CONAN_LIBS}
 )
 
 include(GoogleTest)
