@@ -15,7 +15,8 @@
         "devcontainer-setup",
         "vehicle-signal-interface",
         "grpc-interface-support",
-        "sdk-installer"
+        "sdk-installer",
+        "build-system"
     ],
     "variables": {
         "language": "cpp",

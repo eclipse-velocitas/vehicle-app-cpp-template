@@ -18,12 +18,12 @@
 |identify|2.5.36|MIT|
 |idna|3.7|BSD|
 |jinja2|3.1.4|BSD|
-|lxml|5.2.1|New BSD|
+|lxml|5.2.2|New BSD|
 |MarkupSafe|2.1.5|New BSD|
 |node-semver|0.6.1|MIT|
 |nodeenv|1.8.0|BSD|
 |patch-ng|1.17.4|MIT|
-|platformdirs|4.2.1|MIT|
+|platformdirs|4.2.2|MIT|
 |pluginbase|1.0.1|BSD|
 |pre-commit|3.5.0|MIT|
 |pygments|2.18.0|Simplified BSD|
@@ -35,7 +35,7 @@
 |six|1.16.0|MIT|
 |tqdm|4.66.4|MIT<br/>Mozilla Public License 2.0 (MPL 2.0)|
 |urllib3|1.26.18|MIT|
-|virtualenv|20.26.1|MIT|
+|virtualenv|20.26.2|MIT|
 ## Workflows
 | Dependency | Version | License |
 |:-----------|:-------:|--------:|
