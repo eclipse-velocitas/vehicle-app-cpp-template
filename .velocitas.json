@@ -2,7 +2,7 @@
     "packages": [
         {
             "repo": "devenv-runtimes",
-            "version": "v3.0.0"
+            "version": "v4.0.0"
         },
         {
             "repo": "devenv-github-workflows",
@@ -18,12 +18,24 @@
         }
     ],
     "components": [
-        { "id": "devcontainer-setup" },
-        { "id": "runtime-local" },
-        { "id": "vehicle-signal-interface" },
-        { "id": "build-system" },
-        { "id": "conan-setup" },
-        { "id": "sdk-installer" }
+        {
+            "id": "devcontainer-setup"
+        },
+        {
+            "id": "runtime-local"
+        },
+        {
+            "id": "vehicle-signal-interface"
+        },
+        {
+            "id": "build-system"
+        },
+        {
+            "id": "conan-setup"
+        },
+        {
+            "id": "sdk-installer"
+        }
     ],
     "variables": {
         "language": "cpp",
@@ -32,5 +44,5 @@
         "githubRepoId": "eclipse-velocitas/vehicle-app-cpp-template",
         "vehicleAppPort": -1
     },
-    "cliVersion": "v0.9.0"
+    "cliVersion": "v0.9.1"
 }
