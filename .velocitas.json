@@ -2,7 +2,7 @@
     "packages": [
         {
             "repo": "devenv-runtimes",
-            "version": "v4.0.0"
+            "version": "v3.0.0"
         },
         {
             "repo": "devenv-github-workflows",
