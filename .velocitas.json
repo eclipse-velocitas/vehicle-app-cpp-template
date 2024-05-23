@@ -14,7 +14,7 @@
         },
         {
             "repo": "devenv-devcontainer-setup",
-            "version": "@doosuu/integration"
+            "version": "v2.4.0"
         }
     ],
     "components": [

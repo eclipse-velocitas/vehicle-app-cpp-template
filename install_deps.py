@@ -30,7 +30,7 @@ def safe_get_workspace_dir() -> str:
     """A safe version of get_workspace_dir which defaults to '.'."""
     try:
         return get_workspace_dir()
-    except:
+    except Exception:
         return "."
 
 
@@ -138,8 +138,10 @@ def cli() -> None:
     if host_arch is None:
         host_arch = build_arch
 
+    subprocess.check_call(["conan", "config", "set", "general.revisions_enabled=1"])
+
     install_deps_via_conan(
-        build_arch, host_arch, args.debug or not args.release, args.build_all_deps
+        build_arch, host_arch, args.debug and not args.release, args.build_all_deps
     )
 
 
