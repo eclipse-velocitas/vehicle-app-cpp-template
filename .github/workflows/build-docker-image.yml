@@ -41,6 +41,11 @@ jobs:
         with:
           submodules: "recursive"
 
+      - name: Write conan credentials
+        run: |
+          echo "CONAN_REMOTE_USER=${{ secrets.BDC_ARTIFACTORY_USER }}" >> .credentials
+          echo "CONAN_REMOTE_TOKEN=${{ secrets.BDC_ARTIFACTORY_PAT }}" >> .credentials
+
       - name: Clone Release Documentation Action repository
         uses: actions/checkout@v4
         with:

@@ -34,14 +34,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Fix dubious ownership
+        run: |
+          git config --global --add safe.directory $( pwd )
+
+      - name: Write conan credentials
+        run: |
+          echo "CONAN_REMOTE_USER=${{ secrets.BDC_ARTIFACTORY_USER }}" >> .credentials
+          echo "CONAN_REMOTE_TOKEN=${{ secrets.BDC_ARTIFACTORY_PAT }}" >> .credentials
+
       - name: Run CLI
         run: |
           velocitas init
           velocitas sync
-
-      - name: Fix dubious ownership
-        run: |
-          git config --global --add safe.directory $( pwd )
 
       - name: Has Changes
         id: changes

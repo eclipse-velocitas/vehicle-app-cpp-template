@@ -14,19 +14,18 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-// TODO: Add header file for CloudNotifier
-#include "CloudNotifier.h"
+#include "listener/FeatureManager.h"
+#include "nevonex-fcal-platform/log/Logger.hpp"
+using namespace ::nevonex::log;
 
-#include <gtest/gtest.h>
-
-using namespace example;
-
-TEST(CloudNotifierTest, test_handleMessage_arbitraryMessage_unableToFindFeatureConfig) {
-    CloudNotifier notifier;
-    EXPECT_THROW(notifier.handleMessage(std::string{"my message"}), std::runtime_error);
-}
-
-TEST(CloudNotifierTest, handleFile_invalidFilePath_unableToFindFeatureConfig) {
-    CloudNotifier notifier;
-    EXPECT_THROW(notifier.handleFile(std::string{"/file/path"}), std::runtime_error);
-}
+namespace example {
+class FeatureManager : public virtual ::lattice::listener::FeatureManager {
+public:
+    void handleFeatureStart(const std::string& message) override {
+        APP_LOG(SeverityLevel::info) << "handleFeatureStart .." << message;
+    }
+    void handleFeatureStop(const std::string& message) override {
+        APP_LOG(SeverityLevel::info) << "handleFeatureStop .." << message;
+    }
+};
+} // namespace example

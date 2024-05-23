@@ -17,7 +17,7 @@
         "language": "cpp",
         "repoType": "app",
         "appManifestPath": "app/AppManifest.json",
-        "githubRepoId": "eclipse-velocitas/vehicle-app-cpp-template",
+        "githubRepoId": "SoftwareDefinedVehicle/vehicle-app-cpp-template-lattice",
         "vehicleAppPort": -1
     },
     "cliVersion": "v0.9.1"

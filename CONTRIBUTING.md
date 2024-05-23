@@ -32,6 +32,10 @@ https://www.eclipse.org/projects/handbook/#resources-commit
 * Install dependencies:
 
    ```bash
+   python3 ./install_deps.py
+   ```
+   or
+   ```bash
    ./install_dependencies.sh
    ```
 * Make your changes following the code style guide (see Code Style Guide section above).

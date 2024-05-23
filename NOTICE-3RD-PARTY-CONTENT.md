@@ -8,7 +8,7 @@
 |cfgv|3.4.0|MIT|
 |charset-normalizer|3.3.2|MIT|
 |colorama|0.4.6|BSD|
-|conan|1.60.2|MIT|
+|conan|1.63.0|MIT|
 |cpplint|1.6.1|New BSD|
 |distlib|0.3.8|Python Software Foundation License|
 |distro|1.8.0|Apache 2.0|
@@ -50,7 +50,6 @@
 |battila7/get-version-action|v2|MIT License|
 |dawidd6/action-download-artifact|v3|MIT License|
 |de-vri-es/setup-git-credentials|v2|BSD 2-Clause "Simplified" License|
-|devcontainers/ci|v0.3|MIT License|
 |docker/build-push-action|v5|Apache License 2.0|
 |docker/login-action|v3|Apache License 2.0|
 |docker/setup-buildx-action|v3|Apache License 2.0|

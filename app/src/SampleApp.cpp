@@ -20,8 +20,8 @@
 #include "sdk/QueryBuilder.h"
 #include "sdk/vdb/IVehicleDataBrokerClient.h"
 
-#include "CloudNotifier.cpp"
-#include "FeatureManager.cpp"
+#include "CloudNotifier.h"
+#include "FeatureManager.h"
 #include <fmt/core.h>
 #include <nlohmann/json.hpp>
 #include <utility>

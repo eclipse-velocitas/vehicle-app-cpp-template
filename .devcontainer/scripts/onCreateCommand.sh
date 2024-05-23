@@ -30,7 +30,7 @@ echo "#######################################################"
 # needed to get rid of old leftovers
 sudo rm -rf ~/.velocitas
 velocitas init
-velocitas sync
+# velocitas sync
 
 sudo chmod +x .devcontainer/scripts/*.sh
 sudo chown -R $(whoami) $HOME

@@ -42,6 +42,7 @@ jobs:
   build-image-multiarch:
     uses: ./.github/workflows/build-docker-image.yml
     needs: [get-app-name]
+    secrets: inherit
     with:
       platform: multiarch
       app_name: ${{ needs.get-app-name.outputs.app_name }}
