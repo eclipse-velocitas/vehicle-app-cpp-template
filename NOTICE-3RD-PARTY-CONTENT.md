@@ -30,7 +30,7 @@
 |PyJWT|2.8.0|MIT|
 |python-dateutil|2.9.0.post0|Apache 2.0<br/>BSD|
 |PyYAML|6.0.1|MIT|
-|requests|2.31.0|Apache 2.0|
+|requests|2.32.2|Apache 2.0|
 |setuptools|58.1.0|MIT|
 |six|1.16.0|MIT|
 |tqdm|4.66.4|MIT<br/>Mozilla Public License 2.0 (MPL 2.0)|
