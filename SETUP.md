@@ -21,4 +21,4 @@ There are also several variables which can be set in the velocitas.json, e.g.
  - mockServiceImage (Url of a custom Mockservice Docker Container)
  - sdkGitRepo (Git-Url of a custom Vehicle SDK, needs to be referenced in the requirements-file)
 
-You can find all possible variables in the manifests of the Velocitas packages.
+You can find all possible variables in the manifests of the Velocitas packages or execute `velocitas package` to get a list of used packages and configurable variables.
