@@ -12,10 +12,12 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+import json
 import os
 import subprocess
 from argparse import ArgumentParser
 from pathlib import Path
+from typing import List
 
 from shared_utils import get_valid_arch
 from velocitas_lib import get_workspace_dir
@@ -28,8 +30,20 @@ def safe_get_workspace_dir() -> str:
     """A safe version of get_workspace_dir which defaults to '.'."""
     try:
         return get_workspace_dir()
-    except:
+    except Exception:
         return "."
+
+
+def get_build_tools_path(build_folder_path: str) -> str:
+    paths: List[str] = []
+    with open(
+        os.path.join(build_folder_path, "conanbuildinfo.txt"), encoding="utf-8"
+    ) as file:
+        for line in file:
+            if line.startswith("PATH="):
+                path_list = json.loads(line[len("PATH=") :])
+                paths.extend(path_list)
+    return ";".join(paths)
 
 
 def print_build_info(
@@ -69,25 +83,20 @@ def build(
     host_arch: str,
     build_target: str,
     static_build: bool,
+    coverage: bool = True,
 ) -> None:
-    CMAKE_CXX_FLAGS = "--coverage -g -O0"
     build_folder = os.path.join(safe_get_workspace_dir(), "build")
+
+    cxx_flags = ["-g"]
+    if coverage:
+        cxx_flags.append("--coverage")
+
     if build_variant == "release":
-        CMAKE_CXX_FLAGS = "--coverage -s -g -O3"
+        cxx_flags.append("-O3")
+    else:
+        cxx_flags.append("-O0")
 
     os.makedirs(build_folder, exist_ok=True)
-
-    # Expose the PATH of the build-time requirements from Conan to CMake - this is NOT handled by
-    # any of Conan's CMake generators at the moment, hence we parse the conanbuildinfo.txt which
-    # is generated and holds these paths. This allows us to always use the protoc and grpc cpp plugin
-    # of the build system.
-    BUILD_TOOLS_PATH = ""
-    # CONAN_BUILD_TOOLS_PATHS=$(sed '/^PATH=/!d;s/PATH=//g;s/,/\n/g' ./conanbuildinfo.txt | tr -d '[]'\" )
-    # while read -r p; do
-    # if [[ ! -z "${p// }" ]]; then
-    #   BUILD_TOOLS_PATH="$BUILD_TOOLS_PATH;$p"
-    # fi
-    # done < <(echo "$CONAN_BUILD_TOOLS_PATHS")
 
     xcompile_toolchain_file = ""
     if build_arch != host_arch:
@@ -104,14 +113,14 @@ def build(
             "--no-warn-unused-cli",
             "-DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE",
             f"-DCMAKE_BUILD_TYPE:STRING={build_variant}",
-            f'-DBUILD_TOOLS_PATH:STRING="{BUILD_TOOLS_PATH}"',
+            f'-DBUILD_TOOLS_PATH:STRING="{get_build_tools_path(build_folder)}"',
             f"-DSTATIC_BUILD:BOOL={'TRUE' if static_build else 'FALSE'}",
             xcompile_toolchain_file,
             "-S..",
-            "-B../build",
+            "-B.",
             "-G",
             "Ninja",
-            f"-DCMAKE_CXX_FLAGS={CMAKE_CXX_FLAGS}",
+            f"-DCMAKE_CXX_FLAGS={' '.join(cxx_flags)}",
         ],
         cwd=build_folder,
     )
