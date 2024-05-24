@@ -10,3 +10,15 @@ Please follow the steps below to setup your environment
     CONAN_REMOTE_USER=<nt-user>
     CONAN_REMOTE_TOKEN=<your-token>
 1. Reopen the folder in a container
+
+The basic setup is done after these steps.
+
+If you want to, you can even customize your setup to fully fit your needs.
+A customized mock.py is already part of this repository, feel free to adapt it to your app.
+There are also several variables which can be set in the velocitas.json, e.g.
+ - mqttBrokerImage (Url of a custom MQTT Broker Docker Container)
+ - vehicleDatabrokerImage (Url of a custom Databroker Docker Container)
+ - mockServiceImage (Url of a custom Mockservice Docker Container)
+ - sdkGitRepo (Git-Url of a custom Vehicle SDK, needs to be referenced in the requirements-file)
+
+You can find all possible variables in the manifests of the Velocitas packages.
