@@ -27,13 +27,12 @@ RUN velocitas init -f -v && \
     velocitas exec build-system build -r -t app --static
 
 # Runner stage, to copy the executable
-FROM scratch
+FROM scratch as runner
 
-COPY --from=builder /workspace/build/bin/app /dist/app
+COPY --from=builder /workspace/build/bin/app /app
 
 WORKDIR /tmp
-WORKDIR /dist
 
-ENV PATH="/dist:$PATH"
+ENV PATH="/:$PATH"
 
-CMD ["/dist/app"]
+CMD ["/app"]
