@@ -36,6 +36,15 @@ jobs:
         with:
           python-version: "3.10"
 
+      - name: Fix dubious ownership
+        run: |
+          git config --global --add safe.directory $( pwd )
+
+      - name: Write conan credentials
+        run: |
+          echo "CONAN_REMOTE_USER=${{ secrets.BDC_ARTIFACTORY_USER }}" >> .credentials
+          echo "CONAN_REMOTE_TOKEN=${{ secrets.BDC_ARTIFACTORY_PAT }}" >> .credentials
+
       - name: Init velocitas project
         run: |
           sudo curl -L https://github.com/eclipse-velocitas/cli/releases/latest/download/velocitas-linux-x64 -o /usr/bin/velocitas

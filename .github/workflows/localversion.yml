@@ -44,7 +44,7 @@ jobs:
           name: LOCAL README
           path: ./.devcontainer/localversion/README.md
 
-  create-local-image:
+  create-local-version:
     name: Create local version
     runs-on: ubuntu-22.04
     strategy:
@@ -95,10 +95,61 @@ jobs:
         run: |
           PLATFORM=${{ matrix.platform }}
           PLATFORM=${PLATFORM//\//_}
-          echo "printable_platform=${PLATFORM}" >> "$GITHUB_OUTPUT" 
+          echo "printable_platform=${PLATFORM}" >> "$GITHUB_OUTPUT"
 
-      - name: Archive repository state
+      - name: Archive contents
+        run: tar -cvf devenv-local-${{ steps.replace_string.outputs.printable_platform }}.tar ./
+
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         with: 
           name: devenv-local-${{ steps.replace_string.outputs.printable_platform }}
-          path: ./
+          path: devenv-local-${{ steps.replace_string.outputs.printable_platform }}.tar
+          retention-days: 1
+
+  test-local-version:
+    needs: create-local-version
+    name: Test local version
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: devenv-local-linux_amd64
+
+      - name: Untar archive
+        run: tar -xvf devenv-local-linux_amd64.tar
+
+      - name: Install Docker image from file
+        run: |
+          docker load -i localimage.tar
+
+      - name: Startup devContainer
+        uses: devcontainers/ci@v0.3
+        with:
+          runCmd: |
+            velocitas exec build-system install
+            velocitas exec build-system build
+
+  upload-to-release:
+    needs: test-local-version
+    name: Upload artifacts to releases
+    if: startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+
+      - name: List files
+        run: |
+          ls -alR
+
+      - name: Upload assets
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            devenv-local-linux_amd64/*
+            devenv-local-linux_aarch64/*
+            LOCAL README/README.md
