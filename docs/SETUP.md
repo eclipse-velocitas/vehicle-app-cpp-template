@@ -73,6 +73,17 @@ There are also several project variables which can be set in the `.velocitas.jso
 
 An exhaustive list of all possible project variables can be obtained by executing `velocitas package` in a terminal or by looking at the manifest files of the used Velocitas packages.
 
+This project contains a convenience script which can be executed to configure needed variables.
+
+* **Reconfigure template URLs**
+
+    1. Open the `reconfigure_template_urls.sh` script.
+    1. Adapt all the variables in the marked area (`GIT_FORK_LOCATION`, `PIP_MIRROR`, `BASE_IMAGE_URL`, `VSS_PATH`, `MQTT_IMAGE`, `DATABROKER_IMAGE`, `MOCKSERVICE_IMAGE`).
+    1. Execute the script from a Linux host (tested under Ubuntu). This host may be a VM or DevContainer.
+        ```shell
+        ./reconfigure_template_urls.sh
+        ```
+
 ## Configuring Vehicle mock behavior
 
 A customized `mock.py` is already part of this repository, feel free to adapt it to the needs of your app.
