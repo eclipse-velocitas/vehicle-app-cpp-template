@@ -38,11 +38,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Archive local setup README
+      - name: Archive local setup documentation
         uses: actions/upload-artifact@v4
         with:
-          name: LOCAL README
-          path: ./.devcontainer/localversion/README.md
+          name: LOCAL SETUP
+          path: ./.devcontainer/localversion/LOCAL_SETUP.md
 
   create-local-version:
     name: Create local version
@@ -160,4 +160,4 @@ jobs:
           files: |
             devenv-local-linux_amd64/*
             devenv-local-linux_aarch64/*
-            LOCAL README/README.md
+            LOCAL SETUP/LOCAL_SETUP.md
