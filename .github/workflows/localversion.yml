@@ -63,7 +63,7 @@ jobs:
         run: |
           echo "CONAN_REMOTE_USER=${{ secrets.BDC_ARTIFACTORY_USER }}" >> .credentials
           echo "CONAN_REMOTE_TOKEN=${{ secrets.BDC_ARTIFACTORY_PAT }}" >> .credentials
-      
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 
@@ -84,11 +84,12 @@ jobs:
       - name: Patch repository contents
         run: |
           rm -f .credentials
-          sed -i 's/ghcr.io\/eclipse-velocitas\/devcontainer-base-images\/cpp:v.*/devcontainer\/cpp:local/g' .devcontainer/Dockerfile
-          sed -i 's/sudo rm -rf ~\/.velocitas//g' .devcontainer/scripts/onCreateCommand.sh
-          sed -i 's/velocitas init//g' .devcontainer/scripts/onCreateCommand.sh
-          sed -i 's/velocitas upgrade --dry-run//g' .devcontainer/scripts/onCreateCommand.sh
-          sed -i 's/ghcr.io\/eclipse-velocitas\/devcontainer-base-images\/cpp:v.*/devcontainer\/cpp:local/g' app/Dockerfile
+          sed -i 's+FROM .*devcontainer-base-images/cpp:v.*+FROM devcontainer/cpp:local+g' .devcontainer/Dockerfile
+          sed -i 's+sudo rm -rf ~/.velocitas++g' .devcontainer/scripts/onCreateCommand.sh
+          sed -i 's+velocitas init++g' .devcontainer/scripts/onCreateCommand.sh
+          sed -i 's+velocitas upgrade --dry-run++g' .devcontainer/scripts/onCreateCommand.sh
+          sed -i 's+FROM .*devcontainer-base-images/cpp:v.* as builder+FROM devcontainer/cpp:local as builder+g' app/Dockerfile
+          echo "*.tar" >> app/Dockerfile.dockerignore
 
       - name: Create archive string name
         id: replace_string
@@ -102,7 +103,7 @@ jobs:
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
-        with: 
+        with:
           name: devenv-local-${{ steps.replace_string.outputs.printable_platform }}
           path: devenv-local-${{ steps.replace_string.outputs.printable_platform }}.tar
           retention-days: 1
@@ -125,12 +126,19 @@ jobs:
         run: |
           docker load -i localimage.tar
 
+      - name: Write conan credentials
+        run: |
+          echo "CONAN_REMOTE_USER=${{ secrets.BDC_ARTIFACTORY_USER }}" >> .credentials
+          echo "CONAN_REMOTE_TOKEN=${{ secrets.BDC_ARTIFACTORY_PAT }}" >> .credentials
+
       - name: Startup devContainer
         uses: devcontainers/ci@v0.3
         with:
           runCmd: |
             velocitas exec build-system install
             velocitas exec build-system build
+            docker load -i localimage.tar
+            docker build -f app/Dockerfile -t vehicleapp:local .
 
   upload-to-release:
     needs: test-local-version

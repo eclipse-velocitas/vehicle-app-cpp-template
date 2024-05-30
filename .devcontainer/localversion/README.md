@@ -28,3 +28,10 @@ Follow these steps to set up your local development environment:
 1. When prompted to start the directory in a dev container, click yes.
 1. Enjoy!
 
+## Using the devcontainer
+
+If you want to build a local version of the app container you need to load the localimage again into the docker cache.
+Execute the following command inside the devcontainer:
+```bash
+docker load -i localimage.tar
+```

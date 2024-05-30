@@ -21,7 +21,7 @@
 |lxml|5.2.2|New BSD|
 |MarkupSafe|2.1.5|New BSD|
 |node-semver|0.6.1|MIT|
-|nodeenv|1.8.0|BSD|
+|nodeenv|1.9.0|BSD|
 |patch-ng|1.17.4|MIT|
 |platformdirs|4.2.2|MIT|
 |pluginbase|1.0.1|BSD|
@@ -30,8 +30,7 @@
 |PyJWT|2.8.0|MIT|
 |python-dateutil|2.9.0.post0|Apache 2.0<br/>BSD|
 |PyYAML|6.0.1|MIT|
-|requests|2.32.2|Apache 2.0|
-|setuptools|58.1.0|MIT|
+|requests|2.32.3|Apache 2.0|
 |six|1.16.0|MIT|
 |tqdm|4.66.4|MIT<br/>Mozilla Public License 2.0 (MPL 2.0)|
 |urllib3|1.26.18|MIT|
@@ -43,7 +42,6 @@
 |actions/download-artifact|v4|MIT License|
 |actions/setup-java|v4|MIT License|
 |actions/setup-node|v4|MIT License|
-|actions/setup-python|v5|MIT License|
 |actions/upload-artifact|v4|MIT License|
 |aquasecurity/trivy-action|0.19.0|Apache License 2.0|
 |ASzc/change-string-case-action|v6|ISC License|
