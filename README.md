@@ -153,3 +153,16 @@ All dependencies of the application should be downloaded and installed automatic
 ```bash
 velocitas exec build-system install
 ```
+
+## FAQ
+
+**Q:** Why am I getting an InvalidValueException when I try to get the value of a signal/data point by calling the `.value()` function?<br>
+**A:** The current state of a signal/data point might not always represent a valid value, but could be in some failure state. You'll find possible [failure reasons](https://eclipse.dev/velocitas/docs/tutorials/vehicle_app_development/cpp_development/#failure-reasons) and suggestions for a [failure handling](https://eclipse.dev/velocitas/docs/tutorials/vehicle_app_development/cpp_development/#failure-handling) in the 
+[Velocitas tutorial for C++ Vehicle App Development](https://eclipse.dev/velocitas/docs/tutorials/vehicle_app_development/cpp_development/).
+
+**Q:** Why am I getting an AsyncException while I'm waiting for the outcome of getting or setting signal values using the `.await()` fucntion?<br>
+**Q:** Why am I getting an AsyncException while I'm waiting for the next update of a subscription using the `.next()` fucntion?<br>
+**A:** This will happen if there is an communication issue between your app and the data broker, e.g. because the broker is not yet started or some networking issue did occur. See section [Failure Handling](https://eclipse.dev/velocitas/docs/tutorials/vehicle_app_development/cpp_development/#failure-handling) of the Velocitas Documentation.
+
+**Q:** I've subscribed multiple signals/data points and now I'm getting always the state of all signals/data points in an update notification, instead of just those one where the state did change. Why?<br>
+**A:** This data broker will always bundle the states of all signals/data points selected in the single subscription. If you don’t want this behaviour, you must subscribe to change notifications for each signal/data point separately.
