@@ -17,7 +17,7 @@ Follow these steps to set up your local development environment:
 1. Download the `devenv-local-<desired developer PC architecture>` artifact from a release.
 1. Unpack the archive contents using your preferred unzip tool (e.g. `unzip` on linux) into the directory `vehicle-app-cpp-template-lattice`
     ```shell
-    unzip devenv-local.zip -d vehicle-app-cpp-template-lattice
+    unzip devenv-local-linux_<arch>.zip -d vehicle-app-cpp-template-lattice
     ```
 1. Import the local container image to your container runtime's images:
     ```shell
@@ -26,7 +26,13 @@ Follow these steps to set up your local development environment:
 1. Open VSCode
 1. Open the directory `vehicle-app-cpp-template-lattice` in VSCode
 1. When prompted to start the directory in a dev container, click yes.
-1. Enjoy!
+1. Once the devContainer has started up successfully, it is recommended to initialize a new git repository to track your changes:
+   ```shell
+   git init
+   git add .
+   git commit -m "Initial version"
+   ```
+2. Happy developing!
 
 ## Using the devcontainer
 

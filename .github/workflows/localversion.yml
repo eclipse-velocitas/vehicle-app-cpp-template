@@ -79,17 +79,18 @@ jobs:
           file: ./.devcontainer/localversion/Dockerfile
           context: .
           platforms: ${{ matrix.platform }}
-          tags: devcontainer/cpp:local
+          tags: ghcr.io/eclipse-velocitas/devcontainer-base-images/cpp:v0.3
 
       - name: Patch repository contents
         run: |
           rm -f .credentials
-          sed -i 's+FROM .*devcontainer-base-images/cpp:v.*+FROM devcontainer/cpp:local+g' .devcontainer/Dockerfile
+          rm -f .conanremotes
+          rm -rf .git
           sed -i 's+sudo rm -rf ~/.velocitas++g' .devcontainer/scripts/onCreateCommand.sh
           sed -i 's+velocitas init++g' .devcontainer/scripts/onCreateCommand.sh
           sed -i 's+velocitas upgrade --dry-run++g' .devcontainer/scripts/onCreateCommand.sh
-          sed -i 's+FROM .*devcontainer-base-images/cpp:v.* as builder+FROM devcontainer/cpp:local as builder+g' app/Dockerfile
           echo "*.tar" >> app/Dockerfile.dockerignore
+          echo "**/build" >> app/Dockerfile.dockerignore
 
       - name: Create archive string name
         id: replace_string

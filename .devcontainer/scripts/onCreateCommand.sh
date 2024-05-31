@@ -71,7 +71,6 @@ echo "#######################################################"
 echo "### Init submodules                                 ###"
 echo "#######################################################"
 git config --global --add safe.directory "*"
-git submodule update --init
 
 echo "#######################################################"
 echo "### Install Dependencies                            ###"

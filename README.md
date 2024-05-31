@@ -21,7 +21,7 @@ These APIs are made available through extensions to the Velocitas C++ SDK (see e
 
 :warning: APIs for EDGE services are not yet finalized and may change!
 
-## Prerequisites to use the Vehicle App template
+## Prerequisites to use the Vehicle App template (Recommended/ONLINE VERSION)
 
 :warning: The following items are <span style="color:red">**mandatory**</span>. Without the following prerequisites, no support can be given when using the template.
 
@@ -30,8 +30,14 @@ These APIs are made available through extensions to the Velocitas C++ SDK (see e
     * These can be configured to use mirrors instead, see [SETUP](./docs/SETUP.md).
 * Visual Studio Code is installed on your developer PC with the `Dev Containers` extension installed.
 * A supported container runtime is available on your developer PC. Recommended is Docker Desktop. For installation and usage of alternative runtimes, refer to the [documentation](https://eclipse.dev/velocitas/docs/tutorials/quickstart/container_runtime/).
-* An account on [Bosch Development Cloud Artifactory](https://artifactory.boschdevcloud.com/) with appropriate permissions. See [SETUP](./docs/SETUP.md) on how to request the access.
-* A *manually created* `.crendentials` file located next to this README (root of the project) - this is going to contain user-specific credentials and hence is exluded from versioning. Refer to [SETUP](./docs/SETUP.md) to learn how to create the file.
+* **ONLINE VERSION ONLY:** An account on [Bosch Development Cloud Artifactory](https://artifactory.boschdevcloud.com/) with appropriate permissions. See [SETUP](./docs/SETUP.md) on how to request the access.
+* **ONLINE VERSION ONLY:** A *manually created* `.crendentials` file located next to this README (root of the project) - this is going to contain user-specific credentials and hence is exluded from versioning. Refer to [SETUP](./docs/SETUP.md) to learn how to create the file.  
+
+### Fallback: OFFLINE version
+
+In special cases, no online connection might be available or connection to Bosch Development Cloud might not be possible. Therefore, the project also builds a pure offline version which comes pre-equipped with all dependencies to start developing your app on your local PC. To obtain such a build have a look at the provided artifacts or, if possible, access build artifacts of the [localversion workflow](https://github.com/SoftwareDefinedVehicle/vehicle-app-cpp-template-lattice/actions/workflows/localversion.yml).
+
+Once the artifact has been obtained, please have a look at the [LOCAL SETUP](./.devcontainer/localversion/LOCAL_SETUP.md) to get started.
 
 ## Folder structure
 

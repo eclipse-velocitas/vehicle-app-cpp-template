@@ -48,6 +48,9 @@
 # Python pre-compiled files
 *.pyc
 
+# Archives
+*.tar
+
 # CMake
 build
 

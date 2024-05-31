@@ -10,8 +10,7 @@
         "runtime-local",
         "vehicle-signal-interface",
         "build-system",
-        "conan-setup",
-        "sdk-installer"
+        "conan-setup"
     ],
     "variables": {
         "language": "cpp",

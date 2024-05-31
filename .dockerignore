@@ -1,5 +1,4 @@
 .conan_home
-.devcontainer
 .git
 .github
 .vscode
@@ -7,3 +6,4 @@
 **/deploy
 **/docs
 **/licenses
+*.tar

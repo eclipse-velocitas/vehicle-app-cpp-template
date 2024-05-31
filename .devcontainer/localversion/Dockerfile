@@ -23,7 +23,7 @@ COPY --chown=vscode:vscode . /workspaces/${REPO_NAME}
 
 WORKDIR /workspaces/${REPO_NAME}
 # Download all components and pre-heat Velocitas caches
-RUN velocitas init -v && velocitas exec build-system install
+RUN bash ./.devcontainer/scripts/onCreateCommand.sh && conan remove "*/*" -fs && conan user --clean && conan remote remove sdv-bgsw-conan-virtual
 WORKDIR /
 
 # clear project files
