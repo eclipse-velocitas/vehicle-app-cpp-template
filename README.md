@@ -88,10 +88,6 @@ Open the `Run Task` view in VSCode and select `Local Runtime - Up`.
 With the runtime running in the background, you can run the app.
 The app must have been build before (see above).
 
-### Without debugging
-
-Open the `Run Task` view in VSCode and select `Local Runtime - Run VehicleApp`.
-
 ### With debugging
 
 You can simply launch the example in the Debugging Tab. Make sure the `VehicleApp - Debug (Native)` is selected at the top. After the selection is done, you can also simply hit `F5`, to start the debugging session.
@@ -111,7 +107,7 @@ You can simply launch the example in the Debugging Tab. Make sure the `VehicleAp
         -e SDV_MQTT_ADDRESS="localhost:1883" \
         -e SDV_VEHICLEDATABROKER_ADDRESS="localhost:55555" \
         -e FEATURE_CONFIG="/feature.config" \
-        -v $(pwd)/app/feature.config.py:/feature.config \
+        -v $(pwd)/app/feature.config:/feature.config \
         vehicleapp:local
     ```
 
