@@ -126,7 +126,7 @@ jobs:
       - name: Wait for CI workflow to succeed
         uses: fountainhead/action-wait-for-check@v1.2.0
         with:
-          checkName: Build, Test and Lint
+          checkName: Build, test and lint
           token: ${{ secrets.GITHUB_TOKEN }}
           timeoutSeconds: 1200
           intervalSeconds: 30
@@ -222,3 +222,34 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ${{github.workspace}}/hugo/public
           publish_branch: gh_pages
+
+  sources:
+    container: ghcr.io/eclipse-velocitas/devcontainer-base-images/cpp:v0.3
+    runs-on: ubuntu-22.04
+    name: Generate Sources Archive
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Write conan credentials
+        run: |
+          echo "CONAN_REMOTE_USER=${{ secrets.BDC_ARTIFACTORY_USER }}" >> .credentials
+          echo "CONAN_REMOTE_TOKEN=${{ secrets.BDC_ARTIFACTORY_PAT }}" >> .credentials
+
+      - name: Init velocitas project
+        run: velocitas init
+
+      - name: Archive Source Code
+        run: |
+          cp -r $HOME/.velocitas/packages .
+          zip -r devenv-packages-sources.zip packages -x "*.git*" -x "*_cache*"
+
+      - name: Upload Sources to GitHub Release
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: |
+            devenv-packages-sources.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
