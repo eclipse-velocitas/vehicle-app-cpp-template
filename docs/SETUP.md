@@ -16,6 +16,10 @@ Please follow the steps below to setup your environment
     CONAN_REMOTE_USER=<nt-user-id>
     CONAN_REMOTE_TOKEN=<your-token>
     ```
+1. In order to use the container images on artifactory you need to login to the registry:
+    ```bash
+    docker login -u <nt-user-id> -p <your-token> artifactory.boschdevcloud.com
+    ```
 1. Reopen the folder in a container
 
 After performing the above steps, the basic setup is now done.

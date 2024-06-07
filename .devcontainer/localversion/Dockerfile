@@ -12,7 +12,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-FROM ghcr.io/eclipse-velocitas/devcontainer-base-images/cpp:v0.3
+FROM artifactory.boschdevcloud.com/sdv-bgsw-docker-virtual/devcontainer-base-images/cpp:v0.3
 
 # The name of the repo, usually the project name, that is used by the devContainer
 # to create a directory under /workspace/<REPO_NAME>
