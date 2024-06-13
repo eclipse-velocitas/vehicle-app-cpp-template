@@ -71,7 +71,7 @@ jobs:
         with:
           checkName: Merge Trivy results
           token: ${{ secrets.GITHUB_TOKEN }}
-          timeoutSeconds: 1800
+          timeoutSeconds: 7200
           intervalSeconds: 20
 
       - name: Download builds from Build multiarch image workflow artifacts
@@ -140,7 +140,7 @@ jobs:
           path: generated_md
 
       - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v2
+        uses: peaceiris/actions-hugo@v3
         with:
           hugo-version: "0.89.4"
           extended: true
@@ -187,8 +187,8 @@ jobs:
           echo "---" > ./hugo/data/menu/more.yaml
           printf 'more:\n  - name: Releases\n    ref: "https://github.com/eclipse-velocitas/vehicle-app-cpp-template/releases"\n    external: true\n    icon: "gdoc_download"\n  - name: "View Source"\n    ref: "https://github.com/eclipse-velocitas/vehicle-app-cpp-template/tree/@tag"\n    external: true\n    icon: "gdoc_github"\n' >> ./hugo/data/menu/more.yaml
 
-          sed -i -e 's/@tag/${{ steps.vars.outputs.tag }}/g' ./hugo/config/_default/config.toml
-          sed -i -e 's/@tag/${{ steps.vars.outputs.tag }}/g' ./hugo/data/menu/more.yaml
+          sed -i -e 's*@tag*${{ steps.vars.outputs.tag }}*g' ./hugo/config/_default/config.toml
+          sed -i -e 's*@tag*${{ steps.vars.outputs.tag }}*g' ./hugo/data/menu/more.yaml
 
       - name: Build
         working-directory: ${{github.workspace}}/hugo
@@ -253,3 +253,35 @@ jobs:
             devenv-packages-sources.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  local-version:
+    name: Upload local version to releases
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Wait for local version test to succeed
+        uses: fountainhead/action-wait-for-check@v1.2.0
+        with:
+          checkName: Test local version
+          token: ${{ secrets.GITHUB_TOKEN }}
+          ref: ${{ github.sha }}
+          timeoutSeconds: 7200
+          intervalSeconds: 20
+
+      - name: Download builds from localversion workflow artifacts
+        uses: dawidd6/action-download-artifact@v3
+        with:
+          github_token: ${{secrets.GITHUB_TOKEN}}
+          workflow: localversion.yml
+          workflow_conclusion: success
+          commit: ${{ github.sha }}
+          path: ${{github.workspace}}
+
+      - name: Upload assets
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            devenv-local-linux_amd64/*
+            devenv-local-linux_aarch64/*
+            LOCAL SETUP/LOCAL_SETUP.md
+            SBOM*/**/*

@@ -14,11 +14,11 @@
 # SPDX-License-Identifier: Apache-2.0
 
 name: Release local version
+concurrency:
+  group: local-${{ github.ref }}
+  cancel-in-progress: true
 
 on:
-  release:
-    types: [published, edited]
-
   workflow_dispatch:
   push:
     # Run only on branches/commits and not tags
@@ -106,6 +106,23 @@ jobs:
           PLATFORM=${PLATFORM//\//_}
           echo "printable_platform=${PLATFORM}" >> "$GITHUB_OUTPUT"
 
+      - name: Install Syft
+        run: curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b /usr/local/bin
+
+      - name: Generate SBOM
+        run: |
+          syft --platform ${{ matrix.platform }} \
+            -o spdx-json@2.2=SBOM/SPDX/${{ steps.replace_string.outputs.printable_platform }}.spdx.json \
+            -o cyclonedx-json=SBOM/CycloneDX/${{ steps.replace_string.outputs.printable_platform }}.cyclonedx.json \
+            localimage.tar
+
+      - name: Upload SBOM as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: SBOM-${{ steps.replace_string.outputs.printable_platform }}
+          path: |
+            SBOM/*
+
       - name: Archive contents
         run: tar -cvf devenv-local-${{ steps.replace_string.outputs.printable_platform }}.tar ./
 
@@ -154,25 +171,3 @@ jobs:
             velocitas exec build-system build
             docker load -i localimage.tar
             docker build -f app/Dockerfile -t vehicleapp:local .
-
-  upload-to-release:
-    needs: test-local-version
-    name: Upload artifacts to releases
-    if: startsWith(github.ref, 'refs/tags/')
-    runs-on: ubuntu-22.04
-
-    steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v4
-
-      - name: List files
-        run: |
-          ls -alR
-
-      - name: Upload assets
-        uses: softprops/action-gh-release@v2
-        with:
-          files: |
-            devenv-local-linux_amd64/*
-            devenv-local-linux_aarch64/*
-            LOCAL SETUP/LOCAL_SETUP.md
