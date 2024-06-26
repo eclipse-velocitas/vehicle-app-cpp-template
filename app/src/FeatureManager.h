@@ -16,7 +16,6 @@
 
 #include "listener/FeatureManager.h"
 #include "nevonex-fcal-platform/log/Logger.hpp"
-using namespace ::nevonex::log;
 
 namespace example {
 class FeatureManager : public virtual ::lattice::listener::FeatureManager {

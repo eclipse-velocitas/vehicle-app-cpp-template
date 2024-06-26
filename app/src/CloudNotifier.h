@@ -15,6 +15,8 @@
  */
 
 #include "cloud/CloudNotifier.h"
+#include "nevonex-fcal-platform/log/Logger.hpp"
+
 namespace example {
 class CloudNotifier : public virtual ::nevonex::cloud::CloudNotifier {
 public:
