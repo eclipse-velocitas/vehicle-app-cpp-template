@@ -22,5 +22,5 @@
         "vehicleDatabrokerImage": "artifactory.boschdevcloud.com/sdv-bgsw-docker-virtual/kuksa-databroker:0.4.4",
         "mockServiceImage": "artifactory.boschdevcloud.com/sdv-bgsw-docker-virtual/kuksa-mock-provider/mock-provider:0.4.0"
     },
-    "cliVersion": "v0.9.1"
+    "cliVersion": "v0.10.0"
 }
