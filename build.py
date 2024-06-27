@@ -19,8 +19,7 @@ from argparse import ArgumentParser
 from pathlib import Path
 from typing import List
 
-from shared_utils import get_valid_arch
-from velocitas_lib import get_workspace_dir
+from velocitas_lib import get_valid_arch, get_workspace_dir
 
 CMAKE_EXECUTABLE = "cmake"
 CONAN_EXECUTABLE = "conan"

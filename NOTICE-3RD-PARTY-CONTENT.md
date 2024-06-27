@@ -13,7 +13,7 @@
 |distlib|0.3.8|Python Software Foundation License|
 |distro|1.8.0|Apache 2.0|
 |fasteners|0.19|Apache 2.0|
-|filelock|3.15.1|The Unlicense (Unlicense)|
+|filelock|3.15.4|The Unlicense (Unlicense)|
 |gcovr|5.2|BSD|
 |identify|2.5.36|MIT|
 |idna|3.7|BSD|
@@ -33,8 +33,8 @@
 |requests|2.32.3|Apache 2.0|
 |six|1.16.0|MIT|
 |tqdm|4.66.4|MIT<br/>Mozilla Public License 2.0 (MPL 2.0)|
-|urllib3|1.26.18|MIT|
-|virtualenv|20.26.2|MIT|
+|urllib3|1.26.19|MIT|
+|virtualenv|20.26.3|MIT|
 ## Workflows
 | Dependency | Version | License |
 |:-----------|:-------:|--------:|
@@ -46,7 +46,6 @@
 |actions/upload-artifact|v4|MIT License|
 |aquasecurity/trivy-action|0.19.0|Apache License 2.0|
 |ASzc/change-string-case-action|v6|ISC License|
-|battila7/get-version-action|v2|MIT License|
 |dawidd6/action-download-artifact|v3|MIT License|
 |de-vri-es/setup-git-credentials|v2|BSD 2-Clause "Simplified" License|
 |devcontainers/ci|v0.3|MIT License|
@@ -60,5 +59,5 @@
 |mikepenz/action-junit-report|v4|Apache License 2.0|
 |peaceiris/actions-gh-pages|v4|MIT License|
 |peaceiris/actions-hugo|v3|MIT License|
-|pre-commit/action|v3.0.0|MIT License|
+|pre-commit/action|v3.0.1|MIT License|
 |softprops/action-gh-release|v2|MIT License|
