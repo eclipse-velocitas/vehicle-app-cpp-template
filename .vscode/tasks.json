@@ -41,7 +41,7 @@
 			"detail": "Starts the VehicleApp under development",
 			"type": "shell",
 			"command": [
-				"velocitas exec runtime-local run-vehicle-app ${workspaceFolder}/build/bin/app"
+				"velocitas exec runtime-local run-vehicle-app ${workspaceFolder}/build/bin/app -e FEATURE_CONFIG='${workspaceFolder}/app/feature.config'"
 			],
 			"presentation": {
 				"close": true,
