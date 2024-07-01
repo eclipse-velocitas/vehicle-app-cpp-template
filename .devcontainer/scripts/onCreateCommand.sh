@@ -27,8 +27,6 @@ fi
 echo "#######################################################"
 echo "### Run VADF Lifecycle Management                   ###"
 echo "#######################################################"
-# needed to get rid of old leftovers
-sudo rm -rf ~/.velocitas
 velocitas init
 
 sudo chmod +x .devcontainer/scripts/*.sh
