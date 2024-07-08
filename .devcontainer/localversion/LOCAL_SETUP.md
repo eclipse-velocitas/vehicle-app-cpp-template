@@ -66,6 +66,12 @@ Follow these steps to set up your local development environment:
    git add .
    git commit -m "Initial version"
    ```
+1. To properly use the local runtime environment, a few containers need to be loaded into the cache:
+   ```shell
+   docker load -i databroker.tar
+   docker load -i mosquitto.tar
+   docker load -i mockservice.tar
+   ```
 1. Happy developing!
 
 ## Using the devcontainer

@@ -88,6 +88,15 @@ jobs:
           platforms: ${{ matrix.platform }}
           tags: artifactory.boschdevcloud.com/sdv-bgsw-docker-virtual/devcontainer-base-images/cpp:v0.3
 
+      - name: Save local runtime
+        run: |
+            docker image pull --platform ${{ matrix.platform }} $(jq -r '.variables.vehicleDatabrokerImage' .velocitas.json)
+            docker image pull --platform ${{ matrix.platform }} $(jq -r '.variables.mqttBrokerImage' .velocitas.json)
+            docker image pull --platform ${{ matrix.platform }} $(jq -r '.variables.mockServiceImage' .velocitas.json)
+            docker save -o databroker.tar $(jq -r '.variables.vehicleDatabrokerImage' .velocitas.json)
+            docker save -o mosquitto.tar $(jq -r '.variables.mqttBrokerImage' .velocitas.json)
+            docker save -o mockservice.tar $(jq -r '.variables.mockServiceImage' .velocitas.json)
+
       - name: Patch repository contents
         run: |
           rm -f .credentials
