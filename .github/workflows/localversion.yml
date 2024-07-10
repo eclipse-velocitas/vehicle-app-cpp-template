@@ -147,6 +147,13 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
+      - name: Cleanup
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /opt/ghc
+          sudo rm -rf "/usr/local/share/boost"
+          sudo rm -rf "$AGENT_TOOLSDIRECTORY"
+
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
@@ -171,11 +178,17 @@ jobs:
           echo "CONAN_REMOTE_USER=${{ secrets.BDC_ARTIFACTORY_USER }}" >> .credentials
           echo "CONAN_REMOTE_TOKEN=${{ secrets.BDC_ARTIFACTORY_PAT }}" >> .credentials
 
-      - name: Startup devContainer
+      - name: Test devContainer - Host build
         uses: devcontainers/ci@v0.3
         with:
           runCmd: |
-            velocitas exec build-system install
-            velocitas exec build-system build
+            velocitas exec build-system install -r
+            velocitas exec build-system build -r
             docker load -i localimage.tar
             docker build -f app/Dockerfile -t vehicleapp:local .
+
+      - name: Test devContainer - Cross build
+        uses: devcontainers/ci@v0.3
+        with:
+          runCmd: |
+            ./.devcontainer/scripts/build_for_target.sh

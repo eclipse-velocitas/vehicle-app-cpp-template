@@ -61,13 +61,13 @@ jobs:
         run: |
           pip3 install -r requirements.txt
 
-      - name: Install dependencies
+      - name: Install dependencies (x86_64)
         run: velocitas exec build-system install -r
 
-      - name: build
+      - name: Build app (x86_64)
         run: velocitas exec build-system build -r
 
-      - name: Run Unit Tests
+      - name: Run Unit Tests (x86_64)
         run: build/bin/app_utests > test-results.md
 
       - name: Generate coverage report
@@ -98,3 +98,32 @@ jobs:
 
       - name: Run Linters
         uses: pre-commit/action@v3.0.0
+
+  build-for-target:
+    runs-on: ubuntu-22.04
+    name: Build for target
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Fix dubious ownership
+        run: |
+          git config --global --add safe.directory $( pwd )
+
+      - name: Write conan credentials
+        run: |
+          echo "CONAN_REMOTE_USER=${{ secrets.BDC_ARTIFACTORY_USER }}" >> .credentials
+          echo "CONAN_REMOTE_TOKEN=${{ secrets.BDC_ARTIFACTORY_PAT }}" >> .credentials
+
+      - name: Login to Artifactory Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: artifactory.boschdevcloud.com
+          username: ${{ secrets.BDC_ARTIFACTORY_USER }}
+          password: ${{ secrets.BDC_ARTIFACTORY_PAT }}
+
+      - name: Build for target in devContainer
+        uses: devcontainers/ci@v0.3
+        with:
+          runCmd: |
+            ./.devcontainer/scripts/build_for_target.sh

@@ -24,6 +24,8 @@ if [ "${CODESPACES}" = "true" ]; then
     /usr/local/share/docker-init.sh
 fi
 
+.devcontainer/scripts/upgrade-cli.sh
+
 echo "#######################################################"
 echo "### Run VADF Lifecycle Management                   ###"
 echo "#######################################################"
@@ -45,6 +47,13 @@ sudo apt-get install -y python3
 sudo apt-get install -y python3-distutils
 curl -fsSL https://bootstrap.pypa.io/get-pip.py | sudo python3
 sudo apt-get -y install --no-install-recommends ccache
+
+build_arch=$(arch)
+
+# ensure we can always build for an arm target
+if [ "${build_arch}" != "aarch64" ]; then
+    sudo apt-get install -y gcc-aarch64-linux-gnu g++-aarch64-linux-gnu
+fi
 
 pip3 install -r ./requirements.txt
 
@@ -73,7 +82,9 @@ git config --global --add safe.directory "*"
 echo "#######################################################"
 echo "### Install Dependencies                            ###"
 echo "#######################################################"
-velocitas exec build-system install 2>&1 | tee -a $HOME/install_dependencies.log
+velocitas exec build-system install -r 2>&1 | tee -a $HOME/install_dependencies.log
+# Install dependencies for target release build
+velocitas exec build-system install -r -x aarch64
 
 echo "#######################################################"
 echo "### VADF package status                             ###"

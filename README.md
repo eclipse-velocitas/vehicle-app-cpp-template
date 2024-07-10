@@ -65,17 +65,17 @@ To build the App, run the build entry point from within the development containe
 2. Install dependencies and build, using one of these command combinations:
     * Velocitas toolchain abstraction (recommended)
         ```bash
-        velocitas exec build-system install
+        velocitas exec build-system install -r
         velocitas exec build-system build
         ```
     * Python scripts
         ```bash
-        python3 ./install_deps.py
+        python3 ./install_deps.py -r
         python3 ./build.py
         ```
     * Bash scripts
         ```bash
-        ./install_dependencies.sh
+        ./install_dependencies.sh -r
         ./build.sh
         ```
 
@@ -110,6 +110,18 @@ You can simply launch the example in the Debugging Tab. Make sure the `VehicleAp
         -v $(pwd)/app/feature.config:/feature.config \
         vehicleapp:local
     ```
+
+### Build for linux arm64 target device
+
+To build a native app for an linux arm64 device you have 2 options:
+
+* In VSCode do `View` → `Command Palette...` → `Tasks: Run Task` → `Build app for target`
+
+**or**
+
+* In terminal run `./.devcontainer/scripts/build_for_target.sh`
+
+The resulting native binary will be output to `build/bin` and will be named after the `name` specified in your `app/AppManifest.json`
 
 ## Running in GitHub Codespaces
 
@@ -153,7 +165,7 @@ velocitas init -v
 
 All dependencies of the application should be downloaded and installed automatically once the VSCode DevContainer is created. Should this process fail for whatever reason, you can trigger the manual installation this command:
 ```bash
-velocitas exec build-system install
+velocitas exec build-system install -r
 ```
 
 ## FAQ

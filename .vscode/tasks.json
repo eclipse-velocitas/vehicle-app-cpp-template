@@ -13,6 +13,17 @@
 			"problemMatcher": [ ]
 		},
 		{
+			"label": "Build app for target",
+			"type": "shell",
+			"command": "./.devcontainer/scripts/build_for_target.sh",
+			"group": "none",
+			"presentation": {
+				"reveal": "always",
+				"panel": "dedicated"
+			},
+			"problemMatcher": [ ]
+		},
+		{
 			"label": "Local Runtime - Up",
 			"detail": "Starts up the local runtime",
 			"type": "shell",

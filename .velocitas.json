@@ -1,7 +1,7 @@
 {
     "packages": {
-        "devenv-runtimes": "v4.0.3",
-        "devenv-github-workflows": "v6.0.3",
+        "devenv-runtimes": "v4.0.5",
+        "devenv-github-workflows": "v6.0.4",
         "devenv-github-templates": "v1.0.5",
         "devenv-devcontainer-setup": "v2.4.4"
     },
@@ -10,7 +10,8 @@
         "runtime-local",
         "vehicle-signal-interface",
         "build-system",
-        "conan-setup"
+        "conan-setup",
+        "grpc-interface-support"
     ],
     "variables": {
         "language": "cpp",
@@ -22,5 +23,5 @@
         "vehicleDatabrokerImage": "artifactory.boschdevcloud.com/sdv-bgsw-docker-virtual/kuksa-databroker:0.4.4",
         "mockServiceImage": "artifactory.boschdevcloud.com/sdv-bgsw-docker-virtual/kuksa-mock-provider/mock-provider:0.4.0"
     },
-    "cliVersion": "v0.10.0"
+    "cliVersion": "v0.11.0"
 }

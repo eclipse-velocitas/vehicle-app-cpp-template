@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Copyright (c) 2024 Contributors to the Eclipse Foundation
 #
 # This program and the accompanying materials are made available under the
@@ -12,3 +14,12 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+rm -rf ./build
+
+APP_NAME=$(cat $(cat .velocitas.json | jq -r .variables.appManifestPath) | jq -r .name)
+
+velocitas exec build-system install -x arm64 -r
+velocitas exec build-system build -x arm64 -t app -r
+
+# workaround: rename app binary according to app manifest
+mv ./build/bin/app ./build/bin/${APP_NAME}
