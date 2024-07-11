@@ -126,4 +126,4 @@ jobs:
         uses: devcontainers/ci@v0.3
         with:
           runCmd: |
-            ./.devcontainer/scripts/build_for_target.sh
+            ./.devcontainer/scripts/build-for-target.sh

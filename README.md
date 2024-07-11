@@ -119,7 +119,7 @@ To build a native app for an linux arm64 device you have 2 options:
 
 **or**
 
-* In terminal run `./.devcontainer/scripts/build_for_target.sh`
+* In terminal run `./.devcontainer/scripts/build-for-target.sh`
 
 The resulting native binary will be output to `build/bin` and will be named after the `name` specified in your `app/AppManifest.json`
 

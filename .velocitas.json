@@ -3,7 +3,7 @@
         "devenv-runtimes": "v4.0.5",
         "devenv-github-workflows": "v6.0.4",
         "devenv-github-templates": "v1.0.5",
-        "devenv-devcontainer-setup": "v2.4.4"
+        "devenv-devcontainer-setup": "v2.4.5"
     },
     "components": [
         "devcontainer-setup",
@@ -21,7 +21,8 @@
         "vehicleAppPort": -1,
         "mqttBrokerImage": "artifactory.boschdevcloud.com/sdv-bgsw-docker-virtual/eclipse-mosquitto:2.0.14",
         "vehicleDatabrokerImage": "artifactory.boschdevcloud.com/sdv-bgsw-docker-virtual/kuksa-databroker:0.4.4",
-        "mockServiceImage": "artifactory.boschdevcloud.com/sdv-bgsw-docker-virtual/kuksa-mock-provider/mock-provider:0.4.0"
+        "mockServiceImage": "artifactory.boschdevcloud.com/sdv-bgsw-docker-virtual/kuksa-mock-provider/mock-provider:0.4.0",
+        "devContainerBaseImageUri": "artifactory.boschdevcloud.com/sdv-bgsw-docker-virtual/devcontainer-base-images/cpp:v0.3"
     },
     "cliVersion": "v0.11.0"
 }

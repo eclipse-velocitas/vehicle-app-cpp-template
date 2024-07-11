@@ -15,7 +15,7 @@
 		{
 			"label": "Build app for target",
 			"type": "shell",
-			"command": "./.devcontainer/scripts/build_for_target.sh",
+			"command": "./.devcontainer/scripts/build-for-target.sh",
 			"group": "none",
 			"presentation": {
 				"reveal": "always",

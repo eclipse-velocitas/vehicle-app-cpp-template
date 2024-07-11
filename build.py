@@ -91,6 +91,7 @@ def build(
         cxx_flags.append("--coverage")
 
     if build_variant == "release":
+        cxx_flags.append("-s")
         cxx_flags.append("-O3")
     else:
         cxx_flags.append("-O0")
