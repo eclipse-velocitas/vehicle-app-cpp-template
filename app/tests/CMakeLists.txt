@@ -12,13 +12,9 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-include(FetchContent)
-FetchContent_Declare(
-  googletest
-  URL https://github.com/google/googletest/archive/609281088cfefc76f9d0ce82e1ff6c30cc3591e5.zip
-)
+include_directories(${GTest_INCLUDE_DIRS})
+include(GoogleTest)
 
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
-FetchContent_MakeAvailable(googletest)
 
 add_subdirectory(utests)
