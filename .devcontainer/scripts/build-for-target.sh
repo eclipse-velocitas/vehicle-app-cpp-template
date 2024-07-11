@@ -14,12 +14,14 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-rm -rf ./build
-
 APP_NAME=$(cat $(cat .velocitas.json | jq -r .variables.appManifestPath) | jq -r .name)
-
-velocitas exec build-system install -x arm64 -r
-velocitas exec build-system build -x arm64 -t app -r
+arch="aarch64"
+velocitas exec build-system install -x $arch -r
+velocitas exec build-system build -x $arch -t app -r
 
 # workaround: rename app binary according to app manifest
-mv ./build/bin/app ./build/bin/${APP_NAME}
+build_folder="./build/bin"
+if [[ $(uname -m) != "$arch" ]]; then
+    build_folder="./build_linux_$arch/bin"
+fi
+mv $build_folder/app $build_folder/${APP_NAME}

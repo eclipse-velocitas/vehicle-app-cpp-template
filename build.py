@@ -30,7 +30,13 @@ def safe_get_workspace_dir() -> str:
     try:
         return get_workspace_dir()
     except Exception:
-        return "."
+        return os.path.abspath(".")
+
+
+def get_build_folder(build_arch: str, host_arch: str):
+    if host_arch == build_arch:
+        return os.path.join(safe_get_workspace_dir(), "build")
+    return os.path.join(safe_get_workspace_dir(), f"build_linux_{host_arch}")
 
 
 def get_build_tools_path(build_folder_path: str) -> str:
@@ -84,8 +90,6 @@ def build(
     static_build: bool,
     coverage: bool = True,
 ) -> None:
-    build_folder = os.path.join(safe_get_workspace_dir(), "build")
-
     cxx_flags = ["-g"]
     if coverage:
         cxx_flags.append("--coverage")
@@ -96,6 +100,7 @@ def build(
     else:
         cxx_flags.append("-O0")
 
+    build_folder = get_build_folder(build_arch, host_arch)
     os.makedirs(build_folder, exist_ok=True)
 
     xcompile_toolchain_file = ""
@@ -116,7 +121,8 @@ def build(
             f'-DBUILD_TOOLS_PATH:STRING="{get_build_tools_path(build_folder)}"',
             f"-DSTATIC_BUILD:BOOL={'TRUE' if static_build else 'FALSE'}",
             xcompile_toolchain_file,
-            "-S..",
+            "-S",
+            safe_get_workspace_dir(),
             "-B.",
             "-G",
             "Ninja",
