@@ -102,8 +102,6 @@ jobs:
           rm -f .credentials
           rm -f .conanremotes
           rm -rf .git
-          sed -i 's+velocitas init++g' .devcontainer/scripts/onCreateCommand.sh
-          sed -i 's+velocitas upgrade --dry-run++g' .devcontainer/scripts/onCreateCommand.sh
           echo "*.tar" >> app/Dockerfile.dockerignore
           echo "**/build" >> app/Dockerfile.dockerignore
 

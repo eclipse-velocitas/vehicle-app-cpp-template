@@ -24,60 +24,65 @@ if [ "${CODESPACES}" = "true" ]; then
     /usr/local/share/docker-init.sh
 fi
 
-.devcontainer/scripts/upgrade-cli.sh
-
-echo "#######################################################"
-echo "### Run VADF Lifecycle Management                   ###"
-echo "#######################################################"
-velocitas init
-
 sudo chmod +x .devcontainer/scripts/*.sh
 sudo chown -R $(whoami) $HOME
 
-echo "#######################################################"
-echo "### Install Prerequisites and Tools                 ###"
-echo "#######################################################"
-
-# Optionally install the cmake for vcpkg
-.devcontainer/scripts/reinstall-cmake.sh ${REINSTALL_CMAKE_VERSION_FROM_SOURCE}
-
-# Install python, conan and ccache
-sudo apt-get update
-sudo apt-get install -y python3
-sudo apt-get install -y python3-distutils
-curl -fsSL https://bootstrap.pypa.io/get-pip.py | sudo python3
-sudo apt-get -y install --no-install-recommends ccache
-
-build_arch=$(arch)
-
-# ensure we can always build for an arm target
-if [ "${build_arch}" != "aarch64" ]; then
-    sudo apt-get install -y gcc-aarch64-linux-gnu g++-aarch64-linux-gnu
-fi
-
-pip3 install -r ./requirements.txt
-
-# Install static analyzer tools
-sudo apt-get install -y cppcheck clang-format-14 clang-tidy-14
-sudo update-alternatives --install /usr/bin/clang-format clang-format /usr/bin/clang-format-14 100
-sudo update-alternatives --install /usr/bin/clang-tidy clang-tidy /usr/bin/clang-tidy-14 100
-
-if [ "${CODESPACES}" = "true" ]; then
-    echo "#######################################################"
-    echo "### Setup Access to Codespaces                      ###"
-    echo "#######################################################"
-
-    # Remove the default credential helper
-    sudo sed -i -E 's/helper =.*//' /etc/gitconfig
-
-    # Add one that just uses secrets available in the Codespace
-    git config --global credential.helper '!f() { sleep 1; echo "username=${GITHUB_USER}"; echo "password=${MY_GH_TOKEN}"; }; f'
-fi
-
-echo "#######################################################"
-echo "### Init submodules                                 ###"
-echo "#######################################################"
 git config --global --add safe.directory "*"
+
+
+if [ -z "${VELOCITAS_OFFLINE}" ]; then
+    echo "#######################################################"
+    echo "### Run VADF Lifecycle Management                   ###"
+    echo "#######################################################"
+
+    .devcontainer/scripts/upgrade-cli.sh
+    velocitas init
+
+    echo "#######################################################"
+    echo "### Install Prerequisites and Tools                 ###"
+    echo "#######################################################"
+
+    # Optionally install the cmake for vcpkg
+    .devcontainer/scripts/reinstall-cmake.sh ${REINSTALL_CMAKE_VERSION_FROM_SOURCE}
+
+    # Install python, conan and ccache
+    sudo apt-get update
+    sudo apt-get install -y python3
+    sudo apt-get install -y python3-distutils
+    curl -fsSL https://bootstrap.pypa.io/get-pip.py | sudo python3
+    sudo apt-get -y install --no-install-recommends ccache
+
+    build_arch=$(arch)
+
+    # ensure we can always build for an arm target
+    if [ "${build_arch}" != "aarch64" ]; then
+        sudo apt-get install -y gcc-aarch64-linux-gnu g++-aarch64-linux-gnu
+    fi
+
+    pip3 install -r ./requirements.txt
+
+    # Install static analyzer tools
+    sudo apt-get install -y cppcheck clang-format-14 clang-tidy-14
+    sudo update-alternatives --install /usr/bin/clang-format clang-format /usr/bin/clang-format-14 100
+    sudo update-alternatives --install /usr/bin/clang-tidy clang-tidy /usr/bin/clang-tidy-14 100
+
+    if [ "${CODESPACES}" = "true" ]; then
+        echo "#######################################################"
+        echo "### Setup Access to Codespaces                      ###"
+        echo "#######################################################"
+
+        # Remove the default credential helper
+        sudo sed -i -E 's/helper =.*//' /etc/gitconfig
+
+        # Add one that just uses secrets available in the Codespace
+        git config --global credential.helper '!f() { sleep 1; echo "username=${GITHUB_USER}"; echo "password=${MY_GH_TOKEN}"; }; f'
+    fi
+
+    echo "#######################################################"
+    echo "### VADF package status                             ###"
+    echo "#######################################################"
+    velocitas upgrade --dry-run
+fi
 
 echo "#######################################################"
 echo "### Install Dependencies                            ###"
@@ -86,10 +91,4 @@ velocitas exec build-system install -r 2>&1 | tee -a $HOME/install_dependencies.
 # Install dependencies for target release build
 velocitas exec build-system install -r -x aarch64
 
-echo "#######################################################"
-echo "### VADF package status                             ###"
-echo "#######################################################"
-velocitas upgrade --dry-run
-
-# Don't let container creation fail if lifecycle management fails
 echo "Done!"

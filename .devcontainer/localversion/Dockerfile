@@ -29,5 +29,7 @@ WORKDIR /
 # clear project files
 RUN rm -rf /workspaces/${REPO_NAME}
 
+ENV VELOCITAS_OFFLINE=true
+
 # switch back to root user to make devContainers happy
 USER root
