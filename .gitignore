@@ -52,7 +52,7 @@
 *.tar
 
 # CMake
-build
+build*
 
 # Mac files
 .DS_Store

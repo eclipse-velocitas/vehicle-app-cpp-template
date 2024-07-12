@@ -2,7 +2,7 @@
 .git
 .github
 .vscode
-**/build
+**/build*
 **/deploy
 **/docs
 **/licenses
