@@ -51,12 +51,12 @@ void SampleApp::onStart() {
     // This method will be called by the SDK when the connection to the
     // Vehicle DataBroker is ready.
     // Here you can subscribe for the Vehicle Signals update (e.g. Vehicle Speed).
-    const auto logMessage = "Subscribe for data points!";
+    const auto* const logMessage = "Subscribe for data points!";
     velocitas::logger().info(logMessage);
     APP_LOG(SeverityLevel::info) << logMessage;
 
     subscribeDataPoints(
-        velocitas::QueryBuilder::select(Vehicle.Cabin.Seat.Row1.Pos1.Position).build())
+        velocitas::QueryBuilder::select(Vehicle.Cabin.Seat.Row1.DriverSide.Position).build())
         ->onItem([this](auto&& item) { onSeatPositionChanged(std::forward<decltype(item)>(item)); })
         ->onError(
             [this](auto&& status) { onErrorDatapoint(std::forward<decltype(status)>(status)); });
@@ -92,7 +92,7 @@ void SampleApp::onSetPositionRequestReceived(const std::string& data) {
     nlohmann::json respData({{JSON_FIELD_REQUEST_ID, requestId}, {JSON_FIELD_RESULT, {}}});
     const auto     vehicleSpeed = Vehicle.Speed.get()->await().value();
     if (vehicleSpeed == 0) {
-        Vehicle.Cabin.Seat.Row1.Pos1.Position.set(desiredSeatPosition)->await();
+        Vehicle.Cabin.Seat.Row1.DriverSide.Position.set(desiredSeatPosition)->await();
         const auto message = fmt::format("Set Seat position to: {}", desiredSeatPosition);
         respData[JSON_FIELD_RESULT][JSON_FIELD_STATUS]  = STATUS_OK;
         respData[JSON_FIELD_RESULT][JSON_FIELD_MESSAGE] = message;
@@ -120,7 +120,7 @@ void SampleApp::onSeatPositionChanged(const velocitas::DataPointReply& dataPoint
     nlohmann::json jsonResponse;
     try {
         const auto seatPositionValue =
-            dataPoints.get(Vehicle.Cabin.Seat.Row1.Pos1.Position)->value();
+            dataPoints.get(Vehicle.Cabin.Seat.Row1.DriverSide.Position)->value();
         jsonResponse[JSON_FIELD_POSITION] = seatPositionValue;
     } catch (std::exception& exception) {
         const auto errorMsg =
