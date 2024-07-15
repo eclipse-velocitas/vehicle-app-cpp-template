@@ -130,13 +130,13 @@ jobs:
             SBOM/*
 
       - name: Archive contents
-        run: tar -cvf devenv-local-${{ steps.replace_string.outputs.printable_platform }}.tar ./
+        run: tar -czvf /tmp/devenv-local-${{ steps.replace_string.outputs.printable_platform }}.tar.gz ./
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: devenv-local-${{ steps.replace_string.outputs.printable_platform }}
-          path: devenv-local-${{ steps.replace_string.outputs.printable_platform }}.tar
+          path: /tmp/devenv-local-${{ steps.replace_string.outputs.printable_platform }}.tar.gz
           retention-days: 1
 
   test-local-version:
@@ -165,7 +165,7 @@ jobs:
           password: ${{ secrets.BDC_ARTIFACTORY_PAT }}
 
       - name: Untar archive
-        run: tar -xvf devenv-local-linux_amd64.tar
+        run: tar -xvf devenv-local-linux_amd64.tar.gz
 
       - name: Install Docker image from file
         run: |
