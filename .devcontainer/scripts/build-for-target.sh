@@ -17,7 +17,7 @@
 APP_NAME=$(cat $(cat .velocitas.json | jq -r .variables.appManifestPath) | jq -r .name)
 arch="aarch64"
 velocitas exec build-system install -x $arch -r
-velocitas exec build-system build -x $arch -t app -r
+velocitas exec build-system build -x $arch -t app -r -s
 
 # workaround: rename app binary according to app manifest
 build_folder="./build/bin"
