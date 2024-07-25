@@ -47,13 +47,6 @@ jobs:
           echo "CONAN_REMOTE_USER=${{ secrets.BDC_ARTIFACTORY_USER }}" >> .credentials
           echo "CONAN_REMOTE_TOKEN=${{ secrets.BDC_ARTIFACTORY_PAT }}" >> .credentials
 
-      - name: Login to Artifactory Container Registry
-        uses: docker/login-action@v3
-        with:
-          registry: artifactory.boschdevcloud.com
-          username: ${{ secrets.BDC_ARTIFACTORY_USER }}
-          password: ${{ secrets.BDC_ARTIFACTORY_PAT }}
-
       - name: Build devcontainer and publish conan packages
         uses: devcontainers/ci@v0.3
         with:

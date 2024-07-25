@@ -64,13 +64,6 @@ jobs:
           echo "CONAN_REMOTE_USER=${{ secrets.BDC_ARTIFACTORY_USER }}" >> .credentials
           echo "CONAN_REMOTE_TOKEN=${{ secrets.BDC_ARTIFACTORY_PAT }}" >> .credentials
 
-      - name: Login to Artifactory Container Registry
-        uses: docker/login-action@v3
-        with:
-          registry: artifactory.boschdevcloud.com
-          username: ${{ secrets.BDC_ARTIFACTORY_USER }}
-          password: ${{ secrets.BDC_ARTIFACTORY_PAT }}
-
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 
@@ -86,7 +79,7 @@ jobs:
           file: ./.devcontainer/localversion/Dockerfile
           context: .
           platforms: ${{ matrix.platform }}
-          tags: artifactory.boschdevcloud.com/sdv-bgsw-docker-virtual/devcontainer-base-images/cpp:v0.3
+          tags: ghcr.io/eclipse-velocitas/devcontainer-base-images/cpp:v0.3
 
       - name: Save local runtime
         run: |
@@ -156,13 +149,6 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: devenv-local-linux_amd64
-
-      - name: Login to Artifactory Container Registry
-        uses: docker/login-action@v3
-        with:
-          registry: artifactory.boschdevcloud.com
-          username: ${{ secrets.BDC_ARTIFACTORY_USER }}
-          password: ${{ secrets.BDC_ARTIFACTORY_PAT }}
 
       - name: Untar archive
         run: tar -xvf devenv-local-linux_amd64.tar.gz

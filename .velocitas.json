@@ -19,10 +19,9 @@
         "appManifestPath": "app/AppManifest.json",
         "githubRepoId": "SoftwareDefinedVehicle/vehicle-app-cpp-template-lattice",
         "vehicleAppPort": -1,
-        "mqttBrokerImage": "artifactory.boschdevcloud.com/sdv-bgsw-docker-virtual/eclipse-mosquitto:2.0.14",
-        "vehicleDatabrokerImage": "artifactory.boschdevcloud.com/sdv-bgsw-docker-virtual/kuksa-databroker:0.4.4",
-        "mockServiceImage": "artifactory.boschdevcloud.com/sdv-bgsw-docker-virtual/kuksa-mock-provider/mock-provider:0.4.0",
-        "devContainerBaseImageUri": "artifactory.boschdevcloud.com/sdv-bgsw-docker-virtual/devcontainer-base-images/cpp:v0.3"
+        "mqttBrokerImage": "eclipse-mosquitto:2.0.14",
+        "vehicleDatabrokerImage": "ghcr.io/eclipse-kuksa/kuksa-databroker:0.4.4",
+        "mockServiceImage": "ghcr.io/eclipse-kuksa/kuksa-mock-provider/mock-provider:0.4.0"
     },
     "cliVersion": "v0.11.0"
 }
