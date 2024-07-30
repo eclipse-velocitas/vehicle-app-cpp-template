@@ -60,6 +60,19 @@ submodules will not be possible without further setup. To work on other repos, y
 - [Mailing List](https://accounts.eclipse.org/mailing-list/velocitas-dev)
 - [Contribution](CONTRIBUTING.md)
 
+## Using Velocitas in offline mode
+
+Development is ongoing to support using Velocitas in offline mode.
+The idea is to include all dependencies when building artifacts, so that they can be used in isolated environment without internet connection.
+The `.devcontainer/Dockerfile` should then contain the line:
+
+`ENV VELOCITAS_OFFLINE=true`
+
+and scripts and tasks could use that variable to make sure that actions that require internet connectivity is not used in offline mode.
+This is work in progress, as of today use of Velocitas require an internet connection.
+
+
+
 ## Troubleshooting
 
 ### Manually installing dependencies
@@ -67,3 +80,4 @@ All dependencies of the application should be downloaded and installed automatic
 ```bash
 ./install_dependencies.sh
 ```
+
