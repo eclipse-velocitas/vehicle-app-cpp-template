@@ -29,10 +29,6 @@
                     "seatadjuster/currentPosition"
                 ]
             }
-        },
-        {
-            "type": "lattice",
-            "config": { }
         }
     ]
 }
