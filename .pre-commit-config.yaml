@@ -64,7 +64,7 @@ repos:
           - --skip-license-insertion-comment=This file is maintained by velocitas CLI, do not modify manually.
       - id: insert-license
         files: '.*\.(cpp|c|cc|h)$'
-        exclude: '.*\.(pb.cpp|pb.c|pb.cc|pb.h)$'
+        exclude: '.*\.(pb.cpp|pb.c|pb.cc|pb.h)$|^app/src/.*'
         args:
           - --license-filepath
           - license_header.txt
