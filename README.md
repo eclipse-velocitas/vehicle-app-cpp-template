@@ -31,7 +31,7 @@ These APIs are made available through extensions to the Velocitas C++ SDK (see e
 * Visual Studio Code is installed on your developer PC with the `Dev Containers` extension installed.
 * A supported container runtime is available on your developer PC. Recommended is Docker Desktop. For installation and usage of alternative runtimes, refer to the [documentation](https://eclipse.dev/velocitas/docs/tutorials/quickstart/container_runtime/).
 * **ONLINE VERSION ONLY:** An account on [Bosch Development Cloud Artifactory](https://artifactory.boschdevcloud.com/) with appropriate permissions. See [SETUP](./docs/SETUP.md) on how to request the access.
-* **ONLINE VERSION ONLY:** A *manually created* `.crendentials` file located next to this README (root of the project) - this is going to contain user-specific credentials and hence is exluded from versioning. Refer to [SETUP](./docs/SETUP.md) to learn how to create the file.  
+* **ONLINE VERSION ONLY:** A *manually created* `.crendentials` file located next to this README (root of the project) - this is going to contain user-specific credentials and hence is exluded from versioning. Refer to [SETUP](./docs/SETUP.md) to learn how to create the file.
 
 ### Fallback: OFFLINE version
 
@@ -67,11 +67,6 @@ To build the App, run the build entry point from within the development containe
         ```bash
         velocitas exec build-system install -r
         velocitas exec build-system build
-        ```
-    * Python scripts
-        ```bash
-        python3 ./install_deps.py -r
-        python3 ./build.py
         ```
     * Bash scripts
         ```bash
@@ -171,7 +166,7 @@ velocitas exec build-system install -r
 ## FAQ
 
 **Q:** Why am I getting an InvalidValueException when I try to get the value of a signal/data point by calling the `.value()` function?<br>
-**A:** The current state of a signal/data point might not always represent a valid value, but could be in some failure state. You'll find possible [failure reasons](https://eclipse.dev/velocitas/docs/tutorials/vehicle_app_development/cpp_development/#failure-reasons) and suggestions for a [failure handling](https://eclipse.dev/velocitas/docs/tutorials/vehicle_app_development/cpp_development/#failure-handling) in the 
+**A:** The current state of a signal/data point might not always represent a valid value, but could be in some failure state. You'll find possible [failure reasons](https://eclipse.dev/velocitas/docs/tutorials/vehicle_app_development/cpp_development/#failure-reasons) and suggestions for a [failure handling](https://eclipse.dev/velocitas/docs/tutorials/vehicle_app_development/cpp_development/#failure-handling) in the
 [Velocitas tutorial for C++ Vehicle App Development](https://eclipse.dev/velocitas/docs/tutorials/vehicle_app_development/cpp_development/).
 
 **Q:** Why am I getting an AsyncException while I'm waiting for the outcome of getting or setting signal values using the `.await()` fucntion?<br>

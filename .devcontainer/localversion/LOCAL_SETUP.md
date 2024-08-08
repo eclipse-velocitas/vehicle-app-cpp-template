@@ -38,16 +38,17 @@ Follow these steps to set up your local development environment:
     ├── README.md
     ├── SECURITY.md
     ├── app
-    ├── build.py
     ├── build.sh
     ├── conanfile.txt
+    ├── databroker.tar
     ├── docs
     ├── gcovr.cfg
     ├── install_dependencies.sh
-    ├── install_deps.py
     ├── license_header.txt
     ├── localimage.tar
     ├── mock.py
+    ├── mockservice.tar
+    ├── mosquitto.tar
     ├── reconfigure_template_urls.sh
     ├── requirements.txt
     └── whitelisted-licenses.txt
@@ -65,12 +66,6 @@ Follow these steps to set up your local development environment:
    git init
    git add .
    git commit -m "Initial version"
-   ```
-1. To properly use the local runtime environment, a few containers need to be loaded into the cache:
-   ```shell
-   docker load -i databroker.tar
-   docker load -i mosquitto.tar
-   docker load -i mockservice.tar
    ```
 1. Happy developing!
 

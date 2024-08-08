@@ -27,10 +27,11 @@ RUN bash ./.devcontainer/scripts/onCreateCommand.sh && conan remove "*/*" -fs &&
     && conan remote remove sdv-bgsw-conan-virtual && conan remote disable conancenter
 WORKDIR /
 
-# clear project files
-RUN rm -rf /workspaces/${REPO_NAME}
-
-ENV VELOCITAS_OFFLINE=true
-
 # switch back to root user to make devContainers happy
 USER root
+# clear project files
+RUN rm -rf /workspaces/${REPO_NAME}
+RUN rm -rf /var/lib/apt/lists/* && apt-get autoclean -y \
+    && apt-get autoremove -y && apt-get clean -y
+
+ENV VELOCITAS_OFFLINE=true

@@ -33,10 +33,10 @@ The project configuration file `.velocitas.json` contains soft references to rep
 ```json
 {
     "packages": {
-        "devenv-runtimes": "v4.0.1",
-        "devenv-github-workflows": "v6.0.2",
+        "devenv-runtimes": "v4.0.5",
+        "devenv-github-workflows": "v6.0.4",
         "devenv-github-templates": "v1.0.5",
-        "devenv-devcontainer-setup": "v2.4.0"
+        "devenv-devcontainer-setup": "v2.4.6"
     },
     <...>
 }
@@ -50,10 +50,10 @@ e.g.
 ```json
 {
     "packages": {
-        "https://github.com/SoftwareDefinedVehicle/devenv-runtimes.git": "v4.0.1",
-        "https://github.com/SoftwareDefinedVehicle/devenv-github-workflows.git": "v6.0.2",
+        "https://github.com/SoftwareDefinedVehicle/devenv-runtimes.git": "v4.0.5",
+        "https://github.com/SoftwareDefinedVehicle/devenv-github-workflows.git": "v6.0.4",
         "https://github.com/SoftwareDefinedVehicle/devenv-github-templates.git": "v1.0.5",
-        "https://github.com/SoftwareDefinedVehicle/devenv-devcontainer-setup.git": "v2.4.0"
+        "https://github.com/SoftwareDefinedVehicle/devenv-devcontainer-setup.git": "v2.4.6"
     },
     <...>
 }

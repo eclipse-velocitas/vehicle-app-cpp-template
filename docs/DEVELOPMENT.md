@@ -2,7 +2,7 @@
 
 This repository ships with source code for a sample application in `<repo_root>/app/src` which can be modified freely.
 
-For accessing vehicle data, an auto-generated API based on the [Vehicle Signal Specification 3.1.1](https://github.com/COVESA/vehicle_signal_specification/tree/v3.1.1), is used. To access vehicle data, use the `SampleApp::Vehicle` member variable and navigate through the vehicle signal tree using VSCode's intellisense's auto-completion:
+For accessing vehicle data, an auto-generated API based on the [Vehicle Signal Specification 4.0](https://github.com/COVESA/vehicle_signal_specification/tree/v4.0), is used. To access vehicle data, use the `SampleApp::Vehicle` member variable and navigate through the vehicle signal tree using VSCode's intellisense's auto-completion:
 
 ![Intellisense](./images/vss_intellisense.png)
 
@@ -13,9 +13,9 @@ Once you have navigated to the desired vehicle signal, you can either query its 
 
 ```cpp
 // Set and query driver seat position
-Vehicle.Cabin.Seat.Row1.Pos1.Position.set(desiredSeatPosition)->await();
+Vehicle.Cabin.Seat.Row1.DriverSide.Position.set(desiredSeatPosition)->await();
 
-auto pos = Vehicle.Cabin.Seat.Row1.Pos1.Position.get()->await();
+auto pos = Vehicle.Cabin.Seat.Row1.DriverSide.Position.get()->await();
 ```
 
 ### Listening for vehicle signal changes
@@ -24,7 +24,7 @@ Sometimes you will need to react to changes of a vehicle signal, which can be do
 
 ```cpp
 subscribeDataPoints(
-    velocitas::QueryBuilder::select(Vehicle.Cabin.Seat.Row1.Pos1.Position).build())
+    velocitas::QueryBuilder::select(Vehicle.Cabin.Seat.Row1.DriverSide.Position).build())
     ->onItem([this](auto&& item) { onSeatPositionChanged(std::forward<decltype(item)>(item)); });
 ```
 
@@ -39,14 +39,14 @@ The VSS-based input file for auto-generating the API is defined in `<repo_root>/
         {
             "type": "vehicle-signal-interface",
             "config": {
-                "src": "https://github.com/COVESA/vehicle_signal_specification/releases/download/v3.1.1/vss_rel_3.1.1.json"
+                "src": "https://github.com/COVESA/vehicle_signal_specification/releases/download/v4.0/vss_rel_4.0.json"
             }
         }
     ]
 }
 ```
 
-The `config.src` attribute is a URI to a JSON export of a VSS based vehicle specification, such as the [official release 3.1.1](https://github.com/COVESA/vehicle_signal_specification/releases/download/v3.1.1/vss_rel_3.1.1.json) of VSS. It may point to a local file or on a webserver.
+The `config.src` attribute is a URI to a JSON export of a VSS based vehicle specification, such as the [official release 4.0](https://github.com/COVESA/vehicle_signal_specification/releases/download/v4.0/vss_rel_4.0.json) of VSS. It may point to a local file or on a webserver.
 
 Further reading: [How to reference a model specification](https://eclipse.dev/velocitas/docs/tutorials/vehicle_model_creation/automated_model_lifecycle/#how-to-reference-a-model-specification)
 

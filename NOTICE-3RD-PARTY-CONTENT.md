@@ -29,7 +29,7 @@
 |pygments|2.18.0|Simplified BSD|
 |PyJWT|2.9.0|MIT|
 |python-dateutil|2.9.0.post0|Apache 2.0<br/>BSD|
-|PyYAML|6.0.1|MIT|
+|PyYAML|6.0.2|MIT|
 |requests|2.32.3|Apache 2.0|
 |six|1.16.0|MIT|
 |tqdm|4.66.5|MIT<br/>Mozilla Public License 2.0 (MPL 2.0)|

@@ -25,7 +25,6 @@ if [ "${CODESPACES}" = "true" ]; then
 fi
 
 sudo chmod +x .devcontainer/scripts/*.sh
-sudo chown -R $(whoami) $HOME
 
 git config --global --add safe.directory "*"
 
@@ -82,6 +81,10 @@ if [ -z "${VELOCITAS_OFFLINE}" ]; then
     echo "### VADF package status                             ###"
     echo "#######################################################"
     velocitas upgrade --dry-run
+else
+    docker load -i databroker.tar
+    docker load -i mockservice.tar
+    docker load -i mosquitto.tar
 fi
 
 echo "#######################################################"

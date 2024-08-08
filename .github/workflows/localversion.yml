@@ -70,6 +70,10 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
+      - name: Patch repository contents
+        run: |
+          sed -i '/.*devenv-github-workflows.*/d; /.*devenv-github-templates.*/d' .velocitas.json
+
       - name: Build Devenv Local Version
         uses: docker/build-push-action@v5
         with:
@@ -94,7 +98,10 @@ jobs:
         run: |
           rm -f .credentials
           rm -f .conanremotes
+          rm -f .ort.yml
+          rm -f .licensechecker.yml
           rm -rf .git
+          rm -rf .github
           echo "*.tar" >> app/Dockerfile.dockerignore
           echo "**/build" >> app/Dockerfile.dockerignore
 
