@@ -24,20 +24,11 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-and-publish:
+  build-and-publish-amd64:
     runs-on: ubuntu-22.04
-    strategy:
-      matrix:
-        arch: [amd64, arm64]
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
-        with:
-          platforms: ${{ matrix.arch }}
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -50,7 +41,36 @@ jobs:
       - name: Build devcontainer and publish conan packages
         uses: devcontainers/ci@v0.3
         with:
-          platform: linux/${{ matrix.arch }}
+          noCache: false
+          push: never
+          runCmd: |
+            conan upload "*" --all -r sdv-bgsw-conan-virtual -c
+
+  build-and-publish-arm64:
+    runs-on: macos-14
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker
+        run: |
+          brew update
+          brew install docker
+          brew install colima
+          sudo curl -L -o /opt/homebrew/Cellar/lima/0.22.0/bin/limactl https://github.com/mikekazakov/lima-nohvf/raw/master/limactl && sudo chmod +x /opt/homebrew/Cellar/lima/0.22.0/bin/limactl
+          colima start --network-address --arch arm64 --vm-type=qemu
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Write conan credentials
+        run: |
+          echo "CONAN_REMOTE_USER=${{ secrets.BDC_ARTIFACTORY_USER }}" >> .credentials
+          echo "CONAN_REMOTE_TOKEN=${{ secrets.BDC_ARTIFACTORY_PAT }}" >> .credentials
+
+      - name: Build devcontainer and publish conan packages
+        uses: devcontainers/ci@v0.3
+        with:
           noCache: false
           push: never
           runCmd: |
