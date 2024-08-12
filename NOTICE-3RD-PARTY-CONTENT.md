@@ -18,7 +18,7 @@
 |identify|2.6.0|MIT|
 |idna|3.7|BSD|
 |jinja2|3.1.4|BSD|
-|lxml|5.2.2|New BSD|
+|lxml|5.3.0|New BSD|
 |MarkupSafe|2.1.5|New BSD|
 |node-semver|0.6.1|MIT|
 |nodeenv|1.9.1|BSD|
@@ -46,7 +46,7 @@
 |aquasecurity/trivy-action|0.19.0|Apache License 2.0|
 |ASzc/change-string-case-action|v6|ISC License|
 |battila7/get-version-action|v2|MIT License|
-|dawidd6/action-download-artifact|v3|MIT License|
+|dawidd6/action-download-artifact|v6|MIT License|
 |de-vri-es/setup-git-credentials|v2|BSD 2-Clause "Simplified" License|
 |devcontainers/ci|v0.3|MIT License|
 |docker/build-push-action|v5|Apache License 2.0|

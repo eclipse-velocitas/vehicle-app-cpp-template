@@ -75,7 +75,7 @@ jobs:
           intervalSeconds: 20
 
       - name: Download builds from Build multiarch image workflow artifacts
-        uses: dawidd6/action-download-artifact@v3
+        uses: dawidd6/action-download-artifact@v6
         with:
           github_token: ${{secrets.GITHUB_TOKEN}}
           workflow: build-multiarch-image.yml
@@ -132,7 +132,7 @@ jobs:
           intervalSeconds: 30
 
       - name: Download artifact from CI workflow
-        uses: dawidd6/action-download-artifact@v3
+        uses: dawidd6/action-download-artifact@v6
         with:
           workflow: ci.yml
           workflow_conclusion: success
@@ -254,6 +254,74 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+  apt-packages:
+    name: Get APT package sources
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Wait for local version test to succeed
+        uses: fountainhead/action-wait-for-check@v1.2.0
+        with:
+          checkName: Create local version (linux/amd64)
+          token: ${{ secrets.GITHUB_TOKEN }}
+          ref: ${{ github.sha }}
+          timeoutSeconds: 7200
+          intervalSeconds: 20
+
+      - name: Download builds from localversion workflow artifacts
+        uses: dawidd6/action-download-artifact@v6
+        with:
+          github_token: ${{secrets.GITHUB_TOKEN}}
+          workflow: localversion.yml
+          workflow_conclusion: ""
+          commit: ${{ github.sha }}
+          path: ${{github.workspace}}
+          name: devenv-local-linux_amd64
+
+      - name: Untar archive
+        run: |
+          tar -xvf devenv-local-linux_amd64.tar.gz
+
+      - name: Install Docker image from file
+        run: |
+          docker load -i localimage.tar
+
+      - name: Free up space
+        run: |
+          df -h /
+          rm ./devenv-local-linux_amd64.tar.gz
+          rm ./localimage.tar
+          sudo rm -rf \
+            /opt/google/chrome \
+            /opt/microsoft/msedge \
+            /opt/microsoft/powershell \
+            /opt/pipx \
+            /usr/lib/mono \
+            /usr/local/julia* \
+            /usr/local/lib/android \
+            /usr/local/share/chromium \
+            /usr/local/share/powershell \
+            /usr/share/dotnet \
+            /usr/share/swift
+          df -h /
+
+      - name: Get package sources
+        uses: devcontainers/ci@v0.3
+        with:
+          runCmd: |
+            python .devcontainer/localversion/extract-apt-packages.py
+
+      - name: Zip apt_packages folder
+        run: |
+          zip -r apt_packages.zip apt_packages
+          echo "Zipping returned code $?"
+
+      - name: Upload apt_packages
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            apt_packages.zip
+
   local-version:
     name: Upload local version to releases
     runs-on: ubuntu-22.04
@@ -269,7 +337,7 @@ jobs:
           intervalSeconds: 20
 
       - name: Download builds from localversion workflow artifacts
-        uses: dawidd6/action-download-artifact@v3
+        uses: dawidd6/action-download-artifact@v6
         with:
           github_token: ${{secrets.GITHUB_TOKEN}}
           workflow: localversion.yml
@@ -277,11 +345,38 @@ jobs:
           commit: ${{ github.sha }}
           path: ${{github.workspace}}
 
-      - name: Upload assets
+      - name: Free up space
+        run: |
+          df -h /
+          sudo rm -rf \
+            /opt/google/chrome \
+            /opt/microsoft/msedge \
+            /opt/microsoft/powershell \
+            /opt/pipx \
+            /usr/lib/mono \
+            /usr/local/julia* \
+            /usr/local/lib/android \
+            /usr/local/share/chromium \
+            /usr/local/share/powershell \
+            /usr/share/dotnet \
+            /usr/share/swift
+          df -h /
+
+      - name: Upload devenv-local-linux_amd64
         uses: softprops/action-gh-release@v2
         with:
           files: |
             devenv-local-linux_amd64/*
+
+      - name: Upload devenv-local-linux_aarch64
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
             devenv-local-linux_aarch64/*
+
+      - name: Upload assets
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
             LOCAL SETUP/LOCAL_SETUP.md
             SBOM*/**/*

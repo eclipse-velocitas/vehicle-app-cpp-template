@@ -164,12 +164,7 @@ jobs:
         run: |
           docker load -i localimage.tar
 
-      - name: Write conan credentials
-        run: |
-          echo "CONAN_REMOTE_USER=${{ secrets.BDC_ARTIFACTORY_USER }}" >> .credentials
-          echo "CONAN_REMOTE_TOKEN=${{ secrets.BDC_ARTIFACTORY_PAT }}" >> .credentials
-
-      - name: Test devContainer - Host build
+      - name: Test devContainer
         uses: devcontainers/ci@v0.3
         with:
           runCmd: |
@@ -177,9 +172,4 @@ jobs:
             velocitas exec build-system build -r
             docker load -i localimage.tar
             docker build -f app/Dockerfile -t vehicleapp:local .
-
-      - name: Test devContainer - Cross build
-        uses: devcontainers/ci@v0.3
-        with:
-          runCmd: |
             ./.devcontainer/scripts/build-for-target.sh
