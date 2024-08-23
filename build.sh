@@ -15,6 +15,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-# Provides backward compatibility for all scripts and pipelines
-# which use the bash variant.
-python3 ./build.py $@
+# Keeping this script provides backward compatibility for all scripts and
+# pipelines relying on it.
+
+velocitas exec build-system build $@

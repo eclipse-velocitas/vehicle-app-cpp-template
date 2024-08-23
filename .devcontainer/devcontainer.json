@@ -115,7 +115,8 @@
 				"cs128.cs128-clang-tidy",
 				"matepek.vscode-catch2-test-adapter",
 				"sanaajani.taskrunnercode",
-				"augustocdias.tasks-shell-input"
+				"augustocdias.tasks-shell-input",
+				"ms-vscode.cpptools-extension-pack"
 			]
 		}
 	},
@@ -123,7 +124,7 @@
 	// "forwardPorts": [],
 	// Use 'onCreateCommand' to run commands when the container is created.
 	"onCreateCommand": "bash .devcontainer/scripts/onCreateCommand.sh",
-	"postStartCommand": "bash .devcontainer/scripts/postStartCommand.sh",
+	"postStartCommand": "bash .devcontainer/scripts/upgrade-cli.sh",
 	// Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
 	"remoteUser": "vscode"
 }
