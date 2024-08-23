@@ -64,9 +64,11 @@ jobs:
         with:
           string: ${{ github.repository }}
 
-      - uses: de-vri-es/setup-git-credentials@v2
+      - name: Setup SDV credentials
+        uses: ./.github/actions/setup-git-https-token
         with:
-          credentials: https://user:${{ secrets.GITHUB_TOKEN }}@github.com/
+          token: ${{ secrets.SDV_REPO_READ_ACCESS_TOKEN }}
+          host: github.com
 
       - name: Init velocitas project
         run: |

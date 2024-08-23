@@ -47,7 +47,6 @@
 |ASzc/change-string-case-action|v6|ISC License|
 |battila7/get-version-action|v2|MIT License|
 |dawidd6/action-download-artifact|v6|MIT License|
-|de-vri-es/setup-git-credentials|v2|BSD 2-Clause "Simplified" License|
 |devcontainers/ci|v0.3|MIT License|
 |docker/build-push-action|v5|Apache License 2.0|
 |docker/login-action|v3|Apache License 2.0|

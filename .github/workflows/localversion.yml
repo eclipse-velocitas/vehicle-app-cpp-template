@@ -74,6 +74,10 @@ jobs:
         run: |
           sed -i '/.*devenv-github-workflows.*/d; /.*devenv-github-templates.*/d' .velocitas.json
 
+      - name: Setup SDV credentials
+        run: |
+          echo "${{ secrets.SDV_REPO_READ_ACCESS_TOKEN }}" > .github_token
+
       - name: Build Devenv Local Version
         uses: docker/build-push-action@v5
         with:
@@ -102,6 +106,7 @@ jobs:
           rm -f .licensechecker.yml
           rm -rf .git
           rm -rf .github
+          rm -rf .github_token
           echo "*.tar" >> app/Dockerfile.dockerignore
           echo "**/build" >> app/Dockerfile.dockerignore
 

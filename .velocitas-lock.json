@@ -3,6 +3,7 @@
         "devenv-runtimes": "v4.0.5",
         "devenv-github-workflows": "v6.0.4",
         "devenv-github-templates": "v1.0.5",
-        "devenv-devcontainer-setup": "v2.4.7"
+        "devenv-devcontainer-setup": "v2.4.7",
+        "https://github.com/SoftwareDefinedVehicle/pkg-edge-integration.git": "v0.1.1"
     }
 }

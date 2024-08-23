@@ -78,3 +78,4 @@ logs/
 # local velocitas home
 .velocitas
 .credentials
+.github_token

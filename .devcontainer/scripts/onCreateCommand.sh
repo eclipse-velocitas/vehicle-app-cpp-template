@@ -35,6 +35,8 @@ if [ -z "${VELOCITAS_OFFLINE}" ]; then
     echo "#######################################################"
 
     .devcontainer/scripts/upgrade-cli.sh
+    .devcontainer/scripts/setup-git-access.sh
+
     velocitas init
 
     echo "#######################################################"

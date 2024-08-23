@@ -45,6 +45,12 @@ jobs:
           echo "CONAN_REMOTE_USER=${{ secrets.BDC_ARTIFACTORY_USER }}" >> .credentials
           echo "CONAN_REMOTE_TOKEN=${{ secrets.BDC_ARTIFACTORY_PAT }}" >> .credentials
 
+      - name: Setup SDV credentials
+        uses: ./.github/actions/setup-git-https-token
+        with:
+          token: ${{ secrets.SDV_REPO_READ_ACCESS_TOKEN }}
+          host: github.com
+
       - name: Init velocitas project
         run: |
           sudo curl -L https://github.com/eclipse-velocitas/cli/releases/latest/download/velocitas-linux-x64 -o /usr/bin/velocitas
