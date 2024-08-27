@@ -22,7 +22,7 @@ ENV CONAN_USER_HOME /home/vscode/
 
 WORKDIR /workspace
 
-RUN velocitas init -f -v && \
+RUN .devcontainer/scripts/setup-git-access.sh && velocitas init -f -v && \
     velocitas exec build-system install -r && \
     velocitas exec build-system build -r -t app --static
 

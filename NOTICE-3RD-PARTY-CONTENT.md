@@ -16,7 +16,7 @@
 |filelock|3.15.4|The Unlicense (Unlicense)|
 |gcovr|5.2|BSD|
 |identify|2.6.0|MIT|
-|idna|3.7|BSD|
+|idna|3.8|BSD|
 |jinja2|3.1.4|BSD|
 |lxml|5.3.0|New BSD|
 |MarkupSafe|2.1.5|New BSD|

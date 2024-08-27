@@ -41,10 +41,17 @@ jobs:
         with:
           submodules: "recursive"
 
-      - name: Write conan credentials
+      - name: Write credentials
         run: |
           echo "CONAN_REMOTE_USER=${{ secrets.BDC_ARTIFACTORY_USER }}" >> .credentials
           echo "CONAN_REMOTE_TOKEN=${{ secrets.BDC_ARTIFACTORY_PAT }}" >> .credentials
+          echo "${{ secrets.SDV_REPO_READ_ACCESS_TOKEN }}" > .github_token
+
+      - name: Setup SDV credentials
+        uses: ./.github/actions/setup-git-https-token
+        with:
+          token: ${{ secrets.SDV_REPO_READ_ACCESS_TOKEN }}
+          host: github.com
 
       - name: Clone Release Documentation Action repository
         uses: actions/checkout@v4
@@ -63,12 +70,6 @@ jobs:
         uses: ASzc/change-string-case-action@v6
         with:
           string: ${{ github.repository }}
-
-      - name: Setup SDV credentials
-        uses: ./.github/actions/setup-git-https-token
-        with:
-          token: ${{ secrets.SDV_REPO_READ_ACCESS_TOKEN }}
-          host: github.com
 
       - name: Init velocitas project
         run: |

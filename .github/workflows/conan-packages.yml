@@ -41,6 +41,7 @@ jobs:
       - name: Build devcontainer and publish conan packages
         uses: devcontainers/ci@v0.3
         with:
+          env: GITHUB_TOKEN=${{ secrets.SDV_REPO_READ_ACCESS_TOKEN }}
           noCache: false
           push: never
           runCmd: |
@@ -54,10 +55,12 @@ jobs:
 
       - name: Set up Docker
         run: |
+          # Solution found here: https://github.com/abiosoft/colima/issues/970#issuecomment-2298154164
           brew update
           brew install docker
           brew install colima
-          sudo curl -L -o /opt/homebrew/Cellar/lima/0.22.0/bin/limactl https://github.com/mikekazakov/lima-nohvf/raw/master/limactl && sudo chmod +x /opt/homebrew/Cellar/lima/0.22.0/bin/limactl
+          LIMACTL_PATH=$(brew --prefix)/bin/limactl
+          sudo curl -L -o $LIMACTL_PATH https://github.com/mikekazakov/lima-nohvf/raw/master/limactl && sudo chmod +x $LIMACTL_PATH
           colima start --network-address --arch arm64 --vm-type=qemu
 
       - name: Set up Docker Buildx
@@ -71,6 +74,7 @@ jobs:
       - name: Build devcontainer and publish conan packages
         uses: devcontainers/ci@v0.3
         with:
+          env: GITHUB_TOKEN=${{ secrets.SDV_REPO_READ_ACCESS_TOKEN }}
           noCache: false
           push: never
           runCmd: |
