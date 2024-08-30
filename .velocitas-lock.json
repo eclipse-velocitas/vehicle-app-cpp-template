@@ -1,7 +1,7 @@
 {
     "packages": {
         "devenv-runtimes": "@python_venv",
-        "devenv-github-workflows": "v6.1.1",
+        "devenv-github-workflows": "@prepare_python_venv",
         "devenv-github-templates": "v1.0.5",
         "devenv-devcontainer-setup": "@velocitas_offline"
     }
