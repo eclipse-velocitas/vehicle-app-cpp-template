@@ -20,5 +20,5 @@
 
 TEST(SampleAppTest, skeleton_test) {
     // TODO: Fill me
-    EXPECT_TRUE(true);
+    EXPECT_TRUE(false);
 }
