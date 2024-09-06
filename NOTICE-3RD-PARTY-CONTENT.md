@@ -4,7 +4,7 @@
 | Dependency | Version | License |
 |:-----------|:-------:|--------:|
 |bottle|0.12.25|MIT|
-|certifi|2024.7.4|Mozilla Public License 2.0|
+|certifi|2024.8.30|Mozilla Public License 2.0|
 |cfgv|3.4.0|MIT|
 |charset-normalizer|3.3.2|MIT|
 |colorama|0.4.6|BSD|
@@ -16,9 +16,9 @@
 |filelock|3.15.4|The Unlicense (Unlicense)|
 |gcovr|5.2|BSD|
 |identify|2.6.0|MIT|
-|idna|3.7|BSD|
+|idna|3.8|BSD|
 |jinja2|3.1.4|BSD|
-|lxml|5.2.2|New BSD|
+|lxml|5.3.0|New BSD|
 |MarkupSafe|2.1.5|New BSD|
 |node-semver|0.6.1|MIT|
 |nodeenv|1.9.1|BSD|
@@ -27,13 +27,13 @@
 |pluginbase|1.0.1|BSD|
 |pre-commit|3.5.0|MIT|
 |pygments|2.18.0|Simplified BSD|
-|PyJWT|2.8.0|MIT|
+|PyJWT|2.9.0|MIT|
 |python-dateutil|2.9.0.post0|Apache 2.0<br/>BSD|
-|PyYAML|6.0.1|MIT|
+|PyYAML|6.0.2|MIT|
 |requests|2.32.3|Apache 2.0|
 |six|1.16.0|MIT|
-|tqdm|4.66.4|MIT<br/>Mozilla Public License 2.0 (MPL 2.0)|
-|urllib3|1.26.19|MIT|
+|tqdm|4.66.5|MIT<br/>Mozilla Public License 2.0 (MPL 2.0)|
+|urllib3|1.26.20|MIT|
 |virtualenv|20.26.3|MIT|
 ## Workflows
 | Dependency | Version | License |

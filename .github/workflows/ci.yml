@@ -65,7 +65,10 @@ jobs:
         run: ./build.sh -r
 
       - name: Run Unit Tests
-        run: build/bin/app_utests > test-results.md
+        shell: bash
+        run: |
+          set -o pipefail
+          build/bin/app_utests | tee test-results.md
 
       - name: Generate coverage report
         run: cd build && gcovr -r ..
@@ -90,7 +93,9 @@ jobs:
 
       - name: Add test results to job summary
         run: |
+          echo -e "Unit test results: \n\`\`\` " >> $GITHUB_STEP_SUMMARY
           cat test-results.md >> $GITHUB_STEP_SUMMARY
+          echo -e "\n\`\`\`" >> $GITHUB_STEP_SUMMARY
           cat code-coverage-results.md >> $GITHUB_STEP_SUMMARY
 
       - name: Run Linters

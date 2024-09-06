@@ -10,7 +10,6 @@ The Vehicle App Template for C++ allows to create `Vehicle Apps` from the [Veloc
 * 📁 `app` - base directory for a vehicle app
     * 📁 `src` - source code of the vehicle app
     * 📁 `tests` - tests for the vehicle app
-    * 📁 `vehicle_model` - vehicle model to be used by the vehicle app
 
 ## Building
 

@@ -34,7 +34,7 @@
 			],
 			"presentation": {
 				"close": true,
-				"reveal": "never"
+				"reveal": "always"
 			},
 			"problemMatcher": [ ]
 		},
