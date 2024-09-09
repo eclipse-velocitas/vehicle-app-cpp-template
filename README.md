@@ -66,12 +66,12 @@ To build the App, run the build entry point from within the development containe
     * Velocitas toolchain abstraction (recommended)
         ```bash
         velocitas exec build-system install -r
-        velocitas exec build-system build
+        velocitas exec build-system build -r
         ```
     * Bash scripts
         ```bash
         ./install_dependencies.sh -r
-        ./build.sh
+        ./build.sh -r
         ```
 
 ## Starting the runtime
@@ -114,7 +114,7 @@ To build a native app for an linux arm64 device you have 2 options:
 
 **or**
 
-* In terminal run `./.devcontainer/scripts/build-for-target.sh`
+* In terminal run `./build-for-target.sh`
 
 The resulting native binary will be output to `build/bin` and will be named after the `name` specified in your `app/AppManifest.json`
 

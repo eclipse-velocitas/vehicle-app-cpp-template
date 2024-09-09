@@ -4,7 +4,7 @@
 | Dependency | Version | License |
 |:-----------|:-------:|--------:|
 |bottle|0.12.25|MIT|
-|certifi|2024.7.4|Mozilla Public License 2.0|
+|certifi|2024.8.30|Mozilla Public License 2.0|
 |cfgv|3.4.0|MIT|
 |charset-normalizer|3.3.2|MIT|
 |colorama|0.4.6|BSD|
@@ -33,7 +33,7 @@
 |requests|2.32.3|Apache 2.0|
 |six|1.16.0|MIT|
 |tqdm|4.66.5|MIT<br/>Mozilla Public License 2.0 (MPL 2.0)|
-|urllib3|1.26.19|MIT|
+|urllib3|1.26.20|MIT|
 |virtualenv|20.26.3|MIT|
 ## Workflows
 | Dependency | Version | License |
@@ -58,5 +58,5 @@
 |mikepenz/action-junit-report|v4|Apache License 2.0|
 |peaceiris/actions-gh-pages|v3|MIT License|
 |peaceiris/actions-hugo|v3|MIT License|
-|pre-commit/action|v3.0.0|MIT License|
+|pre-commit/action|v3.0.1|MIT License|
 |softprops/action-gh-release|v2|MIT License|

@@ -1,3 +1,5 @@
+#!/bin/bash
+# This file is maintained by velocitas CLI, do not modify manually. Change settings in .velocitas.json
 # Copyright (c) 2024 Contributors to the Eclipse Foundation
 #
 # This program and the accompanying materials are made available under the
@@ -12,3 +14,4 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+.devcontainer/scripts/upgrade-cli.sh

@@ -44,9 +44,10 @@ custom_vars="        \"gitLocation\": \"$GIT_FORK_LOCATION\", \\
     \"mockServiceImage\": \"$MOCKSERVICE_IMAGE\","
 
 echo "Updating onCreateCommand.sh"
+# Use alternative pip server, only for online mode
 on_create_path=$(find . -name "onCreateCommand.sh")
-sed -i "s+velocitas init+$pip_config\\nvelocitas init+g" "$on_create_path"
-sed -i "/\# velocitas sync/d" "$on_create_path"
+pip_update_marker="# PIP_EXTRA_CONFIG"
+sed -i "s+$pip_update_marker+$pip_config\\n+g" "$on_create_path"
 
 # update base image URL
 echo "Updating Dockerfiles"
@@ -57,7 +58,7 @@ done
 
 echo "Updating devcontainer.json"
 devcontainer_path=$(find . -name "devcontainer.json")
-sed -i '/"postStartCommand": "bash \.devcontainer\/scripts\/postStartCommand.sh",/d' "$devcontainer_path"
+sed -i '/"postStartCommand": "bash \.devcontainer\/scripts\/upgrade-cli\.sh"/d' "$devcontainer_path"
 
 echo "Updating .velocitas.json"
 velocitas_path=$(find . -name ".velocitas.json")

@@ -92,9 +92,11 @@ jobs:
       - name: Save local runtime
         run: |
             docker image pull --platform ${{ matrix.platform }} $(jq -r '.variables.vehicleDatabrokerImage' .velocitas.json)
+            docker image pull --platform ${{ matrix.platform }} $(jq -r '.variables.vehicleDatabrokerCliImage' .velocitas.json)
             docker image pull --platform ${{ matrix.platform }} $(jq -r '.variables.mqttBrokerImage' .velocitas.json)
             docker image pull --platform ${{ matrix.platform }} $(jq -r '.variables.mockServiceImage' .velocitas.json)
             docker save -o databroker.tar $(jq -r '.variables.vehicleDatabrokerImage' .velocitas.json)
+            docker save -o databroker-cli.tar $(jq -r '.variables.vehicleDatabrokerCliImage' .velocitas.json)
             docker save -o mosquitto.tar $(jq -r '.variables.mqttBrokerImage' .velocitas.json)
             docker save -o mockservice.tar $(jq -r '.variables.mockServiceImage' .velocitas.json)
 
@@ -107,6 +109,7 @@ jobs:
           rm -rf .git
           rm -rf .github
           rm -rf .github_token
+          mv ./.devcontainer/localversion/local-setup.sh ./.devcontainer/scripts/
           echo "*.tar" >> app/Dockerfile.dockerignore
           echo "**/build" >> app/Dockerfile.dockerignore
 
@@ -177,4 +180,4 @@ jobs:
             velocitas exec build-system build -r
             docker load -i localimage.tar
             docker build -f app/Dockerfile -t vehicleapp:local .
-            ./.devcontainer/scripts/build-for-target.sh
+            ./build-for-target.sh

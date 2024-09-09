@@ -1,3 +1,5 @@
+#!/bin/bash
+# This file is maintained by velocitas CLI, do not modify manually. Change settings in .velocitas.json
 # Copyright (c) 2022-2024 Contributors to the Eclipse Foundation
 #
 # This program and the accompanying materials are made available under the
@@ -12,28 +14,13 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-# syntax = docker/dockerfile:1.2
+echo "#######################################################"
+echo "### Setup Git                                       ###"
+echo "#######################################################"
+# Add git name and email from env variables
+if [[ -n "${GIT_CONFIG_NAME}" && -n "${GIT_CONFIG_EMAIL}" ]]; then
+    git config --global user.name $GIT_CONFIG_NAME
+    git config --global user.email $GIT_CONFIG_EMAIL
+fi
 
-FROM ghcr.io/eclipse-velocitas/devcontainer-base-images/cpp:v0.3 AS builder
-
-COPY . /workspace
-
-ENV CONAN_USER_HOME=/home/vscode/
-
-WORKDIR /workspace
-
-RUN .devcontainer/scripts/setup-git-access.sh && \
-    velocitas init -f -v && \
-    velocitas exec build-system install -r && \
-    velocitas exec build-system build -r -t app --static
-
-# Runner stage, to copy the executable
-FROM scratch AS runner
-
-COPY --from=builder /workspace/build/bin/app /app
-
-WORKDIR /tmp
-
-ENV PATH="/:$PATH"
-
-CMD ["/app"]
+git config --global --add safe.directory "*"

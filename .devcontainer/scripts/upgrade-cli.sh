@@ -1,6 +1,6 @@
 #!/bin/bash
-
-# Copyright (c) 2024 Contributors to the Eclipse Foundation
+# This file is maintained by velocitas CLI, do not modify manually. Change settings in .velocitas.json
+# Copyright (c) 2023-2024 Contributors to the Eclipse Foundation
 #
 # This program and the accompanying materials are made available under the
 # terms of the Apache License, Version 2.0 which is available at
@@ -15,7 +15,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 echo "#######################################################"
-echo "### Auto-Upgrade CLI                                ###"
+echo "### Auto-upgrade CLI                                ###"
 echo "#######################################################"
 
 ROOT_DIRECTORY=$( realpath "$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )/../.." )

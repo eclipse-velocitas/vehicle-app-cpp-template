@@ -22,16 +22,23 @@ USER vscode:vscode
 COPY --chown=vscode:vscode . /workspaces/${REPO_NAME}
 
 WORKDIR /workspaces/${REPO_NAME}
-# Download all components and pre-heat Velocitas caches
-RUN bash ./.devcontainer/scripts/onCreateCommand.sh && conan remove "*/*" -fs && conan user --clean \
-    && conan remote remove sdv-bgsw-conan-virtual && conan remote disable conancenter
+# Download all components and pre-heat Velocitas caches, especially
+# install the dependencies for target release build
+RUN bash ./.devcontainer/scripts/onCreateCommand.sh && \
+    velocitas exec build-system install -x aarch64 -r && \
+    conan remove "*/*" -fs && \
+    conan user --clean && \
+    conan remote remove sdv-bgsw-conan-virtual && \
+    conan remote disable conancenter
 WORKDIR /
 
 # switch back to root user to make devContainers happy
 USER root
 # clear project files
 RUN rm -rf /workspaces/${REPO_NAME}
-RUN rm -rf /var/lib/apt/lists/* && apt-get autoclean -y \
-    && apt-get autoremove -y && apt-get clean -y
+RUN rm -rf /var/lib/apt/lists/* && \
+    apt-get autoclean -y && \
+    apt-get autoremove -y && \
+    apt-get clean -y
 
 ENV VELOCITAS_OFFLINE=true

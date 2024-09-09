@@ -6,7 +6,7 @@ A locally usable snapshot of the vehicle app template.
 
 Prerequisites are the same to the regular version but without the requirement to have an internet connection.
 
-1. VSCode installed
+1. VSCode installed (incl. required extensions)
 2. Container engine/runtime (e.g. Docker desktop, Podman, ...)
 3. Unarchiver for TAR files (e.g. tar for Linux)
 
@@ -41,6 +41,7 @@ Follow these steps to set up your local development environment:
     ├── build.sh
     ├── conanfile.txt
     ├── databroker.tar
+    ├── databroker-cli.tar
     ├── docs
     ├── gcovr.cfg
     ├── install_dependencies.sh

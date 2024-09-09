@@ -15,7 +15,7 @@
 		{
 			"label": "Build app for target",
 			"type": "shell",
-			"command": "./.devcontainer/scripts/build-for-target.sh",
+			"command": "./build-for-target.sh",
 			"group": "none",
 			"presentation": {
 				"reveal": "always",
@@ -56,7 +56,7 @@
 			],
 			"presentation": {
 				"close": true,
-				"reveal": "never"
+				"reveal": "always"
 			},
 			"problemMatcher": [ ]
 		},
