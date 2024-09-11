@@ -21,18 +21,19 @@ sudo chmod +x .devcontainer/scripts/*.sh
 if [[ -z "${VELOCITAS_OFFLINE}" ]]; then
     .devcontainer/scripts/configure-codespaces.sh
     .devcontainer/scripts/upgrade-cli.sh
-    .devcontainer/scripts/setup-git-access.sh
-elif [[ -x .devcontainer/scripts/local-setup.sh ]]; then
-    .devcontainer/scripts/local-setup.sh
+fi
+
+# Call user initialization hook if present
+ON_CREATE_USER_HOOK_PATH=.devcontainer/scripts/onCreateUserHook.sh
+if [[ -x $ON_CREATE_USER_HOOK_PATH ]]; then
+    $ON_CREATE_USER_HOOK_PATH
 fi
 
 echo "#######################################################"
 echo "### Run VADF Lifecycle Management                   ###"
 echo "#######################################################"
 velocitas init
-# Don't sync velocitas packages as we did Lattice specific modifications in
-# the maintained scripts
-#velocitas sync
+velocitas sync
 
 # Some setup might be required even in offline mode
 .devcontainer/scripts/setup-dependencies.sh

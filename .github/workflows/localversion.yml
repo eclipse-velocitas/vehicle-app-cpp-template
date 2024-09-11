@@ -109,7 +109,6 @@ jobs:
           rm -rf .git
           rm -rf .github
           rm -rf .github_token
-          mv ./.devcontainer/localversion/local-setup.sh ./.devcontainer/scripts/
           echo "*.tar" >> app/Dockerfile.dockerignore
           echo "**/build" >> app/Dockerfile.dockerignore
 
