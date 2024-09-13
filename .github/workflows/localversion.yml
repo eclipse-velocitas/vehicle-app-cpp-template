@@ -91,14 +91,20 @@ jobs:
 
       - name: Save local runtime
         run: |
+            IMAGE_DIR=.devcontainer/localversion/images
+            mkdir -p $IMAGE_DIR
             docker image pull --platform ${{ matrix.platform }} $(jq -r '.variables.vehicleDatabrokerImage' .velocitas.json)
             docker image pull --platform ${{ matrix.platform }} $(jq -r '.variables.vehicleDatabrokerCliImage' .velocitas.json)
             docker image pull --platform ${{ matrix.platform }} $(jq -r '.variables.mqttBrokerImage' .velocitas.json)
             docker image pull --platform ${{ matrix.platform }} $(jq -r '.variables.mockServiceImage' .velocitas.json)
-            docker save -o databroker.tar $(jq -r '.variables.vehicleDatabrokerImage' .velocitas.json)
-            docker save -o databroker-cli.tar $(jq -r '.variables.vehicleDatabrokerCliImage' .velocitas.json)
-            docker save -o mosquitto.tar $(jq -r '.variables.mqttBrokerImage' .velocitas.json)
-            docker save -o mockservice.tar $(jq -r '.variables.mockServiceImage' .velocitas.json)
+            docker image pull --platform ${{ matrix.platform }} $(jq -r '.variables.canProviderImage' .velocitas.json)
+            docker image pull --platform ${{ matrix.platform }} $(jq -r '.variables.csvProviderImage' .velocitas.json)
+            docker save -o $IMAGE_DIR/databroker.tar $(jq -r '.variables.vehicleDatabrokerImage' .velocitas.json)
+            docker save -o $IMAGE_DIR/databroker-cli.tar $(jq -r '.variables.vehicleDatabrokerCliImage' .velocitas.json)
+            docker save -o $IMAGE_DIR/mosquitto.tar $(jq -r '.variables.mqttBrokerImage' .velocitas.json)
+            docker save -o $IMAGE_DIR/mockservice.tar $(jq -r '.variables.mockServiceImage' .velocitas.json)
+            docker save -o $IMAGE_DIR/canprovider.tar $(jq -r '.variables.canProviderImage' .velocitas.json)
+            docker save -o $IMAGE_DIR/csvprovider.tar $(jq -r '.variables.csvProviderImage' .velocitas.json)
 
       - name: Patch repository contents
         run: |

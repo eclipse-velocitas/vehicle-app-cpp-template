@@ -18,15 +18,22 @@ if [[ -z "${VELOCITAS_OFFLINE}" ]]; then
 
     .devcontainer/scripts/setup-git-access.sh
 
+    # Install mqtt cli clients
+    sudo apt-get install mosquitto-clients
+
 else
 
     echo "#######################################################"
     echo "### Install runtime components                      ###"
     echo "#######################################################"
 
-    docker load -i databroker.tar
-    docker load -i databroker-cli.tar
-    docker load -i mockservice.tar
-    docker load -i mosquitto.tar
+    IMAGE_DIR=.devcontainer/localversion/images
+
+    docker load -i $IMAGE_DIR/databroker.tar
+    docker load -i $IMAGE_DIR/databroker-cli.tar
+    docker load -i $IMAGE_DIR/mockservice.tar
+    docker load -i $IMAGE_DIR/mosquitto.tar
+    docker load -i $IMAGE_DIR/canprovider.tar
+    docker load -i $IMAGE_DIR/csvprovider.tar
 
 fi

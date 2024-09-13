@@ -40,16 +40,12 @@ Follow these steps to set up your local development environment:
     ├── app
     ├── build.sh
     ├── conanfile.txt
-    ├── databroker.tar
-    ├── databroker-cli.tar
     ├── docs
     ├── gcovr.cfg
     ├── install_dependencies.sh
     ├── license_header.txt
     ├── localimage.tar
     ├── mock.py
-    ├── mockservice.tar
-    ├── mosquitto.tar
     ├── reconfigure_template_urls.sh
     ├── requirements.txt
     └── whitelisted-licenses.txt
