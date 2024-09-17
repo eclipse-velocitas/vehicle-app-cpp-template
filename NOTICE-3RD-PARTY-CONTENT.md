@@ -15,15 +15,15 @@
 |fasteners|0.19|Apache 2.0|
 |filelock|3.16.0|The Unlicense (Unlicense)|
 |gcovr|5.2|BSD|
-|identify|2.6.0|MIT|
-|idna|3.8|BSD|
+|identify|2.6.1|MIT|
+|idna|3.10|BSD|
 |jinja2|3.1.4|BSD|
 |lxml|5.3.0|New BSD|
 |MarkupSafe|2.1.5|New BSD|
 |node-semver|0.6.1|MIT|
 |nodeenv|1.9.1|BSD|
 |patch-ng|1.17.4|MIT|
-|platformdirs|4.3.2|MIT|
+|platformdirs|4.3.4|MIT|
 |pluginbase|1.0.1|BSD|
 |pre-commit|3.5.0|MIT|
 |pygments|2.18.0|Simplified BSD|
