@@ -1,7 +1,7 @@
 [requires]
 vehicle-model/generated
 vehicle-app-sdk/0.5.2
-lattice-extensions/1.0.5
+lattice-extensions/1.0.6
 gtest/1.14.0
 
 [generators]

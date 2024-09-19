@@ -11,10 +11,10 @@ namespace example {
 class FeatureManager : public virtual ::lattice::listener::FeatureManager {
 public:
     void handleFeatureStart(const std::string& message) override {
-        APP_LOG(SeverityLevel::info) << "handleFeatureStart .." << message;
+        APP_LOG(::nevonex::log::SeverityLevel::info) << "handleFeatureStart .." << message;
     }
     void handleFeatureStop(const std::string& message) override {
-        APP_LOG(SeverityLevel::info) << "handleFeatureStop .." << message;
+        APP_LOG(::nevonex::log::SeverityLevel::info) << "handleFeatureStop .." << message;
     }
 };
 } // namespace example

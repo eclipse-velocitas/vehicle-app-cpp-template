@@ -11,11 +11,11 @@ namespace example {
 class CloudNotifier : public virtual ::nevonex::cloud::CloudNotifier {
 public:
     void handleMessage(const std::string& message) {
-        APP_LOG(SeverityLevel::info) << "Cloud Message Received ... " << message;
+        APP_LOG(::nevonex::log::SeverityLevel::info) << "Cloud Message Received ... " << message;
     }
 
     void handleFile(const ::nevonex::resource::FilePath& _file) {
-        APP_LOG(SeverityLevel::info)
+        APP_LOG(::nevonex::log::SeverityLevel::info)
             << "Cloud File Received ...  file path : " << _file.get().string();
     }
 };
