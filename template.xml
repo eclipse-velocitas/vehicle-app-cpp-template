@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Feature>
+<Identity>
+    <Brand/>
+    <LegalEntity/>
+    <Company/>
+    <ProjectID/>
+    <Name>name</Name>
+    <FeatureType/>
+    <FeatureDate/>
+    <FeatureID>ID</FeatureID>
+    <License/>
+    <Description/>
+    <Author/>
+    <Version>
+      <Major>1</Major>
+      <Minor>0</Minor>
+      <Patch>0</Patch>
+    </Version>
+  </Identity>
+  <UI>
+    <AndroidAppID/>
+    <Context/>
+    <Port>0</Port>
+    <QRScanner/>
+    <Type/>
+    <IOSAppID/>
+  </UI>
+  <Dependencies>
+    <Interfaces>
+    </Interfaces>
+    <Libraries>
+      <Library>
+        <Name> </Name>
+        <Version> </Version>
+      </Library>
+    </Libraries>
+    <Development_Environment>
+      <FCAL_Runtime_Version>9.0</FCAL_Runtime_Version>
+      <FD_Version>9.0</FD_Version>
+      <Development_Tools>
+        <Development_Tool>
+          <Name> </Name>
+          <Version> </Version>
+          <TargetCompiler> </TargetCompiler>
+        </Development_Tool>
+      </Development_Tools>
+    </Development_Environment>
+    <External_Libraries>
+      <External_Library>
+        <Name> </Name>
+        <Version>
+          <Major> </Major>
+          <Minor> </Minor>
+          <Patch> </Patch>
+        </Version>
+      </External_Library>
+    </External_Libraries>
+  </Dependencies>
+  <ContainerCharacteristics>
+    <Name> </Name>
+    <ContainerType>native</ContainerType>
+    <BasePackage> </BasePackage>
+    <EntryPoint> </EntryPoint>
+    <Environments>
+    </Environments>
+    <ExitPoint> </ExitPoint>
+    <AutoStart> </AutoStart>
+    <DataUpload_Support> </DataUpload_Support>
+    <ExternalCloud_API_Support> </ExternalCloud_API_Support>
+    <FGF_Integration_Support> </FGF_Integration_Support>
+    <Name>native</Name>
+    <Version>
+      <Major> </Major>
+      <Minor> </Minor>
+      <Patch> </Patch>
+    </Version>
+  </ContainerCharacteristics>
+  <MachineStatus>
+    <MachineState/>
+    <MachineStateError/>
+  </MachineStatus>
+  <Installation>
+    <Method/>
+    <AutoInstall>true</AutoInstall>
+    <Properties>
+      <AutoRun>true</AutoRun>
+      <DockerFile>NA</DockerFile>
+      <FileSystemIn>/home/in/</FileSystemIn>
+      <FileSystemOut>/home/out/</FileSystemOut>
+      <FileSystemResources>/home/resources</FileSystemResources>
+      <HasToBeBuilt>false</HasToBeBuilt>
+      <ImageName/>
+      <Mount/>
+      <ResourceFolderSize/>
+    </Properties>
+  </Installation>
+  <Resource>
+    <Cpu/>
+    <FolderType>M</FolderType>
+    <Memory/>
+    <Space/>
+  </Resource>
+</Feature>
