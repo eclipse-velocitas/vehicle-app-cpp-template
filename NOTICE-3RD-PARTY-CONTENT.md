@@ -19,7 +19,7 @@
 |idna|3.10|BSD|
 |jinja2|3.1.4|BSD|
 |lxml|5.3.0|New BSD|
-|MarkupSafe|2.1.5|New BSD|
+|MarkupSafe|3.0.1|BSD|
 |node-semver|0.6.1|MIT|
 |nodeenv|1.9.1|BSD|
 |patch-ng|1.17.4|MIT|
@@ -34,7 +34,7 @@
 |six|1.16.0|MIT|
 |tqdm|4.66.5|MIT<br/>Mozilla Public License 2.0 (MPL 2.0)|
 |urllib3|1.26.20|MIT|
-|virtualenv|20.26.5|MIT|
+|virtualenv|20.26.6|MIT|
 ## Workflows
 | Dependency | Version | License |
 |:-----------|:-------:|--------:|
