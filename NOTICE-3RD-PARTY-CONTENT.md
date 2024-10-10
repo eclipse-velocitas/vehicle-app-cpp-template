@@ -6,11 +6,11 @@
 |bottle|0.12.25|MIT|
 |certifi|2024.8.30|Mozilla Public License 2.0|
 |cfgv|3.4.0|MIT|
-|charset-normalizer|3.3.2|MIT|
+|charset-normalizer|3.4.0|MIT|
 |colorama|0.4.6|BSD|
 |conan|1.63.0|MIT|
 |cpplint|1.6.1|New BSD|
-|distlib|0.3.8|Python Software Foundation License|
+|distlib|0.3.9|Python Software Foundation License|
 |distro|1.8.0|Apache 2.0|
 |fasteners|0.19|Apache 2.0|
 |filelock|3.16.1|The Unlicense (Unlicense)|
