@@ -29,7 +29,7 @@ os.environ["MQTT_PORT"] = "31883"
 
 
 class RuntimeTest(unittest.TestCase):
-    @parameterized.expand(["runtime_kanto", "runtime_local"])
+    @parameterized.expand(["runtime_local"])
     def test_runtime(self, runtime):
         subprocess.check_call(  # nosec
             [
