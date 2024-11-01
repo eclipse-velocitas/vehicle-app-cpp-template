@@ -1,7 +1,7 @@
 {
     "packages": {
         "devenv-runtimes": "v4.0.6",
-        "devenv-devcontainer-setup": "v2.5.3",
+        "devenv-devcontainer-setup": "@custom-toolchain",
         "https://github.com/SoftwareDefinedVehicle/pkg-edge-integration.git": "v0.1.4-rc1"
     }
 }

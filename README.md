@@ -73,6 +73,31 @@ To build the App, run the build entry point from within the development containe
         ./install_dependencies.sh -r
         ./build.sh -r
         ```
+#### Custom toolchain
+If you want to use a custom toolchain, like a Yocto generated SDK, some manual steps are needed.
+1. Mount the whole folder into the devcontainer, by editing the `.devcontainer/devcontainer.json``
+    ```json
+        "mounts": [
+            "source=<path on host>,target=<path in devcontainer>,type=bind,consistency=cached"
+        ]
+    ````
+    Note that the path in the devcontainer should match the environment definitions of your toolchain.
+1. Reinitiate the dependencies using either
+    ```bash
+    velocitas exec build-system install -r --toolchain <path to the environmentsetup in your toolchain>
+    ```
+    or
+    ```bash
+    ./install_dependencies.sh -r --toolchain <path to the environmentsetup in your toolchain>
+    ```
+1. Build your app using either
+    ```bash
+    velocitas exec build-system build -r --toolchain <path to the environmentsetup in your toolchain>
+    ```
+    or
+    ```bash
+    ./build.sh -r --toolchain <path to the environmentsetup in your toolchain>
+    ```
 
 ## Starting the runtime
 
