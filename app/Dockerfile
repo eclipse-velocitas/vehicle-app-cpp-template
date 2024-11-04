@@ -22,7 +22,8 @@ ENV CONAN_USER_HOME /home/vscode/
 
 WORKDIR /workspace
 
-RUN velocitas init -f -v && \
+RUN pip install -r requirements.txt && \
+    velocitas init -f -v && \
     ./install_dependencies.sh -r && \
     ./build.sh -r -t app --static
 
