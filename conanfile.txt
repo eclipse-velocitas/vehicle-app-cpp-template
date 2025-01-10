@@ -1,6 +1,6 @@
 [requires]
 vehicle-model/generated
-vehicle-app-sdk/version-bump
+vehicle-app-sdk/0.6.1
 
 [generators]
 cmake
