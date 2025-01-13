@@ -1,4 +1,4 @@
-# Copyright (c) 2022-2024 Contributors to the Eclipse Foundation
+# Copyright (c) 2022-2025 Contributors to the Eclipse Foundation
 #
 # This program and the accompanying materials are made available under the
 # terms of the Apache License, Version 2.0 which is available at
@@ -22,7 +22,8 @@ ENV CONAN_USER_HOME /home/vscode/
 
 WORKDIR /workspace
 
-RUN velocitas init -f -v && \
+RUN pip install -r requirements.txt && \
+    velocitas init -f -v && \
     ./install_dependencies.sh -r && \
     ./build.sh -r -t app --static
 

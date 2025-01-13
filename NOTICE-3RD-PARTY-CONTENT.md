@@ -4,11 +4,13 @@
 | Dependency | Version | License |
 |:-----------|:-------:|--------:|
 |bottle|0.12.25|MIT|
+|build|1.2.2.post1|MIT|
 |certifi|2024.8.30|Mozilla Public License 2.0|
 |cfgv|3.4.0|MIT|
 |charset-normalizer|3.4.0|MIT|
+|click|8.1.7|New BSD|
 |colorama|0.4.6|BSD|
-|conan|1.63.0|MIT|
+|conan|1.66.0|MIT|
 |cpplint|1.6.1|New BSD|
 |distlib|0.3.9|Python Software Foundation License|
 |distro|1.8.0|Apache 2.0|
@@ -22,19 +24,26 @@
 |MarkupSafe|3.0.1|BSD|
 |node-semver|0.6.1|MIT|
 |nodeenv|1.9.1|BSD|
+|packaging|24.1|Apache 2.0<br/>BSD|
 |patch-ng|1.17.4|MIT|
+|pip|23.0.1|MIT|
+|pip-tools|7.4.1|BSD|
 |platformdirs|4.3.6|MIT|
 |pluginbase|1.0.1|BSD|
 |pre-commit|3.5.0|MIT|
 |pygments|2.18.0|Simplified BSD|
 |PyJWT|2.9.0|MIT|
+|pyproject-hooks|1.2.0|MIT|
 |python-dateutil|2.9.0.post0|Apache 2.0<br/>BSD|
 |PyYAML|6.0.2|MIT|
 |requests|2.32.3|Apache 2.0|
+|setuptools|65.5.1|MIT|
 |six|1.16.0|MIT|
+|tomli|2.0.2|MIT|
 |tqdm|4.66.5|MIT<br/>Mozilla Public License 2.0 (MPL 2.0)|
 |urllib3|1.26.20|MIT|
 |virtualenv|20.26.6|MIT|
+|wheel|0.44.0|MIT|
 ## Workflows
 | Dependency | Version | License |
 |:-----------|:-------:|--------:|
