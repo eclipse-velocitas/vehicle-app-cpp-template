@@ -10,7 +10,7 @@
 |charset-normalizer|3.4.0|MIT|
 |click|8.1.7|New BSD|
 |colorama|0.4.6|BSD|
-|conan|1.65.0|MIT|
+|conan|1.66.0|MIT|
 |cpplint|1.6.1|New BSD|
 |distlib|0.3.9|Python Software Foundation License|
 |distro|1.8.0|Apache 2.0|
