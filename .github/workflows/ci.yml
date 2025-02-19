@@ -58,9 +58,6 @@ jobs:
         run: |
           pip3 install -r requirements.txt
 
-      - name: Install dependencies
-        run: ./install_dependencies.sh -r
-
       - name: build
         run: ./build.sh -r
 
