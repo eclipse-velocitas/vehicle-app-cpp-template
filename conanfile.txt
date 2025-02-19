@@ -1,6 +1,0 @@
-[requires]
-vehicle-model/generated
-vehicle-app-sdk/0.6.1
-
-[generators]
-cmake

@@ -19,6 +19,21 @@ add_executable(${TARGET_NAME}
     Launcher.cpp
 )
 
+find_package(vehicle-app-sdk REQUIRED)
+find_package(vehicle-model REQUIRED)
+find_package(fmt REQUIRED)
+find_package(nlohmann_json REQUIRED)
+
+include_directories(
+    .
+    ${CMAKE_BINARY_DIR}/gens
+    ${fmt_INCLUDE_DIR}
+    ${nlohmann_json_INCLUDE_DIR}
+    ${vehicle-app-sdk_INCLUDE_DIR}
+    ${vehicle-model_INCLUDE_DIR}
+)
+
 target_link_libraries(${TARGET_NAME}
-    ${CONAN_LIBS}
+    vehicle-app-sdk::vehicle-app-sdk
+    vehicle-model::vehicle-model
 )
