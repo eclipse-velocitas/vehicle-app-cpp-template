@@ -12,14 +12,5 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-include_directories(
-    ${CMAKE_BINARY_DIR}/gens
-    ${CONAN_INCLUDE_DIRS}
-)
-
-link_directories(
-    ${CONAN_LIB_DIRS}
-)
-
 add_subdirectory(src)
 add_subdirectory(tests)
