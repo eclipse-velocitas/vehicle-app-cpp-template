@@ -35,17 +35,6 @@ if(CCACHE_FOUND)
     set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE ccache)
 endif()
 
-# use conan for dependency management
-set(CONAN_BUILD_INFO_FILE ${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
-
-if(NOT EXISTS ${CONAN_BUILD_INFO_FILE})
-    message(FATAL_ERROR "Conan build info file missing. Did you run install_dependencies.sh first?")
-    return()
-else()
-    include(${CONAN_BUILD_INFO_FILE})
-    conan_basic_setup(TARGETS)
-endif()
-
 add_subdirectory(app)
 
 if(APP_BUILD_TESTS)
