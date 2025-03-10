@@ -19,7 +19,7 @@
 |gcovr|5.2|BSD|
 |identify|2.6.1|MIT|
 |idna|3.10|BSD|
-|jinja2|3.1.5|BSD|
+|jinja2|3.1.6|BSD|
 |lxml|5.3.0|New BSD|
 |MarkupSafe|3.0.1|BSD|
 |node-semver|0.6.1|MIT|
