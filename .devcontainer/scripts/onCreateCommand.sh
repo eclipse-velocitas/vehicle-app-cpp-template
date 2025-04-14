@@ -32,7 +32,7 @@ fi
 echo "#######################################################"
 echo "### Run VADF Lifecycle Management                   ###"
 echo "#######################################################"
-velocitas init
+velocitas init -v
 velocitas sync
 
 # Some setup might be required even in offline mode
