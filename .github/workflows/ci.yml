@@ -62,14 +62,11 @@ jobs:
         run: ./install_dependencies.sh -r
 
       - name: build
-        run: ./build.sh -r
+        run: ./build.sh -r --coverage
 
       - name: Run Unit Tests
         shell: bash
         run: |
-          ls -al
-          ls -al build/
-          ls -al build/bin/
           set -o pipefail
           build/bin/app_utests | tee test-results.md
 
