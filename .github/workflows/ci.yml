@@ -71,7 +71,9 @@ jobs:
           build/bin/app_utests | tee test-results.md
 
       - name: Generate coverage report
-        run: cd build && gcovr -r ..
+        # If 'build' folder is a symlink, assigning pwd to ROOT_DIR makes this independent
+        # of the number of dirs covered by the symlink
+        run: ROOT_DIR=$(pwd) && cd build && gcovr -r $ROOT_DIR
 
       - name: Code Coverage Summary Report
         uses: irongut/CodeCoverageSummary@v1.3.0
