@@ -67,6 +67,9 @@ jobs:
       - name: Run Unit Tests
         shell: bash
         run: |
+          ll -a
+          ll -a build
+          ll -a build/bin
           set -o pipefail
           build/bin/app_utests | tee test-results.md
 
