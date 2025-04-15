@@ -24,6 +24,7 @@ WORKDIR /workspace
 
 RUN pip install -r requirements.txt && \
     velocitas init -f -v && \
+    ./install_dependencies.sh -r && \
     ./build.sh -r -t app --static
 
 # Runner stage, to copy the executable
