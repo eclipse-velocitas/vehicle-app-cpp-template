@@ -14,22 +14,14 @@
 
 set(TARGET_NAME "app_utests")
 
-find_package(vehicle-app-sdk REQUIRED)
-find_package(vehicle-model REQUIRED)
-find_package(fmt REQUIRED)
-find_package(nlohmann_json REQUIRED)
-
 add_executable(${TARGET_NAME}
     ${CMAKE_CURRENT_SOURCE_DIR}/../../src/SampleApp.cpp
     SampleApp_test.cpp
 )
 
-include_directories(
+target_include_directories(${TARGET_NAME}
+    PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/../../src
-    ${fmt_INCLUDE_DIR}
-    ${nlohmann_json_INCLUDE_DIR}
-    ${vehicle-app-sdk_INCLUDE_DIR}
-    ${vehicle-model_INCLUDE_DIR}
 )
 
 add_dependencies(${TARGET_NAME}

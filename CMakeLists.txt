@@ -24,12 +24,20 @@ set(APP_BUILD_TESTS     ON CACHE BOOL "Build the App's tests.")
 set(CMAKE_CXX_STANDARD 17)
 set(STATIC_BUILD        OFF CACHE BOOL "Build all targets with external dependencies linked in statically.")
 
+find_package(vehicle-app-sdk REQUIRED)
+find_package(vehicle-model REQUIRED)
+find_package(fmt REQUIRED)
+find_package(nlohmann_json REQUIRED)
+
+# Induce to put executables into the bin folder of the current build folder
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/bin)
+
 if(STATIC_BUILD)
     set(BUILD_SHARED_LIBS OFF)
     set(CMAKE_EXE_LINKER_FLAGS "-static")
 endif()
-find_program(CCACHE_FOUND ccache)
 
+find_program(CCACHE_FOUND ccache)
 if(CCACHE_FOUND)
     message("Found ccache installation")
     set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE ccache)
