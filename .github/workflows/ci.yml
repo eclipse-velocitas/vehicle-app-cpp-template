@@ -75,6 +75,16 @@ jobs:
         # of the number of dirs covered by the symlink
         run: ROOT_DIR=$(pwd) && cd build && gcovr -r $ROOT_DIR
 
+      - name: LISTING
+        shell: bash
+        run: |
+          echo "Listing all files in the repo root directory"
+          ls -al
+          echo "Listing all files in the build directory"
+          ls -al build/
+          echo "Listing all files in the build/bin directory"
+          ls -al build/bin/
+
       - name: Code Coverage Summary Report
         uses: irongut/CodeCoverageSummary@v1.3.0
         with:
