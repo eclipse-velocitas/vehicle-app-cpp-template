@@ -12,5 +12,8 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+set(SERVICE_LIBS "")
+include(service-libs.cmake OPTIONAL)
+
 add_subdirectory(src)
 add_subdirectory(tests)

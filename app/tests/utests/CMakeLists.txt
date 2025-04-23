@@ -29,6 +29,7 @@ add_dependencies(${TARGET_NAME}
 )
 
 target_link_libraries(${TARGET_NAME}
+    ${SERVICE_LIBS}
     vehicle-app-sdk::vehicle-app-sdk
     vehicle-model::vehicle-model
     gtest_main

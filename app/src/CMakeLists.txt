@@ -25,6 +25,7 @@ target_include_directories(${TARGET_NAME}
 )
 
 target_link_libraries(${TARGET_NAME}
+    ${SERVICE_LIBS}
     vehicle-app-sdk::vehicle-app-sdk
     vehicle-model::vehicle-model
     nlohmann_json::nlohmann_json
