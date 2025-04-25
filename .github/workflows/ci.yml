@@ -38,7 +38,7 @@ on:
 jobs:
   build-and-publish:
     runs-on: ubuntu-22.04
-    container: ghcr.io/eclipse-velocitas/devcontainer-base-images/cpp:951a3f0bc2a10627ad275a0e90bdca7622217b26
+    container: ghcr.io/eclipse-velocitas/devcontainer-base-images/cpp:5cb71f75c9dbf10151d18f16867717cc1c79554d
     name: "Build, Test and Lint"
     steps:
       - name: Checkout repository
@@ -74,16 +74,6 @@ jobs:
         # If 'build' folder is a symlink, assigning pwd to ROOT_DIR makes this independent
         # of the number of dirs covered by the symlink
         run: ROOT_DIR=$(pwd) && cd build && gcovr -r $ROOT_DIR
-
-      - name: LISTING
-        shell: bash
-        run: |
-          echo "Listing all files in the repo root directory"
-          ls -al
-          echo "Listing all files in the build directory"
-          ls -al build/
-          echo "Listing all files in the build/bin directory"
-          ls -al build/bin/
 
       - name: Code Coverage Summary Report
         uses: irongut/CodeCoverageSummary@v1.3.0

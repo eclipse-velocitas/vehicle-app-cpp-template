@@ -14,7 +14,7 @@
 
 # syntax = docker/dockerfile:1.2
 
-FROM ghcr.io/eclipse-velocitas/devcontainer-base-images/cpp::951a3f0bc2a10627ad275a0e90bdca7622217b26 as builder
+FROM ghcr.io/eclipse-velocitas/devcontainer-base-images/cpp::5cb71f75c9dbf10151d18f16867717cc1c79554d as builder
 
 COPY . /workspace
 
