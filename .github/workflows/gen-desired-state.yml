@@ -26,7 +26,7 @@ jobs:
   gen-desired-state:
     name: "Generate desired state for ${{ inputs.app_name }}"
     runs-on: ubuntu-22.04
-    container: ghcr.io/eclipse-velocitas/devcontainer-base-images/cpp:5cb71f75c9dbf10151d18f16867717cc1c79554d
+    container: ghcr.io/eclipse-velocitas/devcontainer-base-images/cpp:v0.4
 
     steps:
       - name: Checkout repository
