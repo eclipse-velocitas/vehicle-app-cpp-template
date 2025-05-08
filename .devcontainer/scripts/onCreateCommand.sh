@@ -1,6 +1,6 @@
 #!/bin/bash
 # This file is maintained by velocitas CLI, do not modify manually. Change settings in .velocitas.json
-# Copyright (c) 2022-2024 Contributors to the Eclipse Foundation
+# Copyright (c) 2022-2025 Contributors to the Eclipse Foundation
 #
 # This program and the accompanying materials are made available under the
 # terms of the Apache License, Version 2.0 which is available at
@@ -29,14 +29,14 @@ if [[ -x $ON_CREATE_USER_HOOK_PATH ]]; then
     $ON_CREATE_USER_HOOK_PATH
 fi
 
+# Some setup might be required even in offline mode
+.devcontainer/scripts/setup-dependencies.sh
+
 echo "#######################################################"
 echo "### Run VADF Lifecycle Management                   ###"
 echo "#######################################################"
 velocitas init
-velocitas sync
-
-# Some setup might be required even in offline mode
-.devcontainer/scripts/setup-dependencies.sh
+#velocitas sync
 
 echo "#######################################################"
 echo "### VADF package status                             ###"

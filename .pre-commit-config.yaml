@@ -31,7 +31,7 @@ repos:
         args: ["--recursive"]
       - id: cppcheck
         args: [
-            "--project=build/compile_commands.json",
+            "--project=build/Debug/compile_commands.json",
             "--language=c++",
             "--std=c++17",
             "--error-exitcode=1",

@@ -37,8 +37,6 @@ class VehicleAppCppSdkConan(ConanFile):
         "shared": [True, False],
         "fPIC": [True, False],
         "STATIC_BUILD": ["ON", "OFF"],
-        "SDK_BUILD_EXAMPLES": ["ON", "OFF"],
-        "SDK_BUILD_TESTS": ["ON", "OFF"],
         "COVERAGE": ["ON", "OFF"],
         "BUILD_TARGET": ["ANY"],
         "BUILD_ARCH": ["ANY"],
@@ -48,8 +46,6 @@ class VehicleAppCppSdkConan(ConanFile):
         "shared": False,
         "fPIC": True,
         "STATIC_BUILD": "OFF",
-        "SDK_BUILD_EXAMPLES": "OFF",
-        "SDK_BUILD_TESTS": "OFF",
         "COVERAGE": "OFF",
         "BUILD_TARGET": "all",
         "BUILD_ARCH": os.uname().machine,
@@ -81,15 +77,13 @@ class VehicleAppCppSdkConan(ConanFile):
         tc.absolute_paths = True
         tc.variables["CMAKE_EXPORT_COMPILE_COMMANDS"] = "ON"
         tc.cache_variables["STATIC_BUILD"] = self.options.STATIC_BUILD
-        tc.cache_variables["SDK_BUILD_EXAMPLES"] = self.options.SDK_BUILD_EXAMPLES
-        tc.cache_variables["SDK_BUILD_TESTS"] = self.options.SDK_BUILD_TESTS
         tc.extra_cxxflags = cxx_flags
         tc.generate()
 
     def build(self):
         cmake = CMake(self)
         cmake.configure()
-        cmake.build()
+        cmake.build(target=f"{self.options.BUILD_TARGET}")
 
     def imports(self):
         self.copy("license*", src=".", dst="./licenses", folder=True, ignore_case=True)
