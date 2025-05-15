@@ -6,10 +6,10 @@
 The Vehicle App Template for C++ allows to create `Vehicle Apps` from the [Velocitas](https://github.com/eclipse-velocitas/velocitas-docs) development model in the C++ programming language.
 
 > [!IMPORTANT]
-> We sucessfully migrated our C++ repositories to use version 2 of the [Conan package manager](https://conan.io/).
+> We successfully migrated our C++ repositories to use version 2 of the [Conan package manager](https://conan.io/).
 > Unfortunately, those changes are not backwards compatible. So, please be aware that recent versions of this C++ app template repository
 > (everything since the `conan2` tag) require usage of the [Velocitas C++ SDK](https://github.com/eclipse-velocitas/vehicle-app-cpp-sdk) >= 0.7.0,
-> packages [devcontainer-setup](https://github.com/eclipse-velocitas/devenv-devcontainer-setup) >= v3 plus
+> packages [devcontainer-setup](https://github.com/eclipse-velocitas/devenv-devcontainer-setup) >= v3 and
 > [github-workflows](https://github.com/eclipse-velocitas/devenv-github-workflows) >= v7, and
 > [base images](https://github.com/eclipse-velocitas/devcontainer-base-images) >= v0.4.
 >
