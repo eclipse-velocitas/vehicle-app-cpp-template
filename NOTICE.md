@@ -51,18 +51,15 @@ they are given here (manually added) for time being:
 
 | Dependency | Version | License |
 |:-----------|:-------:|--------:|
-|abseil|20220623.0|Apache 2.0|
-|c-ares|1.19.1|c-ares (MIT-style)|
-|cpr|1.10.1|MIT|
-|fmt|9.1.0|MIT|
-|googleapis|cci.20221108|Apache 2.0|
+|abseil|20230802.1|Apache 2.0|
+|c-ares|1.34.3|c-ares (MIT-style)|
+|fmt|11.1.1|MIT|
 |grpc|1.50.1|Apache 2.0|
-|grpc-proto|cci.20220627|Apache 2.0|
-|libcurl|8.1.2|CURL|
-|nlohmann_json|3.11.2|MIT|
-|openssl|1.1.1u|OpenSSL License AND SSLeay License|
-|paho-mqtt-c|1.3.9|EPL 2.0 AND EDL 1.0|
-|paho-mqtt-cpp|1.2.0|EPL 1.0 AND EDL 1.0|
-|protobuf|3.21.9|Google License|
-|re2|20220601|BSD-3-Clause|
-|zlib|1.2.13|zlib/libpng license|
+|nlohmann_json|3.11.3|MIT|
+|openssl|3.4.1|Apache 2.0|
+|paho-mqtt-c|1.3.13|EPL 2.0 AND EDL 1.0|
+|paho-mqtt-cpp|1.4.0|EPL 2.0 AND EDL 1.0|
+|protobuf|3.21.12|Google License|
+|re2|20230301|BSD-3-Clause|
+|vehicle-app-sdk|0.7.0|Apache 2.0|
+|zlib|1.3.1|zlib license|
