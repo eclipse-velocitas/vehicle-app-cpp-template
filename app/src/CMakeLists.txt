@@ -1,4 +1,4 @@
-# Copyright (c) 2022-2024 Contributors to the Eclipse Foundation
+# Copyright (c) 2022-2025 Contributors to the Eclipse Foundation
 #
 # This program and the accompanying materials are made available under the
 # terms of the Apache License, Version 2.0 which is available at
@@ -19,6 +19,14 @@ add_executable(${TARGET_NAME}
     Launcher.cpp
 )
 
+target_include_directories(${TARGET_NAME}
+    PRIVATE
+    .
+)
+
 target_link_libraries(${TARGET_NAME}
-    ${CONAN_LIBS}
+    ${SERVICE_LIBS}
+    vehicle-app-sdk::vehicle-app-sdk
+    vehicle-model::vehicle-model
+    nlohmann_json::nlohmann_json
 )

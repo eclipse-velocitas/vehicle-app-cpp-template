@@ -1,4 +1,4 @@
-# Copyright (c) 2022-2024 Contributors to the Eclipse Foundation
+# Copyright (c) 2022-2025 Contributors to the Eclipse Foundation
 #
 # This program and the accompanying materials are made available under the
 # terms of the Apache License, Version 2.0 which is available at
@@ -19,7 +19,8 @@ add_executable(${TARGET_NAME}
     SampleApp_test.cpp
 )
 
-include_directories(
+target_include_directories(${TARGET_NAME}
+    PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/../../src
 )
 
@@ -28,7 +29,9 @@ add_dependencies(${TARGET_NAME}
 )
 
 target_link_libraries(${TARGET_NAME}
-    ${CONAN_LIBS}
+    ${SERVICE_LIBS}
+    vehicle-app-sdk::vehicle-app-sdk
+    vehicle-model::vehicle-model
     gtest_main
     gmock
 )

@@ -1,4 +1,4 @@
-# Copyright (c) 2022-2024 Contributors to the Eclipse Foundation
+# Copyright (c) 2022-2025 Contributors to the Eclipse Foundation
 #
 # This program and the accompanying materials are made available under the
 # terms of the Apache License, Version 2.0 which is available at
@@ -24,26 +24,23 @@ set(APP_BUILD_TESTS     ON CACHE BOOL "Build the App's tests.")
 set(CMAKE_CXX_STANDARD 17)
 set(STATIC_BUILD        OFF CACHE BOOL "Build all targets with external dependencies linked in statically.")
 
+find_package(vehicle-app-sdk REQUIRED)
+find_package(vehicle-model REQUIRED)
+find_package(fmt REQUIRED)
+find_package(nlohmann_json REQUIRED)
+
+# Induce to put executables into the bin folder of the current build folder
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/bin)
+
 if(STATIC_BUILD)
     set(BUILD_SHARED_LIBS OFF)
     set(CMAKE_EXE_LINKER_FLAGS "-static")
 endif()
-find_program(CCACHE_FOUND ccache)
 
+find_program(CCACHE_FOUND ccache)
 if(CCACHE_FOUND)
     message("Found ccache installation")
     set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE ccache)
-endif()
-
-# use conan for dependency management
-set(CONAN_BUILD_INFO_FILE ${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
-
-if(NOT EXISTS ${CONAN_BUILD_INFO_FILE})
-    message(FATAL_ERROR "Conan build info file missing. Did you run install_dependencies.sh first?")
-    return()
-else()
-    include(${CONAN_BUILD_INFO_FILE})
-    conan_basic_setup(TARGETS)
 endif()
 
 add_subdirectory(app)
