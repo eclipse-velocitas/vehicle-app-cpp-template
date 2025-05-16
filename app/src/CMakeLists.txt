@@ -19,6 +19,14 @@ add_executable(${TARGET_NAME}
     Launcher.cpp
 )
 
+target_include_directories(${TARGET_NAME}
+    PRIVATE
+    .
+)
+
 target_link_libraries(${TARGET_NAME}
-    ${CONAN_LIBS}
+    ${SERVICE_LIBS}
+    vehicle-app-sdk::vehicle-app-sdk
+    vehicle-model::vehicle-model
+    nlohmann_json::nlohmann_json
 )

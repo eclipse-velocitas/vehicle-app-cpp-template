@@ -19,7 +19,8 @@ add_executable(${TARGET_NAME}
     SampleApp_test.cpp
 )
 
-include_directories(
+target_include_directories(${TARGET_NAME}
+    PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/../../src
 )
 
@@ -28,7 +29,9 @@ add_dependencies(${TARGET_NAME}
 )
 
 target_link_libraries(${TARGET_NAME}
-    ${CONAN_LIBS}
+    ${SERVICE_LIBS}
+    vehicle-app-sdk::vehicle-app-sdk
+    vehicle-model::vehicle-model
     gtest_main
     gmock
 )

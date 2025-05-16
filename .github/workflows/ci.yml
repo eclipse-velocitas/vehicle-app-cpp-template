@@ -38,7 +38,7 @@ on:
 jobs:
   build-and-publish:
     runs-on: ubuntu-22.04
-    container: ghcr.io/eclipse-velocitas/devcontainer-base-images/cpp:v0.3
+    container: ghcr.io/eclipse-velocitas/devcontainer-base-images/cpp:v0.4
     name: "Build, Test and Lint"
     steps:
       - name: Checkout repository
@@ -62,7 +62,7 @@ jobs:
         run: ./install_dependencies.sh -r
 
       - name: build
-        run: ./build.sh -r
+        run: ./build.sh -r --coverage
 
       - name: Run Unit Tests
         shell: bash
@@ -71,12 +71,14 @@ jobs:
           build/bin/app_utests | tee test-results.md
 
       - name: Generate coverage report
-        run: cd build && gcovr -r ..
+        # If 'build' folder is a symlink, assigning pwd to ROOT_DIR makes this independent
+        # of the number of dirs covered by the symlink
+        run: ROOT_DIR=$(pwd) && cd build && gcovr -r $ROOT_DIR
 
       - name: Code Coverage Summary Report
         uses: irongut/CodeCoverageSummary@v1.3.0
         with:
-          filename: build/coverage.cobertura.xml
+          filename: build-linux-x86_64/Release/coverage.cobertura.xml
           badge: true
           format: markdown
           hide_complexity: true

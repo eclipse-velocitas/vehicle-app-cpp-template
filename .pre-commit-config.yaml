@@ -42,9 +42,7 @@ repos:
             "--suppress=uninitMemberVar",
             "--suppress=unmatchedSuppression",
             # suppress all warnings for generated code
-            "--suppress=*:build/*",
-            "--suppress=*:app/vehicle_model/*",
-            "--suppress=*:examples/vehicle_model/*",
+            "--suppress=*:build*/*",
             "--suppress=*:/*/.conan/*",
           ]
 

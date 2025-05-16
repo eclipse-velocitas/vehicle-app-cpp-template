@@ -14,11 +14,9 @@
 
 # syntax = docker/dockerfile:1.2
 
-FROM ghcr.io/eclipse-velocitas/devcontainer-base-images/cpp:v0.3 as builder
+FROM ghcr.io/eclipse-velocitas/devcontainer-base-images/cpp:v0.4 AS builder
 
 COPY . /workspace
-
-ENV CONAN_USER_HOME /home/vscode/
 
 WORKDIR /workspace
 
@@ -28,7 +26,7 @@ RUN pip install -r requirements.txt && \
     ./build.sh -r -t app --static
 
 # Runner stage, to copy the executable
-FROM scratch as runner
+FROM scratch AS runner
 
 COPY --from=builder /workspace/build/bin/app /app
 
