@@ -66,7 +66,7 @@ pyyaml==6.0.2
     # via
     #   conan
     #   pre-commit
-requests==2.32.3
+requests==2.32.4
     # via conan
 six==1.17.0
     # via python-dateutil
