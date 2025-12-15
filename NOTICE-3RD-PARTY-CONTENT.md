@@ -3,41 +3,42 @@
 ## Python
 | Dependency | Version | License |
 |:-----------|:-------:|--------:|
-|build|1.2.2.post1|MIT|
-|certifi|2025.1.31|Mozilla Public License 2.0|
-|cfgv|3.4.0|MIT|
-|charset-normalizer|3.4.1|MIT|
-|click|8.1.8|BSD|
+|build|1.3.0|unknown|
+|certifi|2025.11.12|Mozilla Public License 2.0|
+|cfgv|3.5.0|MIT|
+|charset-normalizer|3.4.4|MIT|
+|click|8.3.1|unknown|
 |colorama|0.4.6|BSD|
-|conan|2.15.1|MIT|
+|conan|2.24.0|MIT|
 |cpplint|1.6.1|New BSD|
-|distlib|0.3.9|Python Software Foundation License|
-|distro|1.8.0|Apache 2.0|
-|fasteners|0.19|Apache 2.0|
-|filelock|3.18.0|The Unlicense (Unlicense)|
+|distlib|0.4.0|Python Software Foundation License|
+|distro|1.9.0|Apache 2.0|
+|fasteners|0.20|unknown|
+|filelock|3.20.0|The Unlicense (Unlicense)|
 |gcovr|5.2|BSD|
-|identify|2.6.9|MIT|
-|idna|3.10|BSD|
+|identify|2.6.15|MIT|
+|idna|3.11|unknown|
 |jinja2|3.1.6|BSD|
-|lxml|5.3.2|New BSD|
-|MarkupSafe|3.0.2|BSD|
+|lxml|6.0.2|New BSD|
+|markupsafe|3.0.3|unknown|
 |nodeenv|1.9.1|BSD|
-|packaging|24.2|Apache 2.0<br/>BSD|
+|packaging|25.0|Apache 2.0<br/>BSD|
 |patch-ng|1.18.1|MIT|
 |pip|23.0.1|MIT|
-|pip-tools|7.4.1|BSD|
-|platformdirs|4.3.7|MIT|
+|pip-tools|7.5.2|BSD|
+|platformdirs|4.5.1|MIT|
 |pre-commit|3.5.0|MIT|
-|pygments|2.19.1|Simplified BSD|
+|pygments|2.19.2|Simplified BSD|
 |pyproject-hooks|1.2.0|MIT|
 |python-dateutil|2.9.0.post0|Apache 2.0<br/>BSD|
-|PyYAML|6.0.2|MIT|
-|requests|2.32.3|Apache 2.0|
+|pyyaml|6.0.3|MIT|
+|requests|2.32.5|Apache 2.0|
 |setuptools|65.5.1|MIT|
 |six|1.17.0|MIT|
-|tomli|2.2.1|MIT|
-|urllib3|2.0.7|MIT|
-|virtualenv|20.30.0|MIT|
+|tomli|2.3.0|unknown|
+|typing-extensions|4.15.0|unknown|
+|urllib3|2.6.2|unknown|
+|virtualenv|20.35.4|MIT|
 |wheel|0.45.1|MIT|
 ## Workflows
 | Dependency | Version | License |
