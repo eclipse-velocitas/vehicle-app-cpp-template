@@ -14,7 +14,7 @@ The Vehicle App Template for C++ allows to create `Vehicle Apps` from the [Veloc
 > [base images](https://github.com/eclipse-velocitas/devcontainer-base-images) >= v0.4.
 >
 > If you like to migrate older app repositories created from this template before Conan 2,
-> please have a look at the [Conan 2 migration guide](#migrate-older-app-repositories-to-conan-2) below.
+> please have a look at the [Conan 2 migration guide](#migrating-older-app-repositories-to-conan-2) below.
 
 ## Folder structure
 
@@ -29,6 +29,14 @@ To build the App, run the build script:
 ```bash
 ./build.sh
 ```
+
+Depending on the build configuration, afterwards you'll find some additional folders :
+* 📁 `build-linux-aarch64` - Build artifacts for Linux on ARM64
+    * 📁 `Debug` - Artifacts of debug build
+    * 📁 `Release` - Artifacts of release build
+* 📁 `build-linux-x86_64` - Build artifacts for Linux on x64
+    * ...
+* 📁 `build` - Symlink shortcut to the last build runnable on the local host, e.g. `build -> build-linux-x86_64/Debug` if you're developing on an x64 machine and you did a debug mode build.
 
 ## Starting the runtime
 
@@ -78,7 +86,7 @@ All dependencies of the application should be downloaded and installed automatic
 ./install_dependencies.sh
 ```
 
-### Migrate older app repositories to Conan 2
+### Migrating older app repositories to Conan 2
 If you have app repositories created from this template basing on Conan 1 and you like to migrate them to the
 latest state/Conan 2, here are some hints how to achieve that:
 
@@ -95,8 +103,8 @@ Now some local files need to be updated manually:
 1. `conanfile.txt`:
 
    In the `[requires]` section:
-   * Make sure you are referencing all packages used by the app directly.
-     Don't rely on indirect requirements provide by e.g. the C++ SDK:
+   * Make sure you are referencing all packages used by the app directly
+     (don't rely on indirect requirements provided by e.g. the C++ SDK):
      ```diff
      [requires]
      +fmt/11.1.1
@@ -116,7 +124,7 @@ Now some local files need to be updated manually:
 2. Python `requirements.in`: Upgrade Conan to version 2
    ```diff
    -conan==1.x.y
-   +conan>=2,<3
+   +conan~=2.20
    ```
    Update `requirements.txt` using `pip-compile requirements.in`
 3. `.pre-commit-config.yaml`: You should modify the suppression for the build folder:
@@ -151,4 +159,4 @@ Now some local files need to be updated manually:
 > If you are using a `conanfile.py` instead of the `conanfile.txt` variant, here are some hints:
 > * The Python file variant is not supported by the Velcitas tooling (especially the gPRC interface tools)!
 > * Make sure you don't configure `cmake_layout` in the layout section:
->   This will conflict with the build script provieded by component `build-system`.
+>   This will conflict with the build script provided by component `build-system`.
