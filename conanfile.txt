@@ -2,7 +2,7 @@
 fmt/11.1.1
 nlohmann_json/3.11.3
 vehicle-model/generated
-vehicle-app-sdk/0.7.0
+vehicle-app-sdk/0.7.1
 
 [generators]
 CMakeDeps
