@@ -14,7 +14,7 @@
 |distlib|0.4.0|Python Software Foundation License|
 |distro|1.9.0|Apache 2.0|
 |fasteners|0.20|unknown|
-|filelock|3.20.0|The Unlicense (Unlicense)|
+|filelock|3.20.1|The Unlicense (Unlicense)|
 |gcovr|5.2|BSD|
 |identify|2.6.15|MIT|
 |idna|3.11|unknown|
